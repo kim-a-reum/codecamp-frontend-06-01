@@ -6,49 +6,52 @@ import {Body,Wrapper,EmailBox,EmailError,NameBox,NameError,PassWordBox,PassWordE
 
 export default function SignUpPage(){
     
-// 1번 부분 이메일, 비밀번호 값이 사용자에 의해 입력이 되면 그 값으로 바꿔주는 state문과 함수 작성
-// 2번 부분 버튼이 눌리면 아무것도 표시하지 않다가 
-// 3번 부분 조건에 의해 에러구문이 표시되는 조건 함수 작성 
-//     
 
-
-// 1번 부분 
     const[mail,setMail]=useState("")
     const[pass,setPass]=useState("")
     const[pass2,setPass2]=useState("")
 
-    function onChangeEmail(event){
-        setMail(event.target.value)
-    }
-    function onChangePass(event){
-        setPass(event.target.value)
-    }
-    function onChangePass2(event){
-        setPass2(event.target.value)
-    }
-
-//2번 부분 원래값을 에러구문이 뜨지않는 "" 빈값으로 설정하고 , 
-// 바꿔주는값을 에러가 있으면 (조건문)을 밑에 함수로 작성 
     const[mailErr,setMailErr]=useState("")
     const[passErr,setPassErr]=useState("")
     const[pass2Err,setPass2Err]=useState("")
+
+    function onChangeEmail(event){
+        setMail(event.target.value)
+        if (event.target.value.includes("@") === true){
+            setMailErr("")
+        }
+    }
+    function onChangePass(event){
+        setPass(event.target.value)
+        if (setPass !== "") {
+            setPassErr("")
+        }
+    }
+    function onChangePass2(event){
+        setPass2(event.target.value)
+        if (setPass2 !== "") {
+            setPass2Err("")
+        }
+    }
     
     function PutOk(){
-        if((mail.includes("@")) === false){
+    if((mail.includes("@")) === false){
         setMailErr ("이메일형식이 틀렸습니다.")
-    } else if(pass === ""){
-        setMailErr ("")
+    }
+    if(pass === ""){
+        
         setPassErr ("비밀번호를 입력하세요.")
-    }  else if(pass !== pass2){
-        setMailErr ("")
-        setPassErr ("")
+    } 
+    if(pass !== pass2){
+    
         setPass2Err ("비밀번호를 확인하세요.")
-    }  else {
-        setPass2Err ("")
+    } 
+    if ((mail.includes("@")) !== false && pass !== "" && pass == pass2) {
+        
         alert("회원가입을 축하합니다.")
     } 
 }
-    
+    // 비효율의 끝판왕 거지같은 함수와 조건문이지만, 그래도 시도한것에 의의를 두는 나의 오류가득 코드 ! 
     // function PutOk(){
     //     if((mail.includes("@")) === false){
     //         setMailErr ("이메일형식이 틀렸습니다.")
@@ -76,10 +79,6 @@ export default function SignUpPage(){
     //     if(pass == pass2 && (mail.includes("@"))=== true ){
     //         alert("회원가입을 축하합니다.")
     //     }
-
-            
-        
-
     // }
     
     // }

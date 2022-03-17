@@ -1,5 +1,10 @@
 import styled from '@emotion/styled'
 
+export const Error = styled.div`
+    
+    font-size: 14px;
+    color: red;
+`
 
 
 export const Body = styled.div`
@@ -15,6 +20,7 @@ export const Body = styled.div`
 export const Wrapper = styled.div`
 
     width : 1200px;
+    height: 100%;
     border : 1px solid gray;
     display : flex;
     flex-direction : column;
@@ -45,7 +51,7 @@ export const WrapperPersonal = styled.div`
 
 export const Personal = styled.div`
     width: 486px;
-    height: 92px;
+    
     display: flex;
     flex-direction: column;
     
@@ -53,7 +59,7 @@ export const Personal = styled.div`
 
 `
 export const PersonalName = styled.div`
-   
+
     height: 41px;
     font-weight: 600;
     
@@ -63,7 +69,7 @@ export const PersonalName = styled.div`
 `
 
 export const PersonalName2 = styled.input`
-   
+
     height: 41px;
     border: 1px solid gray;
 
@@ -77,7 +83,7 @@ export const WrapperContents = styled.div`
 `
 export const ContentsTitle = styled.div`
     width: 996px;
-    height: 132px;
+    padding-bottom: 40px;
     
 
 `
@@ -98,33 +104,34 @@ export const TitleForm = styled.input`
 `
 export const ContentsValue = styled.div`
     width: 996px;
-    
+    padding-bottom: 30px;
     
 
 `
 export const ValueName = styled.div`
     height: 40px;
     font-weight: bold;
+
     
     
     `
-    export const ValueForm = styled.input`
+    export const ValueForm = styled.textarea`
         width: 996px;
         height: 350px;
         border: 1px solid gray;
-        
+        padding-left: 16px;
+        padding: 14px;
+        resize: none;
     
     `
     export const ContentsAddress= styled.div`
     width: 996px;
     height: 242px;
-    
+    padding-bottom : 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-     
- 
- `
+`
 export const AddressTitle= styled.div`
     height: 40px;
     font-weight: bold;
@@ -161,8 +168,10 @@ export const NumberSearch= styled.div`
     align-items: center;
 `
 
-export const SearchText = styled.span`
+export const SearchText = styled.button`
 color: white;
+background-color: black;
+border: none;
 `
 
 export const AddressValue= styled.input`
@@ -189,8 +198,7 @@ export const YoutubeValue= styled.input`
 
 export const WrapperFooter= styled.div`
     width: 996px;
-    height: 350px;
-
+   
 
 `
 export const FooterPictures= styled.div`
@@ -206,12 +214,12 @@ export const PicturesName= styled.div`
 `
 export const PicturesLoad= styled.div`
     width: 282px;
-    height: 78px;
+    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 `
-export const LoadBox= styled.div`
+export const LoadBox= styled.button`
 
     width: 78px;
     height: 78px;
@@ -220,7 +228,9 @@ export const LoadBox= styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-`
+    cursor: pointer;
+    border: none;
+`    
 export const BoxContents= styled.span`
 
     font-weight: 250;
@@ -248,7 +258,7 @@ export const FooterButton = styled.div`
     align-items: flex-end;
 
 `
-export const FinshButton= styled.div`
+export const FinshButton= styled.button`
     width:179px;
     height: 52px;
     background-color: gold;
@@ -257,7 +267,7 @@ export const FinshButton= styled.div`
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
 `
-export const ButtonValue= styled.span`
-   
-`
+

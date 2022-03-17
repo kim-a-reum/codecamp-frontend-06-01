@@ -1,13 +1,69 @@
-import {Wrapper,Body,WrapperTitle,WrapperPersonal,Personal,PersonalName, PersonalName2,WrapperContents,ContentsTitle,TitleName,TitleForm,ContentsValue,ValueName,ValueForm,ContentsAddress,AddressTitle,AddressNumber,NumberValue,NumberSearch,SearchText,AddressValue,ContentsYoutube,YoutubeName,YoutubeValue,WrapperFooter,FooterPictures,PicturesName,PicturesLoad,LoadBox,BoxContents,FooterSettings,FooterButton,SettingTitle,SettingChoice,FinshButton,ButtonValue}from '../../../styles/emotion'
+import {Wrapper,Body,WrapperTitle,WrapperPersonal,Personal,PersonalName, PersonalName2,WrapperContents,ContentsTitle,TitleName,TitleForm,ContentsValue,ValueName,ValueForm,ContentsAddress,AddressTitle,AddressNumber,NumberValue,NumberSearch,SearchText,AddressValue,ContentsYoutube,YoutubeName,YoutubeValue,WrapperFooter,FooterPictures,PicturesName,PicturesLoad,LoadBox,BoxContents,FooterSettings,FooterButton,SettingTitle,SettingChoice,FinshButton,Error}from '../../../styles/emotion'
+
+import { useState } from 'react'
 
 export default function AAAPage() {
+        // 원래칸을 공백으로 두었다가 입력한 값으로 바꿔줌
+      const[name,setName] = useState("")
+      const[password,setPassword] = useState("")
+      const[title,setTitle] = useState("")
+      const[contents,setContents] = useState("")
+       // 원래칸을 공백으로 두었다가 (조건문) 에러가 나면 값을 바꿔줌
+      const [nameError, setNameError] = useState("");
+      const [passwordError, setPasswordError] = useState("");
+      const [titleError, setTitleError] = useState("");
+      const [contentsError, setContentsError] = useState("");
+        // 입력칸안에 글자가 들어오면 바로바로 그 값을 넣어주는 함수 
+      function onChangeName(event){
+        setName(event.target.value);
+        if (event.target.value !== "") {
+          setNameError("");
+        }
+      };
+      function onChangePassword(event){
+        setPassword(event.target.value);
+        if (event.target.value !== "") {
+          setPasswordError("");
+        }
+      };
+      function onChangeTitle(event){
+        setTitle(event.target.value);
+        if (event.target.value !== "") {
+          setTitleError("");
+        }
+      };
+      function onChangeContents(event){
+        setContents(event.target.value);
+        if (event.target.value !== "") {
+          setContentsError("");
+        }
+      };
 
-    // 여기는 자바스크립트 쓰는곳 
+      function onClickSubmit() {
+        
+        if (name === "") {
+          setNameError("작성자를 입력해주세요.");
+        }
+        if (password === "") {
+          setPasswordError("비밀번호를 입력해주세요.");
+        }
+        if (title === "") {
+          setTitleError("제목을 입력해주세요.");
+        }
+        if (contents === "") {
+          setContentsError("내용을 입력해주세요.");
+        }
+        if(name !== "" && password !== "" && title !== "" && contents !== "") {
+          alert("게시물 등록에 성공하였습니다!")
+        }
 
+
+
+      };
 
   return (
 
-    // HTML 쓰는곳 
+    
     <Body>
       <Wrapper>
         <WrapperTitle>
@@ -17,12 +73,14 @@ export default function AAAPage() {
         <WrapperPersonal>
           <Personal>
             <PersonalName>작성자</PersonalName>
-            <PersonalName2></PersonalName2>
+            <PersonalName2 type="text" placeholder="이름을 적어주세요." onChange={onChangeName}></PersonalName2>
+            <Error>{nameError}</Error>
           </Personal>
 
           <Personal>
             <PersonalName>비밀번호</PersonalName>
-            <PersonalName2></PersonalName2>
+            <PersonalName2 type="password" placeholder="비밀번호를 작성해주세요." onChange={onChangePassword} ></PersonalName2>
+            <Error>{passwordError}</Error>
           </Personal>
           
         </WrapperPersonal>
@@ -30,13 +88,14 @@ export default function AAAPage() {
         <WrapperContents>
           <ContentsTitle>
               <TitleName>제목</TitleName>
-              <TitleForm></TitleForm>
+              <TitleForm type="text" placeholder="제목을 작성해주세요." onChange={onChangeTitle} ></TitleForm>
+              <Error>{titleError}</Error>
           </ContentsTitle>
 
           <ContentsValue>
               <ValueName>내용</ValueName>
-              <ValueForm></ValueForm>
-              
+              <ValueForm placeholder="내용을 작성해주세요." onChange={onChangeContents}></ValueForm>
+              <Error>{contentsError}</Error>
           </ContentsValue> 
 
           <ContentsAddress>
@@ -74,7 +133,7 @@ export default function AAAPage() {
             </FooterSettings>
 
             <FooterButton>
-              <FinshButton><ButtonValue>등록하기</ButtonValue></FinshButton>
+              <FinshButton onClick={onClickSubmit}>등록하기</FinshButton>
             </FooterButton> 
         </WrapperFooter>  
         
