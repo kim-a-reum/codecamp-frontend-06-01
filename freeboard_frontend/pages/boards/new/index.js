@@ -1,5 +1,4 @@
-import CreateBoardPage from "../../../src/components/board/CreateBoard.presenter";
-
+import CreateBoardPage from "../../../src/components/board/CreateBoard.container"
 
 export default function OpenCreateBoard(){
 

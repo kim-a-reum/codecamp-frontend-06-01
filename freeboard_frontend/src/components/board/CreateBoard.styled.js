@@ -263,7 +263,6 @@ export const FooterButton = styled.div`
 export const FinshButton= styled.button`
     width:179px;
     height: 52px;
-    background-color: gold;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -271,5 +270,6 @@ export const FinshButton= styled.button`
     font-weight: bold;
     border: none;
     cursor: pointer;
+    background-color: ${(props) => props.isActive ?  "gold" : "gray"};
 `
 

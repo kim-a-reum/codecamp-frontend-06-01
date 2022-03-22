@@ -1,93 +1,88 @@
-import CreateBoardUI from './CreateBoard.container';
-import { CREATE_BOARD } from './CreteBoard.queries';
-import {Wrapper,Body,WrapperTitle,WrapperPersonal,Personal,PersonalName, PersonalName2,WrapperContents,ContentsTitle,TitleName,TitleForm,ContentsValue,ValueName,ValueForm,ContentsAddress,AddressTitle,AddressNumber,NumberValue,NumberSearch,SearchText,AddressValue,ContentsYoutube,YoutubeName,YoutubeValue,WrapperFooter,FooterPictures,PicturesName,PicturesLoad,LoadBox,BoxContents,FooterSettings,FooterButton,SettingTitle,SettingChoice,FinshButton,Error}from '../../../styles/emotion'
+import * as S from './CreateBoard.styled'
 
-import { useState } from 'react'
-import {useMutation} from '@apollo/client'
-
-import { useRouter } from 'next/router';
-
-export default function CreateBoardPage() {
-
-      const[name,setName] = useState("");
-      const[password,setPassword] = useState("");
-      const[title,setTitle] = useState("");
-      const[contents,setContents] = useState("");
-      const [nameError, setNameError] = useState("");
-      const [passwordError, setPasswordError] = useState("");;
-      const [titleError, setTitleError] = useState("");
-      const [contentsError, setContentsError] = useState("");;
-      const [data, setData] = useState(""); 
-      const router = useRouter();
-      const [createBoard] = useMutation(CREATE_BOARD);
-
-      function onChangeName(event){
-        setName(event.target.value);
-        if (event.target.value !== "") {
-          setNameError("");
-        }
-      };
-      function onChangePassword(event){
-        setPassword(event.target.value);
-        if (event.target.value !== "") {
-          setPasswordError("");
-        }
-      };
-      function onChangeTitle(event){
-        setTitle(event.target.value);
-        if (event.target.value !== "") {
-          setTitleError("");
-        }
-      };
-      function onChangeContents(event){
-        setContents(event.target.value);
-        if (event.target.value !== "") {
-          setContentsError("");
-        }
-      };
-
-      const onClickSubmit = async () => {
-        
-        if (name === "") {
-          setNameError("작성자를 입력해주세요.");
-        }
-        if (password === "") {
-          setPasswordError("비밀번호를 입력해주세요.");
-        }
-        if (title === "") {
-          setTitleError("제목을 입력해주세요.");
-        }
-        if (contents === "") {
-          setContentsError("내용을 입력해주세요.");
-        }
-        if(name !== "" && password !== "" && title !== "" && contents !== "") {
+export default function CreateBoardUI(props){
+  
+  
+  return (
+    
+    
+    <S.Body>
+      <S.Wrapper>
+        <S.WrapperTitle>
+            게시물 등록
+        </S.WrapperTitle>
           
-          try{  const result = await createBoard({ 
-            variables : { createBoardInput :{writer: name, password: password,title: title,contents: contents}}
-          })   
-        console.log(result.data)
-        alert("게시물 등록에 성공하였습니다!")
-        alert("상세 페이지로 이동해볼까요?!")
-        console.log(result.data.createBoard._id)
-        router.push(`/boards/${result.data.createBoard._id}`)    
+        <S.WrapperPersonal>
+          <S.Personal>
+            <S.PersonalName>작성자</S.PersonalName>
+            <S.PersonalName2 type="text" placeholder="이름을 적어주세요." onChange={props.onChangeName}></S.PersonalName2>
+            <S.Error>{props.nameError}</S.Error>
+          </S.Personal>
+
+          <S.Personal>
+            <S.PersonalName>비밀번호</S.PersonalName>
+            <S.PersonalName2 type="password" placeholder="비밀번호를 작성해주세요." onChange={props.onChangePassword} ></S.PersonalName2>
+            <S.Error>{props.passwordError}</S.Error>
+          </S.Personal>
+          
+        </S.WrapperPersonal>
+          
+        <S.WrapperContents>
+          <S.ContentsTitle>
+              <S.TitleName>제목</S.TitleName>
+              <S.TitleForm type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeTitle} ></S.TitleForm>
+              <S.Error>{props.titleError}</S.Error>
+          </S.ContentsTitle>
+
+          <S.ContentsValue>
+              <S.ValueName>내용</S.ValueName>
+              <S.ValueForm placeholder="내용을 작성해주세요." onChange={props.onChangeContents}></S.ValueForm>
+              <S.Error>{props.contentsError}</S.Error>
+          </S.ContentsValue> 
+
+          <S.ContentsAddress>
+              <S.AddressTitle>주소</S.AddressTitle>
+              <S.AddressNumber>
+                  <S.NumberValue></S.NumberValue>
+                  <S.NumberSearch>
+                    <S.SearchText>우편번호 검색</S.SearchText>
+                    </S.NumberSearch>
+              </S.AddressNumber>
+              <S.AddressValue></S.AddressValue>
+              <S.AddressValue></S.AddressValue>
+          </S.ContentsAddress>
+
+          <S.ContentsYoutube>
+              <S.YoutubeName>유튜브</S.YoutubeName>
+              <S.YoutubeValue></S.YoutubeValue>
+          </S.ContentsYoutube>
+        </S.WrapperContents>
         
-              }catch(error){
-        alert(error.message)}
+        <S.WrapperFooter>
+            <S.FooterPictures>
+              <S.PicturesName>사진 첨부</S.PicturesName>
+              <S.PicturesLoad>
+                  <S.LoadBox><S.BoxContents>Upload</S.BoxContents></S.LoadBox>
+                  <S.LoadBox><S.BoxContents>Upload</S.BoxContents></S.LoadBox>
+                  <S.LoadBox><S.BoxContents>Upload</S.BoxContents></S.LoadBox>
+              </S.PicturesLoad>
+            </S.FooterPictures>
 
-      } 
-    }     
-      return ( <CreateBoardUI
-        onChangeName={onChangeName}
-        onChangePassword={onChangePassword}
-        onChangeTitle={onChangeTitle}
-        onChangeContents={onChangeContents}
-        nameError={nameError}
-        titleError={titleError}
-        contentsError={contentsError}
-        passwordError={passwordError}
-        onClickSubmit={onClickSubmit}
-        />
+            <S.FooterSettings>
+                <S.SettingTitle>메인설정</S.SettingTitle>
+                <S.SettingChoice type = "radio" name = "name"/> 유튜브
+                <S.SettingChoice type = "radio" name = "name"/> 사진
+            </S.FooterSettings>
+
+            <S.FooterButton>
+              <S.FinshButton onClick={props.onClickSubmit}  isActive = {props.isActive}>등록하기</S.FinshButton>
+            </S.FooterButton> 
+        </S.WrapperFooter>  
         
-
-
-      )}
+      
+      
+      </S.Wrapper>
+      
+    </S.Body>
+  )
+}
