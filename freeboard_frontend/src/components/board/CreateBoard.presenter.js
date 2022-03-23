@@ -1,3 +1,5 @@
+//게시글 작성, 수정 프레젠터
+
 import * as S from './CreateBoard.styled'
 
 export default function CreateBoardUI(props){
@@ -9,7 +11,7 @@ export default function CreateBoardUI(props){
     <S.Body>
       <S.Wrapper>
         <S.WrapperTitle>
-            게시물 등록
+            게시물 {props.isEdit ? "수정" : "등록"}
         </S.WrapperTitle>
           
         <S.WrapperPersonal>
@@ -75,7 +77,7 @@ export default function CreateBoardUI(props){
             </S.FooterSettings>
 
             <S.FooterButton>
-              <S.FinshButton onClick={props.onClickSubmit}  isActive = {props.isActive}>등록하기</S.FinshButton>
+              <S.FinshButton onClick={props.isEdit ? props.OnClickUpdate : props.onClickSubmit } isActive = {props.isActive}>{props.isEdit ? "수정" : "등록"}하기</S.FinshButton>
             </S.FooterButton> 
         </S.WrapperFooter>  
         

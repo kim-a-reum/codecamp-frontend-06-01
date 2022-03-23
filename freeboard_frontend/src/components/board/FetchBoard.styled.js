@@ -5,12 +5,12 @@ export const Body = styled.div`
     box-sizing: border-box;
     margin: auto;
     display : flex;
-    flex-direction : row;
-    justify-content: center;
+    flex-direction : column;
+    align-items: center;
 `
 export const Wrapper = styled.div`
     width : 1200px;  
-    height: 1562px ;
+    height: 1350px ;
     border : 1px solid gray;
     display : flex;
     flex-direction : column;
@@ -204,3 +204,35 @@ export const DisLikeIcon = styled.div`
     background-image: url("../../thumb_down.png");
     background-repeat: no-repeat;
 `
+
+export const WrapperFoot = styled.div`
+    width: 1200px;
+    height: 200px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    padding : 80px 400px; 
+    justify-content: space-around;
+
+ `
+ export const BackButton = styled.button`
+    width: 90px;
+    height: 40px;
+    background-color: white;
+    border: 0.5px solid gray;
+    cursor: pointer;
+ `
+ export const EditButton = styled.button`
+     width: 90px;
+    height: 40px;
+    background-color: white;
+    border: 0.5px solid gray;
+    cursor: pointer;
+ `
+ export const DeleteButton = styled.button`
+     width: 90px;
+    height: 40px;
+    background-color: white;
+    border: 0.5px solid gray;
+    cursor: pointer;
+ `

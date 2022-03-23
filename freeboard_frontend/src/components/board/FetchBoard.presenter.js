@@ -50,7 +50,11 @@ export default function FetchBoardUI(props){
 
             </S.Foot>
         </S.Wrapper>
-        
+        <S.WrapperFoot>
+            <S.BackButton><button>목록으로</button></S.BackButton>
+            <S.EditButton><button onClick={props.OnClickEdit}>수정하기</button></S.EditButton>
+            <S.DeleteButton><button onClick = {props.onClickDelete}>삭제하기</button></S.DeleteButton>
+        </S.WrapperFoot>
         </S.Body>
     </div>
     </>
