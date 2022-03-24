@@ -87,15 +87,13 @@ export default function CreateBoardPage(props) {
 
     const OnClickUpdate = async () => {
       //수정하기 함수입니다
-    try { const result = await updateBoard({ 
-              variables: { updateBoardInput:{title : title, contents:contents}, boardId: (router.query.boardId)}
+    const result = await updateBoard({ 
+              variables: { updateBoardInput:{title : title, contents:contents}, boardId: (router.query.boardId) ,password:password}
       })
       alert("게시글 수정에 성공했어요! ")
       console.log(result.data)
       router.push(`/boards/${router.query.boardId}`)
-    } catch(error){
-      alert(error.message)
-    }
+    
     
   }
 

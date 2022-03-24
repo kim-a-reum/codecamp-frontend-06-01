@@ -1,3 +1,4 @@
+//게시글 작성, 수정 쿼리(컨테이너와 연결)
 import {gql} from '@apollo/client'
 
 

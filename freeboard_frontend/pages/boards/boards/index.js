@@ -1,3 +1,4 @@
+//게시글 목록페이지 
 import {useQuery,gql, useMutation} from '@apollo/client' 
 import styled from '@emotion/styled'
 
@@ -29,8 +30,9 @@ const Body = styled.div`
 `
 const Wrapper = styled.div`
     width: 900px;
-    height: 260px;
-    border: 1px solid pink;
+    height: 326px;
+    border-top: 1.5px solid black;
+    border-bottom: 1.5px solid black;
 
 
 `
@@ -38,18 +40,22 @@ const Wrapper = styled.div`
 const TopRow = styled.div`
     display: flex;
     flex-direction: row;
-    border-top: 3px solid black;
-    border-bottom: 1px solid black;
+    justify-content: space-between;
+    padding: 3px 50px;
+    height: 30px;
+    border-bottom: 1px solid gray;
 
 `
 const TopColumn = styled.div`
-    width: 25%;
+
 
 
 `
 const Row = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding: 3px 50px;
     border-bottom: 1px solid gray;
     justify-content: space-around;
 
@@ -85,12 +91,16 @@ export default function MapBoardPage(){
                 <TopColumn>제목</TopColumn>
                 <TopColumn>작성자</TopColumn>
                 <TopColumn>날짜</TopColumn>
+                <TopColumn>삭제하기</TopColumn>
             </TopRow>    
         {data?.fetchBoards.map((el)=>(
             <Row key={el._id}>                
-                <Column>{String(el._id).slice(-4).toUpperCase()}</Column>
+                <Column>
+                {String(el._id).slice(-4).toUpperCase()}
+                </Column>
                 <Column>{el.writer}</Column>
                 <Column>{el.title} </Column>
+                <Column>{String(el.createdAt).slice(0,10)}</Column>
                 <Column>
                     <button id = {el._id} onClick={onClickDelete} >삭제</button>   
                 </Column>

@@ -77,7 +77,7 @@ export default function CreateBoardUI(props){
             </S.FooterSettings>
 
             <S.FooterButton>
-              <S.FinshButton onClick={props.isEdit ? props.OnClickUpdate : props.onClickSubmit } isActive = {props.isActive}>{props.isEdit ? "수정" : "등록"}하기</S.FinshButton>
+              <S.FinshButton onClick={props.isEdit ? props.OnClickUpdate : props.onClickSubmit } isActive = {props.isActive ? true : props.isActive}>{props.isEdit ? "수정" : "등록"}하기</S.FinshButton>
             </S.FooterButton> 
         </S.WrapperFooter>  
         
