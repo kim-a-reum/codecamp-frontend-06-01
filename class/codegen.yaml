@@ -1,0 +1,13 @@
+schema: http://example.codebootcamp.co.kr/graphql
+generates:
+  ./src/commons/types/generated/types.ts:
+    plugins:
+      - typescript
+
+    config:
+      typesPrefix: I
+
+
+    # //graphql 주소입력하는곳 
+#//저 주소에 접속을해서 타입스크립트의 파일로 type details의 형식을 따와서 ./src/commons/types/generated/types.ts에 저장을 해준다 
+#// 얘네는 인터넷이 항상 연결되어있고, 백엔드 사이트가 켜져있고, 주소가 명확해야 진행이 된다 

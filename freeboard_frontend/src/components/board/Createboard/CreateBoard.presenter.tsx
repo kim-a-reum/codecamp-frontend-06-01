@@ -1,8 +1,8 @@
 //게시글 작성, 수정 프레젠터
-
+import { ICreateBoardUIProps } from './CreateBoard.types'
 import * as S from './CreateBoard.styled'
 
-export default function CreateBoardUI(props){
+export default function CreateBoardUI(props: ICreateBoardUIProps){
   
   
   return (
@@ -17,7 +17,7 @@ export default function CreateBoardUI(props){
         <S.WrapperPersonal>
           <S.Personal>
             <S.PersonalName>작성자</S.PersonalName>
-            <S.PersonalName2 type="text" placeholder="이름을 적어주세요." onChange={props.onChangeName}></S.PersonalName2>
+            <S.PersonalName2 type="text" placeholder="이름을 적어주세요." onChange={props.onChangeName} defaultValue={props.data?.fetchBoard.writer} readOnly={props.data?.fetchBoard.writer ? true : false}></S.PersonalName2>
             <S.Error>{props.nameError}</S.Error>
           </S.Personal>
 
@@ -32,13 +32,13 @@ export default function CreateBoardUI(props){
         <S.WrapperContents>
           <S.ContentsTitle>
               <S.TitleName>제목</S.TitleName>
-              <S.TitleForm type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeTitle} ></S.TitleForm>
+              <S.TitleForm type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeTitle} defaultValue={props.data?.fetchBoard.title}></S.TitleForm>
               <S.Error>{props.titleError}</S.Error>
           </S.ContentsTitle>
 
           <S.ContentsValue>
               <S.ValueName>내용</S.ValueName>
-              <S.ValueForm placeholder="내용을 작성해주세요." onChange={props.onChangeContents}></S.ValueForm>
+              <S.ValueForm placeholder="내용을 작성해주세요." onChange={props.onChangeContents} defaultValue={props.data?.fetchBoard.contents}></S.ValueForm>
               <S.Error>{props.contentsError}</S.Error>
           </S.ContentsValue> 
 
@@ -77,7 +77,7 @@ export default function CreateBoardUI(props){
             </S.FooterSettings>
 
             <S.FooterButton>
-              <S.FinshButton onClick={props.isEdit ? props.OnClickUpdate : props.onClickSubmit } isActive = {props.isActive ? true : props.isActive}>{props.isEdit ? "수정" : "등록"}하기</S.FinshButton>
+              <S.FinshButton onClick={props.isEdit ? props.OnClickUpdate : props.onClickSubmit } isActive = {props.isActive}>{props.isEdit ? "수정" : "등록"}하기</S.FinshButton>
             </S.FooterButton> 
         </S.WrapperFooter>  
         

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-
+import { IFinshButtonProps } from './CreateBoard.types'
 
 
 export const Error = styled.div`
@@ -270,6 +270,6 @@ export const FinshButton= styled.button`
     font-weight: bold;
     border: none;
     cursor: pointer;
-    background-color: ${(props) => props.isActive ?  "gold" : "gray"};
+    background-color: ${(props : IFinshButtonProps) => props.isActive ?  "gold" : "gray"};
 `
 

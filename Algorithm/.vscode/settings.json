@@ -1,0 +1,4 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode" //저장할때마다 프리티어가 적용되게 한다
+}
