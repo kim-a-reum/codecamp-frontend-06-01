@@ -1,10 +1,8 @@
 import "../styles/globals.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { AppProps } from "next/app";
 import "antd/dist/antd.css";
-//안트디자인 많이 쓸거니까 폴더 안에있는 app.tsx에다가 해주면 됨 1
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   const client = new ApolloClient({
     uri: "http://example.codebootcamp.co.kr/graphql",
     //이주소가 백엔드 컴퓨터 주소야 라는걸 알려주는중

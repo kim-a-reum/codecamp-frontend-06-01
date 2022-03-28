@@ -75,10 +75,22 @@ export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
             <S.WrapperComments>
               <S.TitleComments> 댓글제목상자 </S.TitleComments>
               <S.CreateComments>
-                댓글작성자:{" "}
-                <input type="text" onChange={props.onChangeWriter} />
-                내용: <input type="text" onChange={props.onChangeContents} />
-                점수: <input type="text" onChange={props.onChangeRating} />
+                <input
+                  type="text"
+                  onChange={props.onChangeWriter}
+                  placeholder="작성자"
+                  value={props.writer}
+                />
+                <input
+                  type="text"
+                  onChange={props.onChangeContents}
+                  placeholder="내용"
+                />
+                <input
+                  type="text"
+                  onChange={props.onChangeRating}
+                  placeholder="점수"
+                />
                 <button onClick={props.CreateComments}>등록하기</button>
               </S.CreateComments>
               <S.FetchComments>

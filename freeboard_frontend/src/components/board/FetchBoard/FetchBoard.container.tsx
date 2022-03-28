@@ -72,8 +72,15 @@ export default function FetchBoardPage() {
   const CreateComments = async () => {
     const result = await createBoardComment({
       variables: myVariable,
+      refetchQueries: [
+        {
+          query: FETCH_BOARD_COMMENTS,
+          variables: { boardId: router.query.boardId },
+        },
+      ],
     });
     console.log(result);
+    setMyWriter("");
   };
 
   return (
@@ -87,6 +94,7 @@ export default function FetchBoardPage() {
       onChangeWriter={onChangeWriter}
       onChangeContents={onChangeContents}
       onChangeRating={onChangeRating}
+      writer={writer}
     />
   );
 }
