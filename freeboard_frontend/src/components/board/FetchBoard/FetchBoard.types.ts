@@ -8,10 +8,15 @@ export interface IMyFetchBoardUIprops {
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
   CreateComments: () => void;
   onChangeRating: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePassWord: (event: ChangeEvent<HTMLInputElement>) => void;
   data?: any;
   data2?: any;
   result?: any;
   comments?: any;
+  writer: any;
+  contents: any;
+  rating: any;
+  password: any;
 }
 
 export interface ImyVariables {
@@ -22,6 +27,7 @@ export interface ImycreateBoardCommentInput {
   writer: String;
   contents: String;
   rating: Number;
+  password: String;
 }
 
 export interface IBoardCommentMap {
@@ -30,4 +36,5 @@ export interface IBoardCommentMap {
   writer?: string;
   contents?: string;
   createdAt?: string;
+  rating?: Number;
 }

@@ -31,7 +31,8 @@ export default function FetchBoardPage() {
 
   const [writer, setMyWriter] = useState("");
   const [contents, setMyContents] = useState("");
-  const [rating, setMyRating] = useState(123);
+  const [rating, setMyRating] = useState(0);
+  const [password, setMyPassWord] = useState("");
   //rating의 고유값이 숫자이기 때문에 애초 설정값을 숫자로 넣어주는것
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +43,9 @@ export default function FetchBoardPage() {
   };
   const onChangeRating = (event: ChangeEvent<HTMLInputElement>) => {
     setMyRating(Number(event.target.value));
+  };
+  const onChangePassWord = (event: ChangeEvent<HTMLInputElement>) => {
+    setMyPassWord(event.target.value);
   };
   const onClickDelete = () => {
     deleteBoard({
@@ -64,6 +68,7 @@ export default function FetchBoardPage() {
     writer,
     contents,
     rating,
+    password,
   };
   const myVariable: ImyVariables = {
     createBoardCommentInput: mycreateBoardCommentInput,
@@ -81,6 +86,9 @@ export default function FetchBoardPage() {
     });
     console.log(result);
     setMyWriter("");
+    setMyContents("");
+    setMyRating("");
+    setMyPassWord("");
   };
 
   return (
@@ -94,7 +102,11 @@ export default function FetchBoardPage() {
       onChangeWriter={onChangeWriter}
       onChangeContents={onChangeContents}
       onChangeRating={onChangeRating}
+      onChangePassWord={onChangePassWord}
       writer={writer}
+      contents={contents}
+      rating={rating}
+      password={password}
     />
   );
 }

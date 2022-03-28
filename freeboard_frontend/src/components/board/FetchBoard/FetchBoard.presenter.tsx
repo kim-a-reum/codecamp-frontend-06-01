@@ -73,41 +73,70 @@ export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
               </S.DeleteButton>
             </S.WrapperFoot>
             <S.WrapperComments>
-              <S.TitleComments> 댓글제목상자 </S.TitleComments>
+              <S.TitleComments>
+                <S.Avatar></S.Avatar>
+                댓글{" "}
+              </S.TitleComments>
               <S.CreateComments>
-                <input
-                  type="text"
-                  onChange={props.onChangeWriter}
-                  placeholder="작성자"
-                  value={props.writer}
-                />
-                <input
-                  type="text"
-                  onChange={props.onChangeContents}
-                  placeholder="내용"
-                />
-                <input
-                  type="text"
-                  onChange={props.onChangeRating}
-                  placeholder="점수"
-                />
-                <button onClick={props.CreateComments}>등록하기</button>
+                <S.CommentsTop>
+                  <S.CommentsProfile
+                    type="text"
+                    onChange={props.onChangeWriter}
+                    placeholder="작성자"
+                    value={props.writer}
+                  />
+                  <S.CommentsProfile
+                    type="password"
+                    onChange={props.onChangePassWord}
+                    placeholder="비밀번호"
+                    value={props.password}
+                  />
+
+                  <S.CommentsProfile
+                    type="text"
+                    onChange={props.onChangeRating}
+                    placeholder="점수"
+                    value={props.rating}
+                  />
+                </S.CommentsTop>
+                <S.CommentsMiddle>
+                  <S.CommentsContents
+                    type="text"
+                    onChange={props.onChangeContents}
+                    placeholder="개인정보를 공유 및 요청하거나, 명예훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.  "
+                    value={props.contents}
+                  />
+                  <S.CommentsUnder>
+                    <S.TypingBox>
+                      <br />
+                      0/100
+                    </S.TypingBox>
+                    <S.ButtonBox onClick={props.CreateComments}>
+                      등록하기
+                    </S.ButtonBox>
+                  </S.CommentsUnder>
+                </S.CommentsMiddle>
               </S.CreateComments>
               <S.FetchComments>
-                {" "}
-                댓글 확인
-                {/* //여기서 잊지 말아야 할것은 뿌려줄때 Map 함수의 타입을 지정해줘야한다는것 ! 근데 왜지 위에 다른함수 봐보고 다른예시 봐보고 질문할거 깔끔하게 정리해보자  */}
                 {props.data2?.fetchBoardComments.map((el: IBoardCommentMap) => (
-                  <S.CommentsRow key={el._id}>
-                    <S.CommentsColumn>
-                      아이디 : {el._id?.slice(-4)}
-                    </S.CommentsColumn>
-                    <S.CommentsColumn>작성자 : {el.writer} </S.CommentsColumn>
-                    <S.CommentsColumn>내용 : {el.contents}</S.CommentsColumn>
-                    <S.CommentsColumn>
-                      날짜: {el.createdAt?.slice(0, 10)}
-                    </S.CommentsColumn>
-                  </S.CommentsRow>
+                  <S.CommentsBox key={el._id}>
+                    <S.CommentsIcon></S.CommentsIcon>
+                    <S.CommentsDetail>
+                      <S.CommentsName>
+                        <S.RealWriter>작성자 : {el.writer}</S.RealWriter>
+                        <S.RealRating>별 개수 {el.rating} 개!</S.RealRating>
+                      </S.CommentsName>
+                      <S.CommentsText>내용 : {el.contents}</S.CommentsText>
+                      <S.CommentsDate>
+                        {" "}
+                        {el.createdAt?.slice(0, 10)}
+                      </S.CommentsDate>
+                    </S.CommentsDetail>
+                    <S.CommentsBack>
+                      <S.CommentsEdit></S.CommentsEdit>
+                      <S.CommentsDelete></S.CommentsDelete>
+                    </S.CommentsBack>
+                  </S.CommentsBox>
                 ))}
               </S.FetchComments>
             </S.WrapperComments>
