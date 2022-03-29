@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import ReactPlayer from "react-player";
 
 export const Body = styled.div`
   box-sizing: border-box;
@@ -149,33 +151,9 @@ export const Under = styled.div`
   justify-content: space-around;
   padding-top: 40px;
 `;
-export const FootVideo = styled.div`
-  width: 450px;
-  height: 250px;
-  background-image: url("../../MyPhoto2.jpeg");
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-export const ClickCircle = styled.div`
-  width: 48px;
-  height: 48px;
-  background-image: url("../../Ellipse.png");
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-export const OnClick = styled.div`
-  width: 14px;
-  height: 18px;
-  background-image: url("../../Polygon.png");
-  background-repeat: no-repeat;
-`;
+
+export const Youtube = styled(ReactPlayer)``;
+
 export const LikeBox = styled.div`
   width: 130px;
   height: 60px;
@@ -183,17 +161,23 @@ export const LikeBox = styled.div`
   flex-direction: row;
   justify-content: space-around;
 `;
-export const LikeIcon = styled.div`
-  width: 40px;
-  height: 58px;
-  background-image: url("../../thumb_up.png");
-  background-repeat: no-repeat;
+export const LikeIcon = styled(LikeOutlined)`
+  font-size: 24px;
+  color: #ffd600;
+  margin: 0px 20px;
+  cursor: pointer;
 `;
-export const DisLikeIcon = styled.div`
-  width: 40px;
-  height: 58px;
-  background-image: url("../../thumb_down.png");
-  background-repeat: no-repeat;
+export const LikeCount = styled.div`
+  color: #ffd600;
+`;
+export const DisLikeIcon = styled(DislikeOutlined)`
+  font-size: 24px;
+  color: #828282;
+  margin: 0px 20px;
+  cursor: pointer;
+`;
+export const DislikeCount = styled.div`
+  color: #828282;
 `;
 /////버튼부분
 export const WrapperFoot = styled.div`

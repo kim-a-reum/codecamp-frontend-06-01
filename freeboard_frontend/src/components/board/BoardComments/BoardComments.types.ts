@@ -1,11 +1,13 @@
 import { ChangeEvent } from "react";
+import { IQuery } from "../../../commons/types/generated/types";
 
 export interface IBoardCommentsUIProps {
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
   CreateComments: () => void;
-  onChangeRating: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeRating: (value: number) => void;
   onChangePassWord: (event: ChangeEvent<HTMLInputElement>) => void;
+  // onClickDelete: (event: any) => void;
   data2?: any;
   result?: any;
   comments?: any;
@@ -22,7 +24,7 @@ export interface ImyVariables {
 export interface ImycreateBoardCommentInput {
   writer: String;
   contents: String;
-  rating: Number;
+  rating: number;
   password: String;
 }
 
@@ -32,5 +34,5 @@ export interface IBoardCommentMap {
   writer?: string;
   contents?: string;
   createdAt?: string;
-  rating?: Number;
+  rating?: number;
 }

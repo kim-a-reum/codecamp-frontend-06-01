@@ -13,6 +13,7 @@ export const CREATE_COMMENT = gql`
       writer
       contents
       createdAt
+      rating
     }
   }
 `;
@@ -27,4 +28,15 @@ export const FETCH_BOARD_COMMENTS = gql`
       createdAt
     }
   }
+`;
+
+export const DELETE_COMMENT = gql`
+
+  mutation deleteBoardComment($password: String $boardCommentId: ID!){
+    deleteBoardComment(password:$password, boardCommentId:$boardCommentId)
+  }
+)
+
+
+
 `;

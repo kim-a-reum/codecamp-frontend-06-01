@@ -4,9 +4,11 @@ import { MouseEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { IMutation } from "../../../commons/types/generated/types";
 
 export default function Boardsfetch() {
-  const [deleteBoard] = useMutation(DELETE_BOARD);
+  const [deleteBoard] =
+    useMutation<Pick<IMutation, "deleteBoard">>(DELETE_BOARD);
   const router = useRouter();
 
   const { data } = useQuery(FETCH_BOARDS);

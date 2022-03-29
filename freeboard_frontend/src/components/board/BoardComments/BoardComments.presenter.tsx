@@ -1,6 +1,7 @@
 import { IBoardCommentsUIProps } from "./BoardComments.types";
 import * as S from "./BoardComments.styled";
 import { IBoardCommentMap } from "./BoardComments.types";
+import "antd/dist/antd.css";
 
 export default function BoardCommentPageUI(props: IBoardCommentsUIProps) {
   return (
@@ -25,13 +26,7 @@ export default function BoardCommentPageUI(props: IBoardCommentsUIProps) {
                 placeholder="비밀번호"
                 value={props.password}
               />
-
-              <S.CommentsProfile
-                type="text"
-                onChange={props.onChangeRating}
-                placeholder="점수"
-                value={props.rating}
-              />
+              <S.Star onChange={props.onChangeRating}></S.Star>
             </S.CommentsTop>
             <S.CommentsMiddle>
               <S.CommentsContents
@@ -58,14 +53,17 @@ export default function BoardCommentPageUI(props: IBoardCommentsUIProps) {
                 <S.CommentsDetail>
                   <S.CommentsName>
                     <S.RealWriter>작성자 : {el.writer}</S.RealWriter>
-                    <S.RealRating>별 개수 {el.rating} 개!</S.RealRating>
+                    <S.RealRating>
+                      별 {el.rating} 개 <br /> 주셨어요 !{" "}
+                    </S.RealRating>
+                    <S.Star value={el?.rating} disabled></S.Star>
                   </S.CommentsName>
                   <S.CommentsText>내용 : {el.contents}</S.CommentsText>
                   <S.CommentsDate> {el.createdAt?.slice(0, 10)}</S.CommentsDate>
                 </S.CommentsDetail>
                 <S.CommentsBack>
                   <S.CommentsEdit></S.CommentsEdit>
-                  <S.CommentsDelete></S.CommentsDelete>
+                  {/* <S.CommentsDelete onClick={onClickDelete}></S.CommentsDelete> */}
                 </S.CommentsBack>
               </S.CommentsBox>
             ))}

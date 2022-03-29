@@ -17,7 +17,7 @@ const ModalCustomPage = () => {
     setIsOpen(false);
   };
 
-  const handleComplete = (data) => {
+  const handleComplete = (data: any) => {
     //  주소에 대한 데이터가 들어오니까!
     console.log(data);
     setIsOpen(false);

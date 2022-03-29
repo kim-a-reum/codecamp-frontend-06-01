@@ -26,6 +26,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
   const router = useRouter();
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   function onChangeName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
@@ -91,6 +92,9 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       setIsActive(false);
     }
   }
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutubeUrl(event.target.value);
+  };
 
   const onClickSubmit = async () => {
     //등록하기 함수입니다
@@ -112,15 +116,17 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
           variables: {
             createBoardInput: {
               writer: name,
-              password: password,
-              title: title,
-              contents: contents,
+              password,
+              title,
+              contents,
+              youtubeUrl: String(youtubeUrl),
             },
           },
         });
+        console.log(result);
         alert("게시물 등록에 성공하였습니다!");
         alert("상세 페이지로 이동해볼까요?!");
-        console.log(result.data.createBoard._id);
+        console.log(result.data);
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
         if (error instanceof Error) alert(error.message);
@@ -137,14 +143,15 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       password: password,
       boardId: String(router.query.boardId),
     };
-      
-      if (title !== "") {
-        myupdateBoardInput.title = title;
-      }
-      if (contents !== "") {
-        myupdateBoardInput.contents = contents;
-      }
-      
+
+    if (title !== "") {
+      myupdateBoardInput.title = title;
+    }
+    if (contents !== "") {
+      myupdateBoardInput.contents = contents;
+    }
+    if (youtubeUrl) myupdateBoardInput.youtubeUrl = youtubeUrl;
+
     try {
       await updateBoard({
         variables: myVariables,
@@ -162,6 +169,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
       nameError={nameError}
       titleError={titleError}
       contentsError={contentsError}

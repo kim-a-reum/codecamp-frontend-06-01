@@ -1,5 +1,5 @@
 import * as S from "./FetchBoard.styled";
-import { IMyFetchBoardUIprops, IBoardCommentMap } from "./FetchBoard.types";
+import { IMyFetchBoardUIprops } from "./FetchBoard.types";
 
 export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
   return (
@@ -51,14 +51,21 @@ export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
               </S.MiddleContents>
             </S.Middle>
             <S.Under>
-              <S.FootVideo>
-                <S.ClickCircle>
-                  <S.OnClick></S.OnClick>
-                </S.ClickCircle>
-              </S.FootVideo>
+              {props.data?.fetchBoard.youtubeUrl && (
+                <S.Youtube
+                  url={props.data?.fetchBoard.youtubeUrl}
+                  width="486px"
+                  height="240px"
+                />
+              )}
+
               <S.LikeBox>
-                <S.LikeIcon></S.LikeIcon>
-                <S.DisLikeIcon></S.DisLikeIcon>
+                <S.LikeIcon onClick={props.onClickLike}></S.LikeIcon>
+                <S.LikeCount>{props.data?.fetchBoard.likeCount}</S.LikeCount>
+                <S.DisLikeIcon onClick={props.onClickDislike}></S.DisLikeIcon>
+                <S.DislikeCount>
+                  {props.data?.fetchBoard.dislikeCount}
+                </S.DislikeCount>
               </S.LikeBox>
             </S.Under>
             <S.WrapperFoot>

@@ -32,7 +32,8 @@ const ModalCustomPage = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        비밀번호 입력: <input type="password" onChange={onChangePassword} />
+        비밀번호 입력:{password}{" "}
+        <input type="password" onChange={onChangePassword} />
       </Modal>
     </>
   );

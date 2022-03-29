@@ -10,6 +10,7 @@ export interface ICreateBoardUIProps {
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   OnClickUpdate: () => void;
   isActive: boolean;
@@ -33,4 +34,5 @@ export interface IMyVariables {
 export interface ImyupdateBoardInput {
   title?: string;
   contents?: string;
+  youtubeUrl?: string;
 }

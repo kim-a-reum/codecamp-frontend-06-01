@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Rate } from "antd";
 
 export const Body = styled.div`
   box-sizing: border-box;
@@ -9,6 +10,7 @@ export const Body = styled.div`
 `;
 export const Wrapper = styled.div`
   width: 1200px;
+  height: 3000px;
   border: 1px solid gray;
   display: flex;
   flex-direction: column;
@@ -123,21 +125,28 @@ export const CommentsIcon = styled.div`
   background-repeat: no-repeat;
 `;
 export const CommentsName = styled.div`
-  width: 220px;
+  width: 300px;
   height: 25px;
   display: flex;
   flex-direction: row;
   padding-top: 10px;
 `;
 export const RealWriter = styled.div`
-  width: 200px;
+  width: 300px;
   height: 40px;
   font-weight: 800;
 `;
 export const RealRating = styled.div`
+  padding-top: 5px;
   width: 200px;
   height: 40px;
+  font-size: 5px;
 `;
+export const Star = styled(Rate)`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const CommentsText = styled.div`
   width: 200px;
   height: 70px;
