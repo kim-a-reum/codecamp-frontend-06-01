@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { IQuery } from "../../../commons/types/generated/types";
 
 export interface ICreateBoardProps {
   isEdit: boolean;
@@ -11,15 +12,22 @@ export interface ICreateBoardUIProps {
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onCompleteAddressSearch: (data: any) => void;
+  setIsOpen: boolean;
+  onClickAddressSearch: () => void;
   onClickSubmit: () => void;
   OnClickUpdate: () => void;
+  isOpen: boolean;
   isActive: boolean;
   isEdit: boolean;
-  data?: any;
+  data?: Pick<IQuery, "fetchBoard">;
   nameError: String;
   passwordError: String;
   titleError: String;
   contentsError: String;
+  zipcode: string;
+  address: string;
 }
 
 export interface IFinshButtonProps {
@@ -35,4 +43,9 @@ export interface ImyupdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
 }

@@ -1,19 +1,24 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { useQuery } from "@apollo/client";
+import { useState, ChangeEvent } from "react";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { ImyVariables } from "./BoardComments.types";
-import { ImycreateBoardCommentInput } from "./BoardComments.types";
-// import { IBoardCommentMap } from "./BoardComments.types";
-import { CREATE_COMMENT } from "./BoardComments.queries";
-import { FETCH_BOARD_COMMENTS, DELETE_COMMENT } from "./BoardComments.queries";
-import { ChangeEvent } from "react";
+import { Modal } from "antd";
+import {
+  ImycreateBoardCommentInput,
+  ImyVariables,
+} from "./BoardComments.types";
+import {
+  CREATE_COMMENT,
+  DELETE_COMMENT,
+  FETCH_BOARD_COMMENTS,
+} from "./BoardComments.queries";
 import BoardCommentPageUI from "./BoardComments.presenter";
 import {
   IMutation,
+  IMutationDeleteBoardCommentArgs,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../commons/types/generated/types";
+import { MouseEvent } from "react";
 
 export default function BoardCommentPage() {
   const router = useRouter();
@@ -22,16 +27,19 @@ export default function BoardCommentPage() {
   const [contents, setMyContents] = useState("");
   const [rating, setMyRating] = useState(3);
   const [password, setMyPassWord] = useState("");
-
   const [createBoardComment] = useMutation(CREATE_COMMENT);
-  // const [deleteBoardComment] =
-  //   useMutation<Pick<IMutation, "deleteBoardComment">>(DELETE_COMMENT);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
+  const [deletePassword, setDeletePassword] = useState("");
+
   const { data: data2 } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {
     variables: { boardId: String(router.query.boardId) },
   });
+  const [deleteBoardComment] =
+    useMutation<Pick<IMutation, "deleteBoardComment">>(DELETE_COMMENT);
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setMyWriter(event.target.value);
   };
@@ -72,12 +80,29 @@ export default function BoardCommentPage() {
     setMyRating(2);
     setMyPassWord("");
   };
-  // const onClickDelete = (event) => {
-  //   deleteBoardComment({
-  //     variables: { boardCommentId: event.target.id },
-  //     refetchQueries: [{ query: DELETE_COMMENT }],
-  //   });
-  // };
+  const onClickDelete = () => {
+    deleteBoardComment({
+      variables: {
+        boardCommentId: deleteId,
+        password: deletePassword,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD_COMMENTS,
+          variables: { boardId: String(router.query.boardId) },
+        },
+      ],
+    });
+    setIsOpenModal((prev) => !prev);
+  };
+
+  function onClickOpenModal(event: MouseEvent<HTMLButtonElement>) {
+    setIsOpenModal((prev) => !prev);
+    if (event.target instanceof Element) setDeleteId(event.target.id);
+  }
+  const onChangeDeletePassWord = (event: ChangeEvent<HTMLInputElement>) => {
+    setDeletePassword(event.target.value);
+  };
 
   return (
     <BoardCommentPageUI
@@ -87,7 +112,10 @@ export default function BoardCommentPage() {
       onChangeContents={onChangeContents}
       onChangeRating={onChangeRating}
       onChangePassWord={onChangePassWord}
-      // onClickDelete={onClickDelete}
+      onClickDelete={onClickDelete}
+      onClickOpenModal={onClickOpenModal}
+      onChangeDeletePassWord={onChangeDeletePassWord}
+      isOpenModal={isOpenModal}
       writer={writer}
       contents={contents}
       rating={rating}

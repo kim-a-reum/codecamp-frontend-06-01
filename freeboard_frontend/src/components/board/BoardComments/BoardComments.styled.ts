@@ -42,6 +42,9 @@ export const CommentsTop = styled.div`
   width: 100%;
 `;
 
+export const PasswordInput = styled.input`
+ 
+`;
 export const CreateComments = styled.div`
   width: 100%;
   height: 250px;

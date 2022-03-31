@@ -11,6 +11,7 @@ import {
   IMyVariables,
   ImyupdateBoardInput,
 } from "./CreateBoard.types";
+import { Modal } from "antd";
 
 export default function CreateBoardPage(props: ICreateBoardProps) {
   const [isActive, setIsActive] = useState(false);
@@ -22,11 +23,14 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
-  const [data, setData] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   function onChangeName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
@@ -120,6 +124,11 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
               title,
               contents,
               youtubeUrl: String(youtubeUrl),
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         });
@@ -151,6 +160,13 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       myupdateBoardInput.contents = contents;
     }
     if (youtubeUrl) myupdateBoardInput.youtubeUrl = youtubeUrl;
+    if (zipcode || address || addressDetail) {
+      myupdateBoardInput.boardAddress = {};
+      if (zipcode) myupdateBoardInput.boardAddress.zipcode = zipcode;
+      if (address) myupdateBoardInput.boardAddress.address = address;
+      if (addressDetail)
+        myupdateBoardInput.boardAddress.addressDetail = addressDetail;
+    }
 
     try {
       await updateBoard({
@@ -162,6 +178,17 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       if (error instanceof Error) alert(error.message);
     }
   };
+  const onClickAddressSearch = () => {
+    setIsOpen((prev)=>!prev);
+  };
+  const onCompleteAddressSearch = (data: any) => {
+    setAddress(data.address);
+    setZipcode(data.zonecode);
+    setIsOpen(false);
+  };
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
 
   return (
     <CreateBoardUI
@@ -170,6 +197,9 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
+      onClickAddressSearch={onClickAddressSearch}
+      onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeAddressDetail={onChangeAddressDetail}
       nameError={nameError}
       titleError={titleError}
       contentsError={contentsError}
@@ -179,6 +209,10 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       OnClickUpdate={OnClickUpdate}
       isEdit={props.isEdit}
       data={props.data}
+
+      isOpen={isOpen}
+      zipcode={zipcode}
+      address={address}
     />
   );
 }

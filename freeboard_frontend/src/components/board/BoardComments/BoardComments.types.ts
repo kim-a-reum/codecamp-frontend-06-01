@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import { IQuery } from "../../../commons/types/generated/types";
 
 export interface IBoardCommentsUIProps {
@@ -7,7 +7,10 @@ export interface IBoardCommentsUIProps {
   CreateComments: () => void;
   onChangeRating: (value: number) => void;
   onChangePassWord: (event: ChangeEvent<HTMLInputElement>) => void;
-  // onClickDelete: (event: any) => void;
+  onClickDelete: () => void;
+  onChangeDeletePassWord: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickOpenModal: (event: MouseEvent<HTMLButtonElement>) => void;
+  isOpenModal: boolean;
   data2?: any;
   result?: any;
   comments?: any;
@@ -35,4 +38,5 @@ export interface IBoardCommentMap {
   contents?: string;
   createdAt?: string;
   rating?: number;
+  data2?: any;
 }
