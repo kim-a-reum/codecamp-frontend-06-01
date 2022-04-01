@@ -2,8 +2,6 @@ import { gql, useQuery } from "@apollo/client";
 import Board from "../../src/components/units/14-board-pagination/Board";
 import Pagination from "../../src/components/units/14-board-pagination/Pagination";
 const FETCH_BOARDS = gql`
-    
-
   query fetchBoards($page: Int) {
     fetchBoards(page: $page) {
       _id
@@ -15,12 +13,10 @@ const FETCH_BOARDS = gql`
       `
 
 const FETCH_BOARDS_COUNT = gql`
-    
-  query fetchBoardsCount {
+ query fetchBoardsCount {
     fetchBoardsCount
   }
-
-      `
+ `
 export default function MapBoardPage() {
   const { data, refetch } = useQuery(FETCH_BOARDS);
   const { data: dataBoardsCount } = useQuery(FETCH_BOARDS_COUNT);
