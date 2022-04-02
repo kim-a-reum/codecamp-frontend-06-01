@@ -25,7 +25,7 @@ export default function CreateBoardUI(props: ICreateBoardUIProps) {
                 type="text"
                 placeholder="이름을 적어주세요."
                 onChange={props.onChangeName}
-                defaultValue={props.data?.fetchBoard.writer}
+                defaultValue={props?.data?.fetchBoard?.writer}
                 readOnly={props.data?.fetchBoard.writer ? true : false}
               ></S.PersonalName2>
               <S.Error>{props.nameError}</S.Error>

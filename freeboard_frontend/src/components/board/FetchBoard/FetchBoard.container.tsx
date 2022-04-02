@@ -19,7 +19,6 @@ export default function FetchBoardPage() {
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: String(router.query.boardId) },
   });
-  console.log(data);
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [likeBoard] = useMutation<
     Pick<IMutation, "likeBoard">,

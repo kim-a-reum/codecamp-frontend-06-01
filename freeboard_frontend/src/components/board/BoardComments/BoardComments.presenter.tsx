@@ -1,22 +1,14 @@
 import { IBoardCommentsUIProps } from "./BoardComments.types";
-import { Modal } from "antd";
+
 import * as S from "./BoardComments.styled";
-import { IBoardCommentMap } from "./BoardComments.types";
 import "antd/dist/antd.css";
 
+
 export default function BoardCommentPageUI(props: IBoardCommentsUIProps) {
+ 
   return (
     <>
-      {props.isOpenModal && (
-        <Modal
-          visible={true}
-          onOk={props.onClickDelete}
-          
-        >
-          <div> 비밀번호를 입력해주세요</div>
-          <S.PasswordInput type="password" onChange={props.onChangeDeletePassWord} />
-        </Modal>
-      )}
+
       <S.Body>
         <S.Wrapper>
           <S.WrapperComments>
@@ -58,35 +50,6 @@ export default function BoardCommentPageUI(props: IBoardCommentsUIProps) {
                 </S.CommentsUnder>
               </S.CommentsMiddle>
             </S.CreateComments>
-            <S.FetchComments>
-              {props.data2?.fetchBoardComments.map((el: IBoardCommentMap) => (
-                <S.CommentsBox key={el._id}>
-                  <S.CommentsIcon></S.CommentsIcon>
-                  <S.CommentsDetail>
-                    <S.CommentsName>
-                      <S.RealWriter>작성자 : {el.writer}</S.RealWriter>
-                      <S.RealRating>
-                        별 {el.rating} 개 <br /> 주셨어요 !{" "}
-                      </S.RealRating>
-                      <S.Star value={el?.rating} disabled></S.Star>
-                    </S.CommentsName>
-                    <S.CommentsText>내용 : {el.contents}</S.CommentsText>
-                    <S.CommentsDate>
-                      {" "}
-                      {el.createdAt?.slice(0, 10)}
-                    </S.CommentsDate>
-                  </S.CommentsDetail>
-                  <S.CommentsBack>
-                    <S.CommentsEdit></S.CommentsEdit>
-                    <S.CommentsDelete
-                      id={el._id}
-                      // onClick={props.onClickDelete}
-                      onClick={props.onClickOpenModal}
-                    ></S.CommentsDelete>
-                  </S.CommentsBack>
-                </S.CommentsBox>
-              ))}
-            </S.FetchComments>
           </S.WrapperComments>
         </S.Wrapper>
       </S.Body>

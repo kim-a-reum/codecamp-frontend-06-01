@@ -12,6 +12,7 @@ import {
   ImyupdateBoardInput,
 } from "./CreateBoard.types";
 import { Modal } from "antd";
+import { ModalInfo, Modalsuccess } from "../../utility";
 
 export default function CreateBoardPage(props: ICreateBoardProps) {
   const [isActive, setIsActive] = useState(false);
@@ -130,12 +131,12 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
                 addressDetail,
               },
             },
-          },
+          }
         });
-        console.log(result);
-        alert("게시물 등록에 성공하였습니다!");
-        alert("상세 페이지로 이동해볼까요?!");
-        console.log(result.data);
+        
+        
+        Modalsuccess({content :"게시물 등록에 성공했습니다! 상세페이지로 이동합니다! "});
+        
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
         if (error instanceof Error) alert(error.message);
@@ -172,7 +173,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       await updateBoard({
         variables: myVariables,
       });
-      alert("게시글 수정에 성공했어요! ");
+      Modalsuccess({content :"게시물 수정에 성공했습니다!"});
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
@@ -209,7 +210,6 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       OnClickUpdate={OnClickUpdate}
       isEdit={props.isEdit}
       data={props.data}
-
       isOpen={isOpen}
       zipcode={zipcode}
       address={address}

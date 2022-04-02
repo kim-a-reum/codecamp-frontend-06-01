@@ -10,19 +10,21 @@ export const Body = styled.div`
 `;
 export const Wrapper = styled.div`
   width: 1200px;
-  height: 3000px;
   border: 1px solid gray;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
+  padding-bottom: 30px;
   border-top: none;
+  border-bottom: 1px solid lightgray;
+  
 `;
 
 export const WrapperComments = styled.div`
   margin-top: 20px;
   width: 996px;
-  height: 900px;
+
   /* background-color: pink; */
 `;
 export const TitleComments = styled.div`
@@ -101,8 +103,17 @@ export const ButtonBox = styled.button`
 `;
 
 export const FetchComments = styled.div`
-  width: 100%;
-  height: 400px;
+  width: 1100px;
+  height: 230px;
+  padding-left: 100px;
+
+  padding-top: 10px;
+  border-left: 1px solid black;
+  border-top: none;
+  border-bottom: 1px solid lightgray;
+  
+  
+  
 `;
 
 export const CommentsBox = styled.div`
@@ -110,13 +121,14 @@ export const CommentsBox = styled.div`
   height: 140px;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid lightgray;
+  
 `;
 
 export const CommentsDetail = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
+  height: 200px;
   justify-content: space-around;
   padding-left: 10px;
 `;
@@ -124,7 +136,7 @@ export const CommentsIcon = styled.div`
   background-image: url("../../Vector (1).png");
   width: 45px;
   height: 40px;
-  margin-top: 16px;
+  margin-top: 25px;
   background-repeat: no-repeat;
 `;
 export const CommentsName = styled.div`
@@ -132,10 +144,11 @@ export const CommentsName = styled.div`
   height: 25px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   padding-top: 10px;
 `;
 export const RealWriter = styled.div`
-  width: 300px;
+  width: 800px;
   height: 40px;
   font-weight: 800;
 `;
@@ -144,10 +157,13 @@ export const RealRating = styled.div`
   width: 200px;
   height: 40px;
   font-size: 5px;
+  line-height: 11px;
+
 `;
 export const Star = styled(Rate)`
   display: flex;
   flex-direction: row;
+  
 `;
 
 export const CommentsText = styled.div`
@@ -158,7 +174,7 @@ export const CommentsText = styled.div`
 export const CommentsDate = styled.div`
   width: 200px;
   height: 20px;
-
+  justify-self: end;
   color: lightgray;
 `;
 export const CommentsBack = styled.div`
@@ -189,4 +205,18 @@ export const CommentsDelete = styled.button`
   border: none;
   background-color: white;
   cursor: pointer;
+`;
+
+/////수정하기 화면 페이지 
+
+export const EditPage = styled.div`
+  width: 1200px;
+  height: 300px;
+  padding-left: 100px;
+  padding-right: 100px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 `;
