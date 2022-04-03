@@ -1,5 +1,5 @@
 import BoardsfetchUI from "./Boardsfetch.presenter";
-import { FETCH_BOARDS, DELETE_BOARD,FETCH_BOARDS_COUNT } from "./Boardsfetch.queries";
+import { FETCH_BOARDS, DELETE_BOARD,FETCH_BOARDS_COUNT, FETCH_BOARDS_BEST } from "./Boardsfetch.queries";
 import { MouseEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
@@ -11,10 +11,11 @@ export default function Boardsfetch() {
   const [deleteBoard] =
     useMutation<Pick<IMutation, "deleteBoard">>(DELETE_BOARD);
   const router = useRouter();
-
+  const {data: dataBestBoards} = useQuery(FETCH_BOARDS_BEST);
   const { data,refetch } = useQuery(FETCH_BOARDS);
+  
   const onClickDelete = (event: any) => {
-    console.log(data.fetchBoards);
+    
     deleteBoard({
       variables: { boardId: event.target.id },
       refetchQueries: [{ query: FETCH_BOARDS }],
@@ -64,6 +65,7 @@ export default function Boardsfetch() {
     router.push('/../../../../boards/new')
 
   }
+  console.log(dataBestBoards)
   return (
     <BoardsfetchUI
       onClickDelete={onClickDelete}
@@ -78,6 +80,7 @@ export default function Boardsfetch() {
       prevActive={prevActive}
       nextActive={nextActive}
       GoCreate={GoCreate}
+      dataBestBoards={dataBestBoards}
       
     />
   );

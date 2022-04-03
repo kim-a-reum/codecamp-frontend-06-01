@@ -1,5 +1,5 @@
-import { route } from "next/dist/server/router";
-import { Router, useRouter } from "next/router";
+
+import {useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import FetchBoardUI from "./FetchBoard.presenter";
 import {
@@ -13,9 +13,10 @@ import {
   IMutationDislikeBoardArgs,
   IMutationLikeBoardArgs,
 } from "../../../commons/types/generated/types";
+import { Modalsuccess } from "../../utility";
 
 export default function FetchBoardPage() {
-  const router = useRouter();
+  const router = useRouter()
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: String(router.query.boardId) },
   });
@@ -34,7 +35,7 @@ export default function FetchBoardPage() {
     deleteBoard({
       variables: { boardId: String(data.fetchBoard._id) },
     });
-    alert("게시물 삭제 완료! 목록 페이지로 넘어갑니다 !");
+    Modalsuccess("게시물 삭제 완료! 목록 페이지로 넘어갑니다 !");
     router.push(`/boards`);
   };
 
@@ -62,7 +63,8 @@ export default function FetchBoardPage() {
       ],
     });
   };
-
+  console.log(router.query)
+console.log(data)
   return (
     <FetchBoardUI
       data={data}

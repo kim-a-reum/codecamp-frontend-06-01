@@ -3,13 +3,80 @@ import { IBoardsUIProps } from "./Boardsfetch.types";
 export default function BoardsfetchUI(props: IBoardsUIProps) {
   return (
     <S.Body>
-      <S.Wrapper>
+      <S.WapperBest>
+        <S.BestTitle> 베스트 게시글 </S.BestTitle>
+        <S.BestBoards>
+          <S.BestBoard>
+            <S.BoardTop1></S.BoardTop1>
+            <S.BoardTitle> 제목 : 
+              {/* {props.dataBestBoards.fetchBoardsOfTheBest[0].title} */}
+            </S.BoardTitle>
+            <S.BoardProfile>
+              <S.Icon></S.Icon>
+              <S.Name>이름</S.Name>
+              <S.Like></S.Like>
+            </S.BoardProfile>
+            <S.BoardDetail>
+              <S.Date>Date : </S.Date>
+              <S.LikeCount>321</S.LikeCount>
+            </S.BoardDetail>
+          </S.BestBoard>
+          <S.BestBoard> 
+            <S.BoardTop2></S.BoardTop2>
+            <S.BoardTitle>제목 :</S.BoardTitle>
+            <S.BoardProfile>
+              <S.Icon></S.Icon>
+              <S.Name>이름</S.Name>
+              <S.Like></S.Like>
+            </S.BoardProfile>
+            <S.BoardDetail>
+              <S.Date>Date : </S.Date>
+              <S.LikeCount>123</S.LikeCount>
+            </S.BoardDetail>
+            </S.BestBoard>
+          <S.BestBoard>
+          <S.BoardTop3></S.BoardTop3>
+            <S.BoardTitle>제목 : </S.BoardTitle>
+            <S.BoardProfile>
+              <S.Icon></S.Icon>
+              <S.Name>이름</S.Name>
+              <S.Like></S.Like>
+            </S.BoardProfile>
+            <S.BoardDetail>
+              <S.Date>Date : </S.Date>
+              <S.LikeCount>22</S.LikeCount>
+            </S.BoardDetail>
+          </S.BestBoard>
+          <S.BestBoard>
+          <S.BoardTop4></S.BoardTop4>
+            <S.BoardTitle>제목 : </S.BoardTitle>
+            <S.BoardProfile>
+              <S.Icon></S.Icon>
+              <S.Name>이름</S.Name>
+              <S.Like></S.Like>
+            </S.BoardProfile>
+            <S.BoardDetail>
+              <S.Date>Date : </S.Date>
+              <S.LikeCount>3</S.LikeCount>
+            </S.BoardDetail>
+          </S.BestBoard>
+        </S.BestBoards>
+      </S.WapperBest>
+      <S.WrapperTable>
+        <S.BoardSearch>
+          <S.SearchTitle>
+            <S.SearchImage></S.SearchImage>
+            <S.SearchInput placeholder="제목을 검색해주세요"></S.SearchInput>
+            </S.SearchTitle>
+          <S.SearchDate placeholder="YYYY.MM.DD - YYYY.MM.DD"></S.SearchDate>
+          <S.SearchButton>검색하기</S.SearchButton>
+        </S.BoardSearch>
         <S.TopRow>
-          <S.TopColumn>ID</S.TopColumn>
+          <S.TopColumnId>Number</S.TopColumnId>
           <S.TopColumnTitle>제목</S.TopColumnTitle>
           <S.TopColumn>작성자</S.TopColumn>
           <S.TopColumn>날짜</S.TopColumn>
-          <S.TopColumn>삭제</S.TopColumn>
+          <S.TopColumnDelete>삭제</S.TopColumnDelete>
         </S.TopRow>
         {props.data?.fetchBoards.map((el: any, index: number) => (
           <S.Row key={el._id}>
@@ -20,7 +87,7 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
             <S.Column>{el.writer}</S.Column>
             <S.Column>{String(el.createdAt).slice(2, 10)}</S.Column>
             <S.DeleteButton id={el._id} onClick={props.onClickDelete}>
-              지워
+             뿡!
             </S.DeleteButton>
           </S.Row>
         ))}
@@ -31,13 +98,13 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
             
             <S.PageNumber key={index + props.startPage} id = {String(index +props.startPage)} onClick={props.onClickPage} 
             buttoncolor={props.startPage + index === props.current}
-            ><S.RealNumber>{index + props.startPage}</S.RealNumber></S.PageNumber> 
+            >{index + props.startPage}</S.PageNumber> 
 
         ))
         }
          <S.NextPage onClick={props.onClickNextPage} disabled={props.nextActive}>&lt;다음 &gt;</S.NextPage>
         </S.Pagination>
-      </S.Wrapper>
+      </S.WrapperTable>
       <S.CreateButton onClick={props.GoCreate}>게시물생성 ✏️</S.CreateButton>
     </S.Body>
   );

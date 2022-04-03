@@ -6,5 +6,5 @@ export interface IMyFetchBoardUIprops {
   onClickBack: () => void;
   onClickLike: () => void;
   onClickDislike: () => void;
-  data?: Pick<IQuery, "fetchBoard">;
+  data?: Pick<IQuery,"fetchBoard">;
 }

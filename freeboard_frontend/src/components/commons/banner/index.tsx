@@ -4,39 +4,38 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
-height: 220px;
+height: 300px;
 
   
 `;
 const MySlider = styled(Slider)`
-  height: 190px;
+  height: 270px;
 `;
 
 const SliderItem1 = styled.div`
-  background-color: red;
-  height: 220px;
+background-image: url('../../../../picture/루피잔디.png');
+  background-position: 30%;
+  height: 300px;
   
 `;
 const SliderItem2= styled.div`
-  background-color: orange;
-  height: 220px;
+  background-image: url('../../../../picture/루피피규어.jpeg');
+  background-position: 80%;
+  height: 300px;
 `;
 const SliderItem3 = styled.div`
-  background-color: yellow;
-  height: 220px;
+background-image: url('../../../../picture/루피대장.png');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  height: 300px;
 `;
 const SliderItem4 = styled.div`
-  background-color: yellowgreen;
-  height: 220px;
+background-image: url('../../../../picture/루피보트.png');
+  background-position: 50%;
+  height: 300px;
 `;
-const SliderItem5 = styled.div`
-  background-color: skyblue;
-  height: 220px;
-`;
-const SliderItem6 = styled.div`
-  background-color: purple;
-  height: 220px;
-`;
+
+
 export default function LayoutBanner() {
   const settings = {
     dots: true,
@@ -55,23 +54,18 @@ export default function LayoutBanner() {
     <div>
         <MySlider {...settings}>
           <div>
-            <SliderItem1>1</SliderItem1>
+            <SliderItem1></SliderItem1>
           </div>
           <div>
-            <SliderItem2>2</SliderItem2>
+            <SliderItem2></SliderItem2>
           </div>
           <div>
-            <SliderItem3>3</SliderItem3>
+            <SliderItem3></SliderItem3>
           </div>
           <div>
-            <SliderItem4>3</SliderItem4>
+            <SliderItem4></SliderItem4>
           </div>
-          <div>
-            <SliderItem5>3</SliderItem5>
-          </div>
-          <div>
-            <SliderItem6>3</SliderItem6>
-          </div>
+
         </MySlider>
     </div>
     </Wrapper>

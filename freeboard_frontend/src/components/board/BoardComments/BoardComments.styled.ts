@@ -48,7 +48,7 @@ export const PasswordInput = styled.input`
  
 `;
 export const CreateComments = styled.div`
-  width: 100%;
+  width: 1010px;
   height: 250px;
   display: flex;
   flex-direction: column;

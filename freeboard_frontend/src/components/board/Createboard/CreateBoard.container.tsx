@@ -12,7 +12,7 @@ import {
   ImyupdateBoardInput,
 } from "./CreateBoard.types";
 import { Modal } from "antd";
-import { ModalInfo, Modalsuccess } from "../../utility";
+import { ModalError, ModalInfo, Modalsuccess } from "../../utility";
 
 export default function CreateBoardPage(props: ICreateBoardProps) {
   const [isActive, setIsActive] = useState(false);
@@ -116,6 +116,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       setContentsError("내용을 입력해주세요.");
     }
     if (name !== "" && password !== "" && title !== "" && contents !== "") {
+      
       try {
         const result = await createBoard({
           variables: {
@@ -176,7 +177,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       Modalsuccess({content :"게시물 수정에 성공했습니다!"});
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      if (error instanceof Error) alert(error.message);
+      if (error instanceof Error) ModalError(error.message);
     }
   };
   const onClickAddressSearch = () => {

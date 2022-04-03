@@ -22,7 +22,7 @@ export default function OpenFetchBoard() {
     
   });
   
-console.log(data2)
+
   return (
     <>
         

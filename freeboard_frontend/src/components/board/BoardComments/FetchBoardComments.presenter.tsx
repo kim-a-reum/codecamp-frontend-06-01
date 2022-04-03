@@ -56,7 +56,7 @@ export default function FetchBoardCommentPage (props : IBoardCommentMap){
     
 
 
-console.log(props.el?._id)
+
 return (
     <>
     {props.isOpenModal && (
@@ -125,8 +125,8 @@ return (
                   onChange={props.onChangeContents}/>
                 <S.CommentsUnder>
                   <S.TypingBox>
-                    <br />
-                    0/100
+                  {(props.contents.length)}
+                    0/1000
                   </S.TypingBox>
                   <S.ButtonBox id={String(props.el._id)} onClick={OnClickUpdate} >
                     수정하기

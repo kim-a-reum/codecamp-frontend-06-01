@@ -41,7 +41,6 @@ export default function CreateBoardUI(props: ICreateBoardUIProps) {
               <S.Error>{props.passwordError}</S.Error>
             </S.Personal>
           </S.WrapperPersonal>
-
           <S.WrapperContents>
             <S.ContentsTitle>
               <S.TitleName>제목</S.TitleName>

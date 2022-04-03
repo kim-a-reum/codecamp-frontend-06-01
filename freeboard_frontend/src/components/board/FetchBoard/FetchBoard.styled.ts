@@ -37,18 +37,6 @@ export const TopAddress = styled.div`
   align-items: flex-end;
   padding-right: 20px;
 `;
-export const AddressBox = styled.div`
-  width: 250px;
-  height: 50px;
-  background-color: lightgray;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: end;
-  font-weight: 350;
-  font-size: 11px;
-  padding: 7px;
-`;
 export const TopProfile = styled.div`
   width: 996px;
   height: 50px;
@@ -75,8 +63,8 @@ export const LeftName = styled.div`
   justify-content: flex-end;
 `;
 export const RealName = styled.div`
-  height: 25px;
-  font-size: 20px;
+  height: 33px;
+  font-size: 33px;
   font-weight: 500;
 `;
 export const RealDate = styled.div`
@@ -86,9 +74,11 @@ export const RealDate = styled.div`
   color: rgba(130, 130, 130, 1);
   display: flex;
   flex-direction: row;
+  margin-top: 5px;
 `;
 export const TopRight = styled.div`
   width: 80px;
+  height: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -102,10 +92,20 @@ export const RightClip = styled.div`
   background-image: url("../../ic_link.png");
 `;
 export const RightLocation = styled.div`
-  width: 27px;
+  width: 35px;
   height: 25px;
-  background-size: 100% auto;
+  font-size: 3px;
+  background-size: 80% auto;
+  background-repeat: no-repeat;
   background-image: url("../../ic_location.png");
+`;
+export const Location = styled.div`
+width: 50px;
+height: 5px;
+font-size: 15px;
+display: flex;
+flex-direction: row;
+ 
 `;
 ///이미지랑 게시글제목내용 부분
 export const Middle = styled.div`
@@ -121,17 +121,46 @@ export const MiddleTitle = styled.div`
   justify-content: flex-end;
   padding-bottom: 20px;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 50px;
 `;
 export const MiddlePhoto = styled.div`
   width: 996px;
   height: 350px;
-  background-image: url("../../ROOPI.jpeg");
-  background-size: 50% auto;
-  background-repeat: repeat-x;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+`
+export const Photo = styled.div`
+  width: 300px;
+  height: 350px;
+  background-image: url("../../picture/루피고민.jpeg");
+  background-size: 100%;
+  background-repeat: no-repeat;
   border-radius: 30px;
   padding-bottom: 30px;
 `;
+
+export const PhotoSide = styled.div`
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid tomato;
+  border-left: 10px solid transparent;
+  margin-top: 140px;
+`
+export const PhotoContents = styled.div`
+  width: 500px;
+  height: 150px;
+  background-color: tomato;
+  border-radius: 30px 30px 30px 0px;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 25px;
+  
+`;
+
+
 export const MiddleContents = styled.div`
   width: 996px;
   height: 300px;
@@ -139,7 +168,7 @@ export const MiddleContents = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  font-size: 25px;
+  font-size: 30px;
 `;
 //비디오랑 좋아요 부분
 export const Under = styled.div`

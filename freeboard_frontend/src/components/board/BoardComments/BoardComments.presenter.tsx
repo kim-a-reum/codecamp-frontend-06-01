@@ -41,8 +41,8 @@ export default function BoardCommentPageUI(props: IBoardCommentsUIProps) {
                 />
                 <S.CommentsUnder>
                   <S.TypingBox>
-                    <br />
-                    0/100
+                    {(props.contents.length)}
+                    0/1000
                   </S.TypingBox>
                   <S.ButtonBox onClick={props.CreateComments}>
                     등록하기

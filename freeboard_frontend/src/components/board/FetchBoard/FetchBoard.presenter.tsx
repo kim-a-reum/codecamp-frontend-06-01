@@ -1,5 +1,7 @@
+import { getDate } from "../../utility";
 import * as S from "./FetchBoard.styled";
 import { IMyFetchBoardUIprops } from "./FetchBoard.types";
+import { Tooltip } from "antd";
 
 export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
   return (
@@ -10,10 +12,6 @@ export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
             <S.Top>
               <S.TopAddress>
                 {" "}
-                <S.AddressBox>
-                  서울특별시 영등포구 양산로 200 <br />
-                  (영등포동5가, 영등포시장역) 영등포 타임스퀘어 2층{" "}
-                </S.AddressBox>
               </S.TopAddress>
               <S.TopProfile>
                 <S.TopLeft>
@@ -28,26 +26,32 @@ export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
                     </S.RealName>
                     <S.RealDate>
                       {" "}
-                      Date : {props.data?.fetchBoard.createdAt.slice(
-                        0,
-                        10
-                      )}{" "}
+                      Date : {getDate(props.data?.fetchBoard.createdAt)}
+                      
                     </S.RealDate>
                   </S.LeftName>
                 </S.TopLeft>
                 <S.TopRight>
                   <S.RightClip></S.RightClip>
-                  <S.RightLocation></S.RightLocation>
+                  <Tooltip title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}>
+                  <S.RightLocation>
+                  </S.RightLocation>
+                  <S.Location>나는 지금 !</S.Location>
+                  </Tooltip>
                 </S.TopRight>
               </S.TopProfile>
             </S.Top>
             <S.Middle>
               <S.MiddleTitle>
-                게시글 제목 : [{props.data?.fetchBoard.title}]
+                제목 : {props.data?.fetchBoard.title}
               </S.MiddleTitle>
-              <S.MiddlePhoto></S.MiddlePhoto>
+              <S.MiddlePhoto>
+                <S.Photo></S.Photo>
+                <S.PhotoSide></S.PhotoSide>
+                <S.PhotoContents> 너의 고민을 올려봐 ! 말하고 나면 시원해질거야 ! </S.PhotoContents>
+              </S.MiddlePhoto>
               <S.MiddleContents>
-                게시글 내용 : <br /> {props.data?.fetchBoard.contents}
+                내용 : <br /> {props.data?.fetchBoard.contents}
               </S.MiddleContents>
             </S.Middle>
             <S.Under>

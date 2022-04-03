@@ -8,6 +8,10 @@ export const FETCH_BOARDS = gql`
                 title
                 contents
                 createdAt
+                likeCount
+                createdAt
+                youtubeUrl
+
 
                 }
     }
@@ -24,4 +28,20 @@ export const FETCH_BOARDS_COUNT = gql`
     query fetchBoardsCount{
         fetchBoardsCount
     }
+`
+export const FETCH_BOARDS_BEST = gql`
+query{
+  fetchBoardsOfTheBest{
+   		_id
+        writer
+        title
+        contents
+        youtubeUrl
+        likeCount
+        createdAt
+    
+  }
+  
+}
+    
 `
