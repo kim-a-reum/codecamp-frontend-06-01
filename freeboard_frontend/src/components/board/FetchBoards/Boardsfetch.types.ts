@@ -7,7 +7,7 @@ export interface IBoardsUIProps {
   onClickPrevPage: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickPage : (event: MouseEvent<HTMLButtonElement>) => void;
   GoCreate : (event: MouseEvent<HTMLButtonElement>) => void;
-  
+  onClickFetch: (event: MouseEvent<HTMLDivElement>) => void;
   prevActive : any
   nextActive : any
   startPage: any

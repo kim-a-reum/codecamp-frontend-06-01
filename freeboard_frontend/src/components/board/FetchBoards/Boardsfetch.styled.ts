@@ -21,6 +21,8 @@ export const WapperBest = styled.div`
 export const BestTitle = styled.div`
   height: 80px;
   font-size: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 export const BestBoards = styled.div`
 width: 950px;
@@ -29,6 +31,8 @@ margin-top: 20px;
 display: flex;
 flex-direction: row;
 justify-content: space-around;
+overflow: hidden;
+    text-overflow: ellipsis;
 `
 export const BestBoard = styled.div`
 width: 210px;
@@ -39,6 +43,8 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+overflow: hidden;
+text-overflow: ellipsis;
 `
 export const BoardTop1 = styled.div`
 width: 210px;
@@ -82,6 +88,12 @@ export const BoardTitle = styled.div`
 width: 210px;
 height: 40px;
 padding-left: 7px;
+overflow: hidden;
+text-overflow: ellipsis;
+cursor: pointer;
+  :hover{
+    color: indianred;
+  }
 
 `
 export const BoardProfile = styled.div` 
@@ -89,6 +101,8 @@ width: 210px;
 height: 30px;
 display: flex;
 flex-direction: row;
+overflow: hidden;
+text-overflow: ellipsis;
 
 
 
@@ -107,15 +121,19 @@ margin-top: 5px;
 export const Name = styled.div`
 width: 140px;
 margin-left: 5px;
+overflow: hidden;
+text-overflow: ellipsis;
 
 `
 export const Like = styled.div`
 width: 30px;
 height: 30px;
-margin-top: 14px;
+margin-top: 8px;
 background-repeat: no-repeat;
 background-image: url('../../../../Vector (2).png');
-background-size: 100%;
+background-size: 80%;
+overflow: hidden;
+text-overflow: ellipsis;
 
 `
 export const BoardDetail = styled.div`
@@ -141,6 +159,7 @@ flex-direction: column;
 text-align: center;
 width: 30px;
 height: 10px;
+padding-bottom: 5px;
 `
 export const BoardSearch = styled.div`
 width: 1000px;

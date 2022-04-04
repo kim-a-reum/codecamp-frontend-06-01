@@ -21,7 +21,7 @@ export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
                       {props.data ? (
                         props.data.fetchBoard.writer
                       ) : (
-                        <div>loading...</div>
+                        <div> 작성자 loading...중</div>
                       )}{" "}
                     </S.RealName>
                     <S.RealDate>

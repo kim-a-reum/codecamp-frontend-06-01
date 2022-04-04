@@ -115,13 +115,14 @@ export const Middle = styled.div`
 export const MiddleTitle = styled.div`
   width: 996px;
   height: 150px;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 20px;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 40px;
 `;
 export const MiddlePhoto = styled.div`
   width: 996px;

@@ -4,9 +4,10 @@ import { IBoardCommentMap } from "./BoardComments.types";
 import Modal from "antd/lib/modal/Modal";
 import { MouseEvent, useState } from "react";
 import { FETCH_BOARD_COMMENTS, UPDATE_BOARD_COMMENT } from "./BoardComments.queries";
-import { Modalsuccess } from "../../utility";
+import { ModalError, Modalsuccess } from "../../utility";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
+import { ChangeEvent } from "react";
 
 
 
@@ -15,23 +16,27 @@ export default function FetchBoardCommentPage (props : IBoardCommentMap){
   const router = useRouter()
     const[isEdit,setIsEdit] = useState(false);
     const [updateBoardComment] =useMutation(UPDATE_BOARD_COMMENT)
+    const [editcontents, setEditContents] = useState("");
+    const [editpassword, setEditPassWord] = useState("");
     const onClickEdit = (event : MouseEvent<HTMLButtonElement>)=>{
         if (event.target instanceof Element) 
         setIsEdit(true);
       }
-
-      const OnClickUpdate = async(event : MouseEvent<HTMLButtonElement>) => {
-  
- 
-        try {
-          
-         await updateBoardComment({
+  const onChangeEditContents = (event: ChangeEvent<HTMLInputElement>) => {
+        setEditContents(event.target.value);
+      };     
+  const onChangeEditPassWord = (event: ChangeEvent<HTMLInputElement>) => {
+        setEditPassWord(event.target.value);
+      };
+    const OnClickUpdate = async(event : MouseEvent<HTMLButtonElement>) => {
+        try {          
+        await updateBoardComment({
             variables: {
                   updateBoardCommentInput :{
-                      contents: props.contents,
+                      contents: editcontents,
                       rating : props.rating
                   },
-                  password : props.password,
+                  password : editpassword,
                   boardCommentId : String(props.el?._id)
             },
             refetchQueries: [
@@ -48,7 +53,7 @@ export default function FetchBoardCommentPage (props : IBoardCommentMap){
           Modalsuccess({content :"댓글 수정에 성공했습니다!"});
           setIsEdit(false)
         } catch (error) {
-          if (error instanceof Error) alert(error.message);
+          if (error instanceof Error) ModalError({content: "비밀번호를 확인해주세요!"});
         }
       
       
@@ -63,7 +68,7 @@ return (
         <Modal
         visible={true}
         onOk={props.onClickDelete}
-        
+        onCancel={props?.onClickOpenModal}
         >
           <div> 비밀번호를 입력해주세요</div>
           <S.PasswordInput type="password" onChange={props.onChangeDeletePassWord} />
@@ -114,7 +119,7 @@ return (
                 <S.CommentsProfile
                   type="password"
                   placeholder="비밀번호"
-                  onChange={props.onChangePassWord}
+                  onChange={onChangeEditPassWord}
                 />
                 <S.Star></S.Star>
               </S.CommentsTop>
@@ -122,10 +127,10 @@ return (
                 <S.CommentsContents
                   type="text"
                   placeholder=" 수정할 내용을 입력해주세요"
-                  onChange={props.onChangeContents}/>
+                  onChange={onChangeEditContents}/>
                 <S.CommentsUnder>
                   <S.TypingBox>
-                  {(props.contents.length)}
+                  {(props?.contents?.length)}
                     0/1000
                   </S.TypingBox>
                   <S.ButtonBox id={String(props.el._id)} onClick={OnClickUpdate} >

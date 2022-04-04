@@ -1,6 +1,7 @@
 import * as S from "./Boardsfetch.styled";
 import { IBoardsUIProps } from "./Boardsfetch.types";
 export default function BoardsfetchUI(props: IBoardsUIProps) {
+
   return (
     <S.Body>
       <S.WapperBest>
@@ -8,56 +9,69 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
         <S.BestBoards>
           <S.BestBoard>
             <S.BoardTop1></S.BoardTop1>
-            <S.BoardTitle> 제목 : 
-              {/* {props.dataBestBoards.fetchBoardsOfTheBest[0].title} */}
+            <S.BoardTitle onClick={props.onClickFetch} 
+            id={props.dataBestBoards?.fetchBoardsOfTheBest[0]._id}> 제목 :&nbsp;  
+              {props.dataBestBoards?.fetchBoardsOfTheBest[0].title}
             </S.BoardTitle>
             <S.BoardProfile>
               <S.Icon></S.Icon>
-              <S.Name>이름</S.Name>
+              <S.Name>이름 : 
+              {props.dataBestBoards?.fetchBoardsOfTheBest[0].writer}</S.Name>
               <S.Like></S.Like>
             </S.BoardProfile>
             <S.BoardDetail>
-              <S.Date>Date : </S.Date>
-              <S.LikeCount>321</S.LikeCount>
+              <S.Date>Date :
+              {props.dataBestBoards?.fetchBoardsOfTheBest[0].createdAt.slice(0,10)}</S.Date>
+              <S.LikeCount>
+              {props.dataBestBoards?.fetchBoardsOfTheBest[0].likeCount}</S.LikeCount>
             </S.BoardDetail>
           </S.BestBoard>
           <S.BestBoard> 
             <S.BoardTop2></S.BoardTop2>
-            <S.BoardTitle>제목 :</S.BoardTitle>
+            <S.BoardTitle> 제목 :&nbsp; 
+              {props.dataBestBoards?.fetchBoardsOfTheBest[1].title}</S.BoardTitle>
             <S.BoardProfile>
               <S.Icon></S.Icon>
-              <S.Name>이름</S.Name>
+              <S.Name>이름 : 
+              {props.dataBestBoards?.fetchBoardsOfTheBest[1].writer}</S.Name>
               <S.Like></S.Like>
             </S.BoardProfile>
             <S.BoardDetail>
-              <S.Date>Date : </S.Date>
-              <S.LikeCount>123</S.LikeCount>
+              <S.Date>Date :
+              {props.dataBestBoards?.fetchBoardsOfTheBest[1].createdAt.slice(0,10)}</S.Date>
+              <S.LikeCount>{props.dataBestBoards?.fetchBoardsOfTheBest[1].likeCount}</S.LikeCount>
             </S.BoardDetail>
             </S.BestBoard>
           <S.BestBoard>
           <S.BoardTop3></S.BoardTop3>
-            <S.BoardTitle>제목 : </S.BoardTitle>
+            <S.BoardTitle> 제목 : 
+              {props.dataBestBoards?.fetchBoardsOfTheBest[2].title} </S.BoardTitle>
             <S.BoardProfile>
               <S.Icon></S.Icon>
-              <S.Name>이름</S.Name>
+              <S.Name>이름 : 
+              {props.dataBestBoards?.fetchBoardsOfTheBest[2].writer}</S.Name>
               <S.Like></S.Like>
             </S.BoardProfile>
             <S.BoardDetail>
-              <S.Date>Date : </S.Date>
-              <S.LikeCount>22</S.LikeCount>
+              <S.Date>Date :
+              {props.dataBestBoards?.fetchBoardsOfTheBest[2].createdAt.slice(0,10)}</S.Date>
+              <S.LikeCount>{props.dataBestBoards?.fetchBoardsOfTheBest[2].likeCount}</S.LikeCount>
             </S.BoardDetail>
           </S.BestBoard>
           <S.BestBoard>
           <S.BoardTop4></S.BoardTop4>
-            <S.BoardTitle>제목 : </S.BoardTitle>
+            <S.BoardTitle> 제목 : 
+              {props.dataBestBoards?.fetchBoardsOfTheBest[3].title}</S.BoardTitle>
             <S.BoardProfile>
               <S.Icon></S.Icon>
-              <S.Name>이름</S.Name>
+              <S.Name>이름 : 
+              {props.dataBestBoards?.fetchBoardsOfTheBest[3].writer}</S.Name>
               <S.Like></S.Like>
             </S.BoardProfile>
             <S.BoardDetail>
-              <S.Date>Date : </S.Date>
-              <S.LikeCount>3</S.LikeCount>
+              <S.Date>Date :
+              {props.dataBestBoards?.fetchBoardsOfTheBest[3].createdAt.slice(0,10)}</S.Date>
+              <S.LikeCount>{props.dataBestBoards?.fetchBoardsOfTheBest[3].likeCount}</S.LikeCount>
             </S.BoardDetail>
           </S.BestBoard>
         </S.BestBoards>
@@ -86,8 +100,7 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
             </S.ColumnTitle>
             <S.Column>{el.writer}</S.Column>
             <S.Column>{String(el.createdAt).slice(2, 10)}</S.Column>
-            <S.DeleteButton id={el._id} onClick={props.onClickDelete}>
-             뿡!
+            <S.DeleteButton id={el._id} onClick={props.onClickDelete}>뿡!
             </S.DeleteButton>
           </S.Row>
         ))}
@@ -102,7 +115,7 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
 
         ))
         }
-         <S.NextPage onClick={props.onClickNextPage} disabled={props.nextActive}>&lt;다음 &gt;</S.NextPage>
+        <S.NextPage onClick={props.onClickNextPage} disabled={props.nextActive}>&lt;다음 &gt;</S.NextPage>
         </S.Pagination>
       </S.WrapperTable>
       <S.CreateButton onClick={props.GoCreate}>게시물생성 ✏️</S.CreateButton>

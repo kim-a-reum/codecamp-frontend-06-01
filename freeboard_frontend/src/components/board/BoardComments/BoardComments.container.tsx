@@ -3,20 +3,16 @@ import { useMutation, useQuery} from "@apollo/client";
 import { useRouter } from "next/router";
 import {
   ImycreateBoardCommentInput,
-  ImyupdateBoardCommentInput,
-  IMyUpdateVariables,
   ImyVariables,
 } from "./BoardComments.types";
 import {
   CREATE_COMMENT,
   DELETE_COMMENT,
-  FETCH_BOARD_COMMENTS,
-  UPDATE_BOARD_COMMENT
+  FETCH_BOARD_COMMENTS
 } from "./BoardComments.queries";
 import BoardCommentPageUI from "./BoardComments.presenter";
 import {
-  IMutation, IQuery, IQueryFetchBoardCommentsArgs,
-} from "../../../commons/types/generated/types";
+  IMutation} from "../../../commons/types/generated/types";
 import { MouseEvent } from "react";
 import FetchBoardCommentPage from "./FetchBoardComments.presenter";
 import InfiniteScroll from 'react-infinite-scroller'
@@ -56,7 +52,6 @@ export default function BoardCommentPage(props :any){
   const onChangeRating = (value: number) => {
     setMyRating(value);
   };
-
   const mycreateBoardCommentInput: ImycreateBoardCommentInput = {
     writer,
     contents,
@@ -125,7 +120,6 @@ export default function BoardCommentPage(props :any){
   return (
     <div>
     <BoardCommentPageUI
-      
       CreateComments={CreateComments}
       onChangeWriter={onChangeWriter}
       onChangeContents={onChangeContents}
@@ -158,8 +152,6 @@ export default function BoardCommentPage(props :any){
   rating={rating}
   password={password}
   onClickOpenModal={onClickOpenModal}
-  onChangePassWord={onChangePassWord}
-  onChangeContents={onChangeContents}
   data2={props.data2}
   el={el}
   index = {index}

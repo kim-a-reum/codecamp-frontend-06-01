@@ -7,6 +7,7 @@ export interface IBoardCommentsUIProps {
   CreateComments: () => void;
   onChangeRating: (value: number) => void;
   onChangePassWord: (event: ChangeEvent<HTMLInputElement>) => void;
+  
   result?: any;
   comments?: any;
   writer: any;
@@ -33,9 +34,6 @@ export interface IBoardCommentMap {
   onLoadMore : () => void;
   onClickDelete: () => void;
   onChangeDeletePassWord: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangePassWord: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
-
   isOpenModal: boolean;
   el?: any;
   _id?: string;

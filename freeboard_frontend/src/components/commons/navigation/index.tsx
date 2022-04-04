@@ -26,7 +26,7 @@ const FreeBoard = styled.div`
 `;
 const FreeMarket= styled.div`
   
-  padding-right: 50px;
+  padding-right: 25px;
 `;
 const MyPage = styled.div`
   

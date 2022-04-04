@@ -64,6 +64,8 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
     } else {
       setIsActive(false);
     }
+
+    
   }
   function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
@@ -177,7 +179,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       Modalsuccess({content :"게시물 수정에 성공했습니다!"});
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      if (error instanceof Error) ModalError(error.message);
+      if (error instanceof Error) ModalError({content : "내용을 확인해주세요"});
     }
   };
   const onClickAddressSearch = () => {

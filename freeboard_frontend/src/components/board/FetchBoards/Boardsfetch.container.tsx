@@ -26,6 +26,11 @@ export default function Boardsfetch() {
       router.push(`boards/${event.target.id}`);
     }
   };
+  const onClickFetch = (event: MouseEvent<HTMLDivElement>) => {
+    if(event.target instanceof Element){
+      router.push(`boards/${event.target.id}`);
+    }   
+  }
 
   //페이지네이션부분입니당
 
@@ -73,6 +78,7 @@ export default function Boardsfetch() {
       onClickNextPage={onClickNextPage}
       onClickPrevPage={onClickPrevPage}
       onClickPage={onClickPage}
+      onClickFetch={onClickFetch}
       data={data}
       startPage={startPage}
       lastPage={lastPage}
