@@ -13,6 +13,7 @@ import {
 } from "./CreateBoard.types";
 import { Modal } from "antd";
 import { ModalError, ModalInfo, Modalsuccess } from "../../utility";
+import { isResSent } from "next/dist/shared/lib/utils";
 
 export default function CreateBoardPage(props: ICreateBoardProps) {
   const [isActive, setIsActive] = useState(false);
@@ -50,6 +51,10 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
     }
   }
   function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
+    if(props.isEdit === true){
+      setIsActive(true)
+    }
+    
     setPassword(event.target.value);
     if (event.target.value !== "") {
       setPasswordError("");

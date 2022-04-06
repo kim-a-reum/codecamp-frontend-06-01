@@ -32,7 +32,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-around;
 overflow: hidden;
-    text-overflow: ellipsis;
+text-overflow: ellipsis;
 `
 export const BestBoard = styled.div`
 width: 210px;

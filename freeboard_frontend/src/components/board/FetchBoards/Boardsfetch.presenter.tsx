@@ -7,73 +7,28 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
       <S.WapperBest>
         <S.BestTitle> 베스트 게시글 </S.BestTitle>
         <S.BestBoards>
-          <S.BestBoard>
+          {props.dataBestBoards?.fetchBoardsOfTheBest.map((el:any, index:number)=>
+          ( <S.BestBoard key={el._id}>
             <S.BoardTop1></S.BoardTop1>
             <S.BoardTitle onClick={props.onClickFetch} 
-            id={props.dataBestBoards?.fetchBoardsOfTheBest[0]._id}> 제목 :&nbsp;  
-              {props.dataBestBoards?.fetchBoardsOfTheBest[0].title}
+            id={props.dataBestBoards?.fetchBoardsOfTheBest[index]._id}> 제목 :&nbsp;  
+              {props.dataBestBoards?.fetchBoardsOfTheBest[index].title}
             </S.BoardTitle>
             <S.BoardProfile>
               <S.Icon></S.Icon>
               <S.Name>이름 : 
-              {props.dataBestBoards?.fetchBoardsOfTheBest[0].writer}</S.Name>
+              {props.dataBestBoards?.fetchBoardsOfTheBest[index].writer}</S.Name>
               <S.Like></S.Like>
             </S.BoardProfile>
             <S.BoardDetail>
               <S.Date>Date :
-              {props.dataBestBoards?.fetchBoardsOfTheBest[0].createdAt.slice(0,10)}</S.Date>
+              {props.dataBestBoards?.fetchBoardsOfTheBest[index].createdAt.slice(0,10)}</S.Date>
               <S.LikeCount>
-              {props.dataBestBoards?.fetchBoardsOfTheBest[0].likeCount}</S.LikeCount>
+              {props.dataBestBoards?.fetchBoardsOfTheBest[index].likeCount}</S.LikeCount>
             </S.BoardDetail>
           </S.BestBoard>
-          <S.BestBoard> 
-            <S.BoardTop2></S.BoardTop2>
-            <S.BoardTitle> 제목 :&nbsp; 
-              {props.dataBestBoards?.fetchBoardsOfTheBest[1].title}</S.BoardTitle>
-            <S.BoardProfile>
-              <S.Icon></S.Icon>
-              <S.Name>이름 : 
-              {props.dataBestBoards?.fetchBoardsOfTheBest[1].writer}</S.Name>
-              <S.Like></S.Like>
-            </S.BoardProfile>
-            <S.BoardDetail>
-              <S.Date>Date :
-              {props.dataBestBoards?.fetchBoardsOfTheBest[1].createdAt.slice(0,10)}</S.Date>
-              <S.LikeCount>{props.dataBestBoards?.fetchBoardsOfTheBest[1].likeCount}</S.LikeCount>
-            </S.BoardDetail>
-            </S.BestBoard>
-          <S.BestBoard>
-          <S.BoardTop3></S.BoardTop3>
-            <S.BoardTitle> 제목 : 
-              {props.dataBestBoards?.fetchBoardsOfTheBest[2].title} </S.BoardTitle>
-            <S.BoardProfile>
-              <S.Icon></S.Icon>
-              <S.Name>이름 : 
-              {props.dataBestBoards?.fetchBoardsOfTheBest[2].writer}</S.Name>
-              <S.Like></S.Like>
-            </S.BoardProfile>
-            <S.BoardDetail>
-              <S.Date>Date :
-              {props.dataBestBoards?.fetchBoardsOfTheBest[2].createdAt.slice(0,10)}</S.Date>
-              <S.LikeCount>{props.dataBestBoards?.fetchBoardsOfTheBest[2].likeCount}</S.LikeCount>
-            </S.BoardDetail>
-          </S.BestBoard>
-          <S.BestBoard>
-          <S.BoardTop4></S.BoardTop4>
-            <S.BoardTitle> 제목 : 
-              {props.dataBestBoards?.fetchBoardsOfTheBest[3].title}</S.BoardTitle>
-            <S.BoardProfile>
-              <S.Icon></S.Icon>
-              <S.Name>이름 : 
-              {props.dataBestBoards?.fetchBoardsOfTheBest[3].writer}</S.Name>
-              <S.Like></S.Like>
-            </S.BoardProfile>
-            <S.BoardDetail>
-              <S.Date>Date :
-              {props.dataBestBoards?.fetchBoardsOfTheBest[3].createdAt.slice(0,10)}</S.Date>
-              <S.LikeCount>{props.dataBestBoards?.fetchBoardsOfTheBest[3].likeCount}</S.LikeCount>
-            </S.BoardDetail>
-          </S.BestBoard>
+            ))}
+          
         </S.BestBoards>
       </S.WapperBest>
       <S.WrapperTable>

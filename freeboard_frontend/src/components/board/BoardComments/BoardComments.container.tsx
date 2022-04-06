@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from "react";
-import { useMutation, useQuery} from "@apollo/client";
+import { useMutation} from "@apollo/client";
 import { useRouter } from "next/router";
 import {
   ImycreateBoardCommentInput,
@@ -17,6 +17,7 @@ import { MouseEvent } from "react";
 import FetchBoardCommentPage from "./FetchBoardComments.presenter";
 import InfiniteScroll from 'react-infinite-scroller'
 import styled from "@emotion/styled";
+import { ModalError } from "../../utility";
 
 const Myscroll = styled.div`
   height:700px;
@@ -29,7 +30,7 @@ export default function BoardCommentPage(props :any){
   const router = useRouter();
   const [writer, setMyWriter] = useState("");
   const [contents, setMyContents] = useState("");
-  const [rating, setMyRating] = useState(3);
+  const [rating, setMyRating] = useState(0);
   const [password, setMyPassWord] = useState("");
   const [createBoardComment] = useMutation(CREATE_COMMENT);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -63,6 +64,11 @@ export default function BoardCommentPage(props :any){
     boardId: String(router.query.boardId),
   };
   const CreateComments = async () => {
+    if(writer === ""){
+      ModalError({content:" 작성자를 입력해주세요"})
+   return } else if(contents === ""){
+    ModalError({content:"댓글 내용을 입력해주세요"})
+ return } 
     const result = await createBoardComment({
       variables: myVariable,
       refetchQueries: [
@@ -133,7 +139,6 @@ export default function BoardCommentPage(props :any){
       />    
 
 <Myscroll>
-
       <InfiniteScroll
     pageStart={0}
     loadMore={onLoadMore}

@@ -127,7 +127,8 @@ return (
                 <S.CommentsContents
                   type="text"
                   placeholder=" 수정할 내용을 입력해주세요"
-                  onChange={onChangeEditContents}/>
+                  onChange={onChangeEditContents}
+                  defaultValue={String(props?.data2?.fetchBoardComments[Number(props.index)].contents)}/>
                 <S.CommentsUnder>
                   <S.TypingBox>
                   {(props?.contents?.length)}

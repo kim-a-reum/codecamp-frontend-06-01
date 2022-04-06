@@ -10,7 +10,7 @@ const ModalCustomPage = () => {
   };
 
   const handleComplete = (data) => {
-    console.log(data);
+    
     setData(data.address);
     showModal();
     setIsOpen(false);

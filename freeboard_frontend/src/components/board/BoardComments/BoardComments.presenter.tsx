@@ -37,11 +37,12 @@ export default function BoardCommentPageUI(props: IBoardCommentsUIProps) {
                   type="text"
                   onChange={props.onChangeContents}
                   placeholder="개인정보를 공유 및 요청하거나, 명예훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+                  value={props.contents}
                 />
                 <S.CommentsUnder>
                   <S.TypingBox>
                     {(props.contents.length)}
-                    0/1000
+                    /500
                   </S.TypingBox>
                   <S.ButtonBox onClick={props.CreateComments}>
                     등록하기
