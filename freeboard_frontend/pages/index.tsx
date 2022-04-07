@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <Body>
       <Myvideo src="../video/루피공주.mp4" controls autoPlay loop muted ></Myvideo>
-    <GoBoard onClick={onClickGoBoard}>게시물로이동</GoBoard>
+    <GoBoard onClick={onClickGoBoard}>메인페이지로이동</GoBoard>
    </Body>
   )
 }

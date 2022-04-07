@@ -93,22 +93,14 @@ const resolvers = {
         await Product.delete({_id:args._id})
             return "삭제성공입니다!"
         //객체로 쓰는법 정리하자  
-    }
-    
-    
-    
-      }
-
-
+    }  
 }
-
+}
 const server = new ApolloServer({
     // typeDefs와 resolvers는 위에 우리가 만들어준 타입과 api이다
     typeDefs,
     resolvers,
   });
-
-
 
 const AppDataSource = new DataSource({
     type : "postgres",

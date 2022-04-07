@@ -1,5 +1,5 @@
 // import "../styles/globals.css";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { ApolloClient, ApolloLink, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { AppProps } from "next/app";
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
@@ -8,6 +8,7 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { createUploadLink } from 'apollo-upload-client'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,9 +29,12 @@ export const firebaseApp = initializeApp(firebaseConfig);
 
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const uploadLink = createUploadLink({
+    uri: "http://backend06.codebootcamp.co.kr/graphql"
+  })
   const client = new ApolloClient({
-    uri: "http://backend06.codebootcamp.co.kr/graphql",
-
+    
+    link : ApolloLink.from([uploadLink]),
     cache: new InMemoryCache(),
   });
   return (
