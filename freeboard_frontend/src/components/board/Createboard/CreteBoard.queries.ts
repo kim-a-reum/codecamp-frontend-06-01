@@ -6,8 +6,6 @@ export const CREATE_BOARD = gql`
       _id
       title
       contents
-      likeCount
-      dislikeCount
       createdAt
       updatedAt
       youtubeUrl
@@ -35,3 +33,11 @@ export const UPDATE_BOARD = gql`
     }
   }
 `;
+
+export const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload!){
+    uploadFile(file : $file){
+        url
+    }
+  }
+`

@@ -35,7 +35,7 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
         <S.BoardSearch>
           <S.SearchTitle>
             <S.SearchImage></S.SearchImage>
-            <S.SearchInput placeholder="제목을 검색해주세요"></S.SearchInput>
+            <S.SearchInput placeholder="제목을 검색해주세요" onChange={props.onChangeSearch}></S.SearchInput>
             </S.SearchTitle>
           <S.SearchDate placeholder="YYYY.MM.DD - YYYY.MM.DD"></S.SearchDate>
           <S.SearchButton>검색하기</S.SearchButton>

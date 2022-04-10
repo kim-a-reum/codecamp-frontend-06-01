@@ -1,4 +1,4 @@
-import { MouseEvent} from "react";
+import { ChangeEvent, MouseEvent} from "react";
 
 export interface IBoardsUIProps {
   onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -8,6 +8,7 @@ export interface IBoardsUIProps {
   onClickPage : (event: MouseEvent<HTMLButtonElement>) => void;
   GoCreate : (event: MouseEvent<HTMLButtonElement>) => void;
   onClickFetch: (event: MouseEvent<HTMLDivElement>) => void;
+  onChangeSearch: (event:ChangeEvent<HTMLInputElement>)=>void;
   prevActive : any
   nextActive : any
   startPage: any

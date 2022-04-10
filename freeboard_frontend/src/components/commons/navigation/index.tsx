@@ -99,7 +99,7 @@ const goFirebase = () => {
 <>
     <Wrapper>
       <RandomFood onClick={goFood}>루피의 Today 추천메뉴</RandomFood>
-      <GominBoard onClick = {goFirebase}>gomin 게시판</GominBoard>
+      <GominBoard onClick = {goFirebase}> 파이어베이스 게시판</GominBoard>
       <FreeBoard onClick = {goBoard}>자유게시판</FreeBoard>
       <FreeMarket>중고마켓</FreeMarket>
       <MyPage>마이페이지</MyPage>

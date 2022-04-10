@@ -176,18 +176,29 @@ export const PicturesLoad = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
-export const LoadBox = styled.button`
-  width: 78px;
-  height: 78px;
-  background-color: rgba(189, 189, 189, 1);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border: none;
-`;
-export const BoxContents = styled.span`
+// export const LoadBox = styled.div`
+//   width: 78px;
+//   height: 78px;
+//   background-color: rgba(189, 189, 189, 1);
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   cursor: pointer;
+//   border: none;
+// `;
+// export const LoadImage = styled.div`
+//   width: 78px;
+//   height: 78px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   cursor: pointer;
+//   border: none;
+
+// `
+export const BoxContents = styled.div`
   font-weight: 250;
 `;
 export const FooterSettings = styled.div`

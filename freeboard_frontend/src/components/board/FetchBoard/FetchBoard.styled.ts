@@ -134,8 +134,8 @@ export const MiddlePhoto = styled.div`
 
 `
 export const Photo = styled.div`
-  width: 300px;
-  height: 350px;
+  width: 180px;
+  height: 200px;
   background-image: url("../../picture/루피고민.jpeg");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -160,11 +160,21 @@ export const PhotoContents = styled.div`
   font-size: 25px;
   
 `;
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Image = styled.img`
+  width: 200px;
+  height: 200px;
+  margin-bottom: 30px;
+`;
+
 
 
 export const MiddleContents = styled.div`
   width: 996px;
-  height: 300px;
   background-color: #ffe3ee;
   display: flex;
   flex-direction: column;

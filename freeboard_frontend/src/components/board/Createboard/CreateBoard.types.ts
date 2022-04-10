@@ -14,9 +14,12 @@ export interface ICreateBoardUIProps {
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onCompleteAddressSearch: (data: any) => void;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
   onClickAddressSearch: () => void;
   onClickSubmit: () => void;
   OnClickUpdate: () => void;
+  fileRef : any
+  fileUrls:any
   isOpen: boolean;
   isActive: boolean;
   isEdit: boolean;

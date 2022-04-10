@@ -5,6 +5,11 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { firebaseApp } from '../_app'
 // ^이 친구는 컬렉션이라는 내가 데이터를 집어넣고 빼고 할건데 컬렉션은 파이어스토어에 있고, 컬렉션 안의 문서들은 다큐먼트로 되어있고, 그 문서들을 get 가져와서 쓸거에요 ! import 다 해준거야
+
+const Top= styled.div`
+    font-size: 40px;
+    
+`
 const Wrapper = styled.div`
     width: 1000px;
     
@@ -12,12 +17,15 @@ const Wrapper = styled.div`
 `
 const TopRow = styled.div`
     
-    height: 100px;
+    height: 50px;
     display: flex;
     flex-direction: row;
+    text-align: center;
+    border-bottom: 1px solid gray;
 `
 const TopColumn= styled.div`
     width: 25%;
+    font-weight: bolder;
     
 `
 
@@ -29,6 +37,7 @@ const Row = styled.div`
 `
 const Column= styled.div`
     width: 25%;
+    text-align: center;
     
 `
 export default function MyFirebasePage(){
@@ -49,7 +58,7 @@ export default function MyFirebasePage(){
 
     return (
     <>
-        <div> 여기는 나의 파이어게시판이지 </div>
+        <Top> 여기는 나의 파이어게시판이지 </Top>
         <Wrapper>
 
             <TopRow>

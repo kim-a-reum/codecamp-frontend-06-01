@@ -12,6 +12,7 @@ export const FETCH_BOARD = gql`
       deletedAt
       likeCount
       dislikeCount
+      images
       boardAddress{
         _id
         zipcode

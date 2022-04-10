@@ -3,6 +3,9 @@ import { ICreateBoardUIProps } from "./CreateBoard.types";
 import * as S from "./CreateBoard.styled";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
+import { v4 as uuidv4 } from "uuid";
+import LoadBox from "../../commons/Uploadimg/Upload.container";
+
 
 export default function CreateBoardUI(props: ICreateBoardUIProps) {
   return (
@@ -111,15 +114,11 @@ export default function CreateBoardUI(props: ICreateBoardUIProps) {
             <S.FooterPictures>
               <S.PicturesName>사진 첨부</S.PicturesName>
               <S.PicturesLoad>
-                <S.LoadBox>
-                  <S.BoxContents>Upload</S.BoxContents>
-                </S.LoadBox>
-                <S.LoadBox>
-                  <S.BoxContents>Upload</S.BoxContents>
-                </S.LoadBox>
-                <S.LoadBox>
-                  <S.BoxContents>Upload</S.BoxContents>
-                </S.LoadBox>
+                {props.fileUrls.map((el : any, index : any)=>(
+                  <LoadBox key={uuidv4()}
+                  index={index}
+                  fileUrl={el}
+                  onChangeFileUrls={props.onChangeFileUrls}/>))}
               </S.PicturesLoad>
             </S.FooterPictures>
 

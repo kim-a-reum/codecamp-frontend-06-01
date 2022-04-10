@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IMutation } from "../../../commons/types/generated/types";
 import { useState } from "react";
+import _ from "lodash";
 
 export default function Boardsfetch() {
   const [deleteBoard] =
@@ -71,6 +72,23 @@ export default function Boardsfetch() {
 
   }
   console.log(dataBestBoards)
+
+  //검색부분입니다
+
+  const [keyword, setKeyword] = useState("")
+
+  
+
+        const getDebounce = _.debounce((data)=>{
+            refetch({ search : data, page : 1})
+            setKeyword(data);
+        },200)
+
+        const onChangeSearch = (event:ChangeEvent<HTMLInputElement>)=>{
+            getDebounce(event.target.value)
+
+        }
+
   return (
     <BoardsfetchUI
       onClickDelete={onClickDelete}
@@ -87,6 +105,8 @@ export default function Boardsfetch() {
       nextActive={nextActive}
       GoCreate={GoCreate}
       dataBestBoards={dataBestBoards}
+      onChangeSearch={onChangeSearch}
+      keyword={keyword}
       
     />
   );

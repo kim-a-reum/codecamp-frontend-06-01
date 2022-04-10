@@ -45,13 +45,21 @@ export default function FetchBoardUI(props: IMyFetchBoardUIprops) {
               <S.MiddleTitle>
                 제목 : {props.data?.fetchBoard.title}
               </S.MiddleTitle>
-              <S.MiddlePhoto>
+              {/* <S.MiddlePhoto> */}
                 <S.Photo></S.Photo>
-                <S.PhotoSide></S.PhotoSide>
-                <S.PhotoContents> 너의 고민을 올려봐 ! 말하고 나면 시원해질거야 ! </S.PhotoContents>
-              </S.MiddlePhoto>
+                {/* <S.PhotoSide></S.PhotoSide> */}
+                {/* <S.PhotoContents> 너의 고민을 올려봐 ! 말하고 나면 시원해질거야 ! </S.PhotoContents> */}
+              {/* </S.MiddlePhoto> */}
               <S.MiddleContents>
-                내용 : <br /> {props.data?.fetchBoard.contents}
+                내용 : {props.data?.fetchBoard.contents} <br /> 
+                [이미지] <S.ImageWrapper>
+                  {props.data?.fetchBoard.images?.filter((el:string)=>el)
+                  // filter해준것은 빈 문자열이 아닌애들만 이미지 보여주라고 한 것 
+                  .map((el:string)=>(
+                      <S.Image key={el}
+                      src={`https://storage.googleapis.com/${el}`}/>
+                  ))}
+                </S.ImageWrapper>
               </S.MiddleContents>
             </S.Middle>
             <S.Under>

@@ -35,7 +35,7 @@ export default function FetchBoardPage() {
     deleteBoard({
       variables: { boardId: String(data.fetchBoard._id) },
     });
-    Modalsuccess("게시물 삭제 완료! 목록 페이지로 넘어갑니다 !");
+    Modalsuccess({content: "게시물 삭제 완료! 목록 페이지로 넘어갑니다 !"});
     router.push(`/boards`);
   };
 

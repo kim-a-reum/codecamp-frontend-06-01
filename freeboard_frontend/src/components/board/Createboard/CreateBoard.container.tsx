@@ -1,9 +1,9 @@
 //게시글 작성, 수정 컨테이너
 
 import CreateBoardUI from "./CreateBoard.presenter";
-import { CREATE_BOARD } from "./CreteBoard.queries";
+import { CREATE_BOARD, UPLOAD_FILE } from "./CreteBoard.queries";
 import { UPDATE_BOARD } from "./CreteBoard.queries";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import {
@@ -12,8 +12,10 @@ import {
   ImyupdateBoardInput,
 } from "./CreateBoard.types";
 import { Modal } from "antd";
-import { ModalError, ModalInfo, Modalsuccess } from "../../utility";
+import { ModalError, ModalInfo, Modalsuccess, ModalWarning } from "../../utility";
 import { isResSent } from "next/dist/shared/lib/utils";
+import { IMutation, IMutationUploadFileArgs } from "../../../commons/types/generated/types";
+import { checkFileValidation } from "../../../commons/libraries/validation";
 
 export default function CreateBoardPage(props: ICreateBoardProps) {
   const [isActive, setIsActive] = useState(false);
@@ -33,6 +35,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+ 
 
   function onChangeName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
@@ -133,6 +136,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
               title,
               contents,
               youtubeUrl: String(youtubeUrl),
+              images : fileUrls,
               boardAddress: {
                 zipcode,
                 address,
@@ -199,8 +203,24 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
     setAddressDetail(event.target.value);
   };
 
+  //파일 업로드 부분입니다
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const fileRef = useRef<HTMLInputElement>(null)
+  
+  const onChangeFileUrls = (fileUrl:string, index: number) =>{
+    // fileUrls[index] = fileUrl
+    // setFileUrls(fileUrls) 얕은복사 안되는 이유 정확히 이해하자
+    const newFileUrls = [...fileUrls]
+    newFileUrls[index] = fileUrl
+    setFileUrls(newFileUrls)
+  }
+
+
   return (
     <CreateBoardUI
+      fileRef = {fileRef}
+      fileUrls={fileUrls}
+      onChangeFileUrls={onChangeFileUrls}
       onChangeName={onChangeName}
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
