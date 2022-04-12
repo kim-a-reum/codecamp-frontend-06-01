@@ -1,6 +1,6 @@
 import BoardsfetchUI from "./Boardsfetch.presenter";
 import { FETCH_BOARDS, DELETE_BOARD,FETCH_BOARDS_COUNT, FETCH_BOARDS_BEST } from "./Boardsfetch.queries";
-import { MouseEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";

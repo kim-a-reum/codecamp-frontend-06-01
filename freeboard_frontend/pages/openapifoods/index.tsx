@@ -29,7 +29,7 @@ export default function TodayFoods(){
 
     return (
         <>
-        <div>여기야여기</div>
+        <div>오늘은 이걸 먹는거 어때 ? 싫다면 새로고침을 해봐!</div>
         <Foodbox src={foodUrl}></Foodbox>
         </>
     )

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   background-color: #f5e0ff;
-  height: 200px;
+  height: 145px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -12,10 +12,28 @@ const Wrapper = styled.div`
   align-items: center;
   
 `;
+
+const Box = styled.div`
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+justify-content: center;
+`
+const Detail = styled.div`
+  width: 150px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 16px;
+
+`
 const FreeBoard = styled.div`  
   width: 100px;
-  height: 150px;
-  background-color: aliceblue;
+  height: 100px;
+  background-image: url('../../../../picture/루피하이.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
   :hover{
   font-weight: 900;
@@ -25,8 +43,10 @@ const FreeBoard = styled.div`
 `;
 const RandomFood = styled.div`
   width: 100px;
-  height: 150px;
-  background-color: aliceblue;
+  height: 100px;
+  background-image: url('../../../../picture/루피돼지.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
   :hover{
   font-weight: 900;
@@ -39,8 +59,10 @@ const RandomFood = styled.div`
 const FreeMarket= styled.div`
   
   width: 100px;
-  height: 150px;
-  background-color: aliceblue;
+  height: 100px;
+  background-image: url('../../../../picture/루피느낌표.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
   :hover{
   font-weight: 900;
@@ -52,8 +74,10 @@ const FreeMarket= styled.div`
 const GominBoard= styled.div`
   
   width: 100px;
-  height: 150px;
-  background-color: aliceblue;
+  height: 100px;
+  background-image: url('../../../../picture/루피슬픔.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
   :hover{
   font-weight: 900;
@@ -65,8 +89,10 @@ const GominBoard= styled.div`
 const MyPage = styled.div`
   
   width: 100px;
-  height: 150px;
-  background-color: aliceblue;
+  height: 100px;
+  background-image: url('../../../../picture/루피인사.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
   :hover{
   font-weight: 900;
@@ -98,11 +124,29 @@ const goFirebase = () => {
   return (
 <>
     <Wrapper>
-      <RandomFood onClick={goFood}>루피의 Today 추천메뉴</RandomFood>
-      <GominBoard onClick = {goFirebase}> 파이어베이스 게시판</GominBoard>
-      <FreeBoard onClick = {goBoard}>자유게시판</FreeBoard>
-      <FreeMarket>중고마켓</FreeMarket>
-      <MyPage>마이페이지</MyPage>
+      <Box>
+        <RandomFood onClick={goFood}/>
+        <Detail>오늘 뭐먹지 <br/> Today 추천메뉴</Detail>
+      </Box>
+      <Box>
+      <GominBoard onClick = {goFirebase}/>
+        <Detail>고민 공유 게시판 <br/> My Firebase Board</Detail>
+      </Box>
+      <Box>
+      <FreeBoard onClick = {goBoard}/>
+        <Detail>자유게시판<br/> Free Talking Board</Detail>
+      </Box>
+      <Box>
+        <FreeMarket/>
+        <Detail>중고마켓<br/> </Detail>
+      </Box>
+      <Box>
+        <MyPage/>
+        <Detail>마이페이지 <br/> </Detail>
+      </Box>
+      
+      
+      
     </Wrapper>
 </>
     )

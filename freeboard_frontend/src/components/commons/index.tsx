@@ -21,7 +21,7 @@ const SideBody = styled.div`
   
 `;
 
-const HIDDEN_HEADERS = ["/"];
+const HIDDEN_HEADERS = ["/","/signup"];
 
 interface ILayoutProps {
   children: ReactNode;
@@ -35,7 +35,7 @@ export default function Layout(props: ILayoutProps) {
       {!isHiddenHeader && 
       <div>
       <LayoutHeader />
-      <LayoutBanner />
+      {/* <LayoutBanner /> */}
       <LayoutNavigation /> 
       </div>
       }

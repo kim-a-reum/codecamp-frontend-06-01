@@ -53,6 +53,7 @@ background-size: cover;
 background-position: 0px -10px;
 border-radius: 20px 20px 0px 0px;
 background-image: url('../../../../istockphoto.jpeg');
+/* background-image: ${`props.dataBestBoards?.fetchBoardsOfTheBest[index].image`}; */
 background-repeat: no-repeat;
 align-self: center;
 `

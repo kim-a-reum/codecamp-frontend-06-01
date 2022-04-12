@@ -17,11 +17,11 @@ const Wrapper = styled.div`
 `
 const TopRow = styled.div`
     
-    height: 50px;
+    height: 40px;
     display: flex;
     flex-direction: row;
     text-align: center;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid gray;
 `
 const TopColumn= styled.div`
     width: 25%;
@@ -31,9 +31,10 @@ const TopColumn= styled.div`
 
 const Row = styled.div`
     
-    height: 80px;
+    height: 50px;
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid lightgray;
 `
 const Column= styled.div`
     width: 25%;
@@ -58,7 +59,7 @@ export default function MyFirebasePage(){
 
     return (
     <>
-        <Top> 여기는 나의 파이어게시판이지 </Top>
+        <Top> 여기는 나만의 파이어베이스 게시판 </Top>
         <Wrapper>
 
             <TopRow>

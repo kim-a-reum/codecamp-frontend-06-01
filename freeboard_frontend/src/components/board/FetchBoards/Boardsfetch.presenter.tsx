@@ -1,3 +1,4 @@
+import { getDate } from "../../utility";
 import * as S from "./Boardsfetch.styled";
 import { IBoardsUIProps } from "./Boardsfetch.types";
 export default function BoardsfetchUI(props: IBoardsUIProps) {
@@ -54,7 +55,7 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
               {el.title}
             </S.ColumnTitle>
             <S.Column>{el.writer}</S.Column>
-            <S.Column>{String(el.createdAt).slice(2, 10)}</S.Column>
+            <S.Column>{getDate(el.createdAt)}</S.Column>
             <S.DeleteButton id={el._id} onClick={props.onClickDelete}>뿡!
             </S.DeleteButton>
           </S.Row>
@@ -65,7 +66,7 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
         index + props.startPage <= props.lastPage &&(
             
             <S.PageNumber key={index + props.startPage} id = {String(index +props.startPage)} onClick={props.onClickPage} 
-            buttoncolor={props.startPage + index === props.current}
+            button-color={props.startPage + index === props.current}
             >{index + props.startPage}</S.PageNumber> 
 
         ))

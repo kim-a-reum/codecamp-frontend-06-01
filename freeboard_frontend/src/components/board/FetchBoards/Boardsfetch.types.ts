@@ -16,4 +16,5 @@ export interface IBoardsUIProps {
   current: any
   data?: any;
   dataBestBoards?: any;
+  keyword : String;
 }

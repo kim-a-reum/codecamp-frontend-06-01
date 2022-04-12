@@ -2,7 +2,8 @@ import styled from "@emotion/styled"
 import Router, { useRouter } from "next/router"
 
 const Body = styled.div`
-    margin: 0;
+    margin-top: -40px;
+    
     width: 1500px;
     box-sizing: border-box;
     background-color: #f4d8dc;

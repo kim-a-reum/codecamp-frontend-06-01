@@ -8,34 +8,43 @@ import { ModalError, Modalsuccess } from "../../utility";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { ChangeEvent } from "react";
+import { IUpdateBoardCommentInput } from "../../../commons/types/generated/types";
 
 
 
 
 export default function FetchBoardCommentPage (props : IBoardCommentMap){
-  const router = useRouter()
+    const router = useRouter()
     const[isEdit,setIsEdit] = useState(false);
     const [updateBoardComment] =useMutation(UPDATE_BOARD_COMMENT)
     const [editcontents, setEditContents] = useState("");
     const [editpassword, setEditPassWord] = useState("");
+    const [rating, setMyRating] = useState(props.rating);
     const onClickEdit = (event : MouseEvent<HTMLButtonElement>)=>{
         if (event.target instanceof Element) 
         setIsEdit(true);
       }
-  const onChangeEditContents = (event: ChangeEvent<HTMLInputElement>) => {
+    const onChangeEditContents = (event: ChangeEvent<HTMLInputElement>) => {
         setEditContents(event.target.value);
       };     
-  const onChangeEditPassWord = (event: ChangeEvent<HTMLInputElement>) => {
+    const onChangeEditPassWord = (event: ChangeEvent<HTMLInputElement>) => {
         setEditPassWord(event.target.value);
       };
+      const onChangeRating = (value: number) => {
+        setMyRating(value);
+      };
+    const updateBoardCommentInput : IUpdateBoardCommentInput ={}
+    if(editcontents) updateBoardCommentInput.contents = editcontents;
+    if(rating) updateBoardCommentInput.rating = rating;
+    
     const OnClickUpdate = async(event : MouseEvent<HTMLButtonElement>) => {
+      
         try {          
         await updateBoardComment({
             variables: {
-                  updateBoardCommentInput :{
-                      contents: editcontents,
-                      rating : props.rating
-                  },
+                  updateBoardCommentInput,
+                    
+              
                   password : editpassword,
                   boardCommentId : String(props.el?._id)
             },
@@ -46,14 +55,10 @@ export default function FetchBoardCommentPage (props : IBoardCommentMap){
               },
             ],
           });
-      
-      
-      
-          
           Modalsuccess({content :"댓글 수정에 성공했습니다!"});
           setIsEdit(false)
         } catch (error) {
-          if (error instanceof Error) ModalError({content: "비밀번호를 확인해주세요!"});
+          if (error instanceof Error) ModalError({content: "수정에 실패했습니다!"});
         }
       
       
@@ -121,12 +126,11 @@ return (
                   placeholder="비밀번호"
                   onChange={onChangeEditPassWord}
                 />
-                <S.Star></S.Star>
+                <S.Star onChange={onChangeRating} defaultValue={Number(props?.data2?.fetchBoardComments[Number(props.index)].rating)}></S.Star>
               </S.CommentsTop>
               <S.CommentsMiddle>
                 <S.CommentsContents
                   type="text"
-                  placeholder=" 수정할 내용을 입력해주세요"
                   onChange={onChangeEditContents}
                   defaultValue={String(props?.data2?.fetchBoardComments[Number(props.index)].contents)}/>
                 <S.CommentsUnder>
