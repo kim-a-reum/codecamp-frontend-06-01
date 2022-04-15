@@ -4,6 +4,7 @@ export const UploadImage = styled.img`
   width: 78px;
   height: 78px;
   margin-right: 24px;
+  margin-left: 10px;
   cursor: pointer;
 `;
 
@@ -11,6 +12,7 @@ export const UploadButton = styled.button`
   width: 78px;
   height: 78px;
   background-color: #bdbdbd;
+  font-size: 18px;
   margin-right: 24px;
   outline: none;
   border: none;

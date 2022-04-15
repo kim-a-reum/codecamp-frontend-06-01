@@ -29,11 +29,11 @@ console.log(props.data)
             <S.Images>
             사진 첨부               
                 {props.fileUrls.map((el : any, index : any)=>(
-                  <LoadBox key={uuidv4()}
-                  index={index}
-                  fileUrl={el}
-                  onChangeFileUrls={props.onChangeFileUrls}/>))}
-                
+                    <LoadBox key={uuidv4()}
+                    index={index}
+                    fileUrl={el}
+                    onChangeFileUrls={props.onChangeFileUrls}/>))}
+ 
             </S.Images>
             <S.Detail>
                 <div>작성자</div>
@@ -50,8 +50,9 @@ console.log(props.data)
 
         </S.Wrapper>
         <S.WrapperBottom>
-            <button onClick={ props.isEdit ? props.onClickUpdate : props.onClickSubmit}>
-                {props.isEdit ? "수정" : "등록"}하기</button>
+            <S.Mybutton onClick={ props.isEdit ? props.onClickUpdate : props.onClickSubmit}>
+                {props.isEdit ? "수정" : "등록"}하기</S.Mybutton>
+                <S.Mybutton onClick={ props.isEdit ? props.onClickFetch : props.onClickMain} >취소</S.Mybutton>
         </S.WrapperBottom>
 
 

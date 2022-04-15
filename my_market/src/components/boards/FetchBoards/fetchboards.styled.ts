@@ -2,22 +2,25 @@ import styled from "@emotion/styled";
 
 
 export const Row = styled.div`
+  width: 1000px;
+  height: 80px;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid gray;
-  justify-content: space-around;
-  
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+ justify-content: center;
+ align-items: center;
+ border-radius: 20px;
 `;
 
 export const Column = styled.div`
-  width: 350px;
+  width: 120px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
 export const ColumnTitle = styled.div`
-  width: 350px;
+  width: 500px;
   height: 50px;
   white-space: nowrap;
   overflow: hidden; 

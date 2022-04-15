@@ -33,13 +33,13 @@ const FETCH_BOARDS = gql`
 `
 
 
-export default function FetchBoardsPage(){
+export default function FetchBoardsPage(props :any){
     const router = useRouter();
-    const { data,refetch } = useQuery(FETCH_BOARDS);
+    const { data,refetch,fetchMore } = useQuery(FETCH_BOARDS);
     
     const onClickDetail = (event: MouseEvent<HTMLDivElement>) => {
         if (event.target instanceof Element) {
-          router.push(`boards/${event.target.id}`);
+          router.push(`main/${event.target.id}`);
         }
       };
 
@@ -62,13 +62,24 @@ export default function FetchBoardsPage(){
 console.log(data)
     return(
 <>
+<Myscroll>
+
+<InfiniteScroll
+    pageStart={0}
+    loadMore={onLoadMore}
+    hasMore={true}
+    useWindow={false}
+    >
+
 {data?.fetchBoards.map((el:any, index:Number)=>(
     <FetchBoardsPageUI key={el._id}
-onClickDetail={onClickDetail}
-data={data}
+    onClickDetail={onClickDetail}
+    data={data}
 />
 
 ))}
+</InfiniteScroll>
+</Myscroll>
 
     </>
     )

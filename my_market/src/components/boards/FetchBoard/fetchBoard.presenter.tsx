@@ -8,14 +8,17 @@ export default function FetchBoardPageUI( props: IMyFetchBoardUIprops){
 <div>
         <S.Wrapper>
             <S.Title>제목 : {props.data?.fetchBoard.title}</S.Title>
+            <S.ImageBox>
+
             {props.data?.fetchBoard.images?.filter((el:string)=>el)
                   
                   .map((el:string)=>(
                       <S.Images key={el}
                       src={`https://storage.googleapis.com/${el}`}/>
-                  ))}
+                      ))}
+            </S.ImageBox>
             <S.Contents>
-                <S.Name> {props.data ? (
+                <S.Name> 작성자 : {props.data ? (
                         props.data.fetchBoard.writer) : (
                         <div> 작성자 loading...중</div>
                     )}{" "}</S.Name>
@@ -23,9 +26,9 @@ export default function FetchBoardPageUI( props: IMyFetchBoardUIprops){
             </S.Contents>
         </S.Wrapper>
         <S.WrapperBottom>
-            <button onClick={props.onClickBack}>글목록</button>
-            <button onClick={props.OnClickEdit}>수정</button>
-            <button onClick={props.onClickDelete}>삭제</button>
+            <S.Mybutton onClick={props.onClickBack}>글목록</S.Mybutton>
+            <S.Mybutton  onClick={props.OnClickEdit}>수정</S.Mybutton>
+            <S.Mybutton  onClick={props.onClickDelete}>삭제</S.Mybutton>
         </S.WrapperBottom>
 
 </div>

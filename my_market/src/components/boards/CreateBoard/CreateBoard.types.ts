@@ -14,6 +14,8 @@ export interface ICreateBoardUIProps {
   onChangeFileUrls: (fileUrls: string, index: number) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
+  onClickFetch : () => void;
+  onClickMain : () => void;
   isEdit: boolean;
   data?: Pick<IQuery,"fetchBoard">;
   fileRef : any

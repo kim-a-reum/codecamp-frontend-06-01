@@ -10,8 +10,8 @@ console.log(props.data)
           <S.Row key={el._id}>
 
             <S.ColumnTitle id={el._id} onClick={props.onClickDetail}>
+                {el.title}
             </S.ColumnTitle>
-            <S.Column>{el.writer}</S.Column>
             <S.Column>{getDate(el.createdAt)}</S.Column>
 
           </S.Row>

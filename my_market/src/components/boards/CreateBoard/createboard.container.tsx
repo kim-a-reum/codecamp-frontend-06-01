@@ -119,7 +119,7 @@ const onChangeName =(event: ChangeEvent<HTMLInputElement>)=>{
         alert("게시물 수정에 성공 ! ")
         router.push(`/main/${router.query.boardid}`);
       } catch (error) {
-        if (error instanceof Error) alert("무언가가 잘못되었다");
+        if (error instanceof Error) alert("비밀번호를 확인하세요");
       }
     };
     
@@ -130,6 +130,12 @@ const onChangeName =(event: ChangeEvent<HTMLInputElement>)=>{
  },[props.data])
 
 
+ const onClickFetch = ()=>{
+  router.push(`/main/${router.query.boardid}`);
+ }
+ const onClickMain = ()=>{
+  router.push('/main')
+}
     return(
 <div>
     <CreateBoardPageUI
@@ -142,6 +148,8 @@ const onChangeName =(event: ChangeEvent<HTMLInputElement>)=>{
     onChangeContents={onChangeContents}
     onClickSubmit={onClickSubmit}
     onClickUpdate={OnClickUpdate}
+    onClickFetch={onClickFetch}
+    onClickMain={onClickMain}
     isEdit={props.isEdit}
     data={props.data}
     
