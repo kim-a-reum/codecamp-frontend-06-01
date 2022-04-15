@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     //^엄격하게 관리해주세요 
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,

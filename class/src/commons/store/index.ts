@@ -11,3 +11,11 @@ export const accessTokenState = atom({
     default:""
 
 })
+
+export const userInfoState = atom({
+    key:"userInfoState",
+    default:{
+        email:"",
+        name:""
+    }
+})

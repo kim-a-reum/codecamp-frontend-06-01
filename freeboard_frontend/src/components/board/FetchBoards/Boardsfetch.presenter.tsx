@@ -1,6 +1,7 @@
 import { getDate } from "../../utility";
 import * as S from "./Boardsfetch.styled";
 import { IBoardsUIProps } from "./Boardsfetch.types";
+import { v4 as uuidv4 } from "uuid";
 export default function BoardsfetchUI(props: IBoardsUIProps) {
 
   return (
@@ -52,7 +53,14 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
           <S.Row key={el._id}>
             <S.Column>{10 - index}</S.Column>
             <S.ColumnTitle id={el._id} onClick={props.onClickDetail}>
-              {el.title}
+            {el.title
+              .replaceAll(props.keyword, `@#$%${props.keyword}@#$%`)
+              .split("@#$%")
+              .map((el :any) => (
+                <S.TextToken key={uuidv4()} isMatch={props.keyword === el}>
+                  {el}
+                </S.TextToken>
+              ))}
             </S.ColumnTitle>
             <S.Column>{el.writer}</S.Column>
             <S.Column>{getDate(el.createdAt)}</S.Column>
@@ -66,7 +74,7 @@ export default function BoardsfetchUI(props: IBoardsUIProps) {
         index + props.startPage <= props.lastPage &&(
             
             <S.PageNumber key={index + props.startPage} id = {String(index +props.startPage)} onClick={props.onClickPage} 
-            button-color={props.startPage + index === props.current}
+            buttoncolor={props.startPage + index === props.current}
             >{index + props.startPage}</S.PageNumber> 
 
         ))

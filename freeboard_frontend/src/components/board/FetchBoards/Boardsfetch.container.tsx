@@ -12,6 +12,7 @@ export default function Boardsfetch() {
   const [deleteBoard] =
     useMutation<Pick<IMutation, "deleteBoard">>(DELETE_BOARD);
   const router = useRouter();
+  
   const {data: dataBestBoards} = useQuery(FETCH_BOARDS_BEST);
   const { data,refetch } = useQuery(FETCH_BOARDS);
   
@@ -79,13 +80,14 @@ export default function Boardsfetch() {
 
   
 
-        const getDebounce = _.debounce((data)=>{
+  const getDebounce = _.debounce((data)=>{
             refetch({ search : data, page : 1})
             setKeyword(data);
         },200)
 
-        const onChangeSearch = (event:ChangeEvent<HTMLInputElement>)=>{
+  const onChangeSearch = (event:ChangeEvent<HTMLInputElement>)=>{
             getDebounce(event.target.value)
+            setKeyword(event.target.value)
 
         }
 

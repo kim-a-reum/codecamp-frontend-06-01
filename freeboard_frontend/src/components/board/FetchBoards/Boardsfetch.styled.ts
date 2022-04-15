@@ -286,6 +286,10 @@ export const ColumnTitle = styled.div`
   color: indianred;
 }
 `;
+export const TextToken = styled.span`
+  color: ${(props) => (props.isMatch ? "red" : "black")};
+`;
+
 export const DeleteButton = styled.button`
 background-color: pink;
 text-align: center;
