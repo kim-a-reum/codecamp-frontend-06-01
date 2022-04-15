@@ -22,10 +22,10 @@ export default function  MyApp({ Component, pageProps  }: AppProps) {
     
    (
      <ApolloProvider client={client}>
-      {/* <Layout> */}
+      <Layout>
       <Global styles={globalStyles}/>
       <Component {...pageProps} />
-      {/* </Layout> */}
+      </Layout>
     </ApolloProvider>
      ) 
   );

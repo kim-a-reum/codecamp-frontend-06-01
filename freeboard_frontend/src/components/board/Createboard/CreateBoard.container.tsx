@@ -1,7 +1,7 @@
 //게시글 작성, 수정 컨테이너
 
 import CreateBoardUI from "./CreateBoard.presenter";
-import { CREATE_BOARD, UPLOAD_FILE } from "./CreteBoard.queries";
+import { CREATE_BOARD} from "./CreteBoard.queries";
 import { UPDATE_BOARD } from "./CreteBoard.queries";
 import { ChangeEvent, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -11,11 +11,7 @@ import {
   IMyVariables,
   ImyupdateBoardInput,
 } from "./CreateBoard.types";
-import { Modal } from "antd";
-import { ModalError, ModalInfo, Modalsuccess, ModalWarning } from "../../utility";
-import { isResSent } from "next/dist/shared/lib/utils";
-import { IMutation, IMutationUploadFileArgs } from "../../../commons/types/generated/types";
-import { checkFileValidation } from "../../../commons/libraries/validation";
+import { ModalError,Modalsuccess} from "../../utility";
 
 export default function CreateBoardPage(props: ICreateBoardProps) {
   const [isActive, setIsActive] = useState(false);

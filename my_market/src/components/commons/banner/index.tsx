@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
 height: 200px;
+width: 1600px;
+
 
   
 `;
@@ -13,26 +15,27 @@ const MySlider = styled(Slider)`
 `
 
 const SliderItem1 = styled.div`
-background-image: url('../../../../picture/루피잔디.png');
+background-color: skyblue;
   background-position: 30%;
   height: 200px;
   
 `;
 const SliderItem2= styled.div`
-  background-image: url('../../../../picture/루피피규어.jpeg');
+background-color: blue;
   background-position: 80%;
   height: 200px;
 `;
 const SliderItem3 = styled.div`
-background-image: url('../../../../picture/루피대장.png');
+background-color: pink;
   background-position: 50%;
   background-repeat: no-repeat;
   height: 200px;
 `;
 const SliderItem4 = styled.div`
-background-image: url('../../../../picture/루피보트.png');
+background-color: lightcoral;
   background-position: 50%;
   height: 200px;
+
 `;
 
 

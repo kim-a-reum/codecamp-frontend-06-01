@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import { useRouter } from "next/router";
 
 const Body = styled.div`
-  height: 500px;
+  width: 1500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,34 +17,39 @@ const Body = styled.div`
 const SideBody = styled.div`
   
   display: flex;
+  flex-direction: column;
+  
+`;
+const RealBody = styled.div`
+  
+  display: flex;
   flex-direction: row;
   
 `;
 
-const HIDDEN_HEADERS = ["/","/signup"];
+
 
 interface ILayoutProps {
   children: ReactNode;
 }
 export default function Layout(props: ILayoutProps) {
-  const router = useRouter();
-  const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
+  
   return (
+    <div>
     
-    <>
-      {!isHiddenHeader && 
-      <div>
-      <LayoutHeader />
-      {/* <LayoutBanner /> */}
-      <LayoutNavigation /> 
-      </div>
-      }
+    <RealBody>
+    <LayoutSidebar></LayoutSidebar>
 
-      <SideBody>
-      {!isHiddenHeader && <LayoutSidebar></LayoutSidebar>}
+
+     <SideBody>
+
+      <LayoutBanner />
+      
       <Body>{props.children}</Body>
-      </SideBody>
-      </>
+     </SideBody>
+
+    </RealBody>
+    </div>
      
   );
 }

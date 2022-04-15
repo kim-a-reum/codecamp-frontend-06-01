@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@graphql-codegen/typescript": "^2.4.8"
+  }
+}
