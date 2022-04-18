@@ -79,7 +79,7 @@ export default function MySignUpPage(){
         alert("회원가입을 축하합니다.")
        } 
         catch (error){
-            ModalError({content:"무언가가 잘못되었다 "})
+            ModalError({content:"이미 존재하는 이메일일수도 있고, 비밀번호를 확인하셔야해요"})
         }
     } }
 

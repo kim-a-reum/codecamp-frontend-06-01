@@ -72,7 +72,6 @@ export default function Boardsfetch() {
     router.push('/../../../../boards/new')
 
   }
-  console.log(dataBestBoards)
 
   //검색부분입니다
 

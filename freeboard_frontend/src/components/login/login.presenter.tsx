@@ -27,10 +27,10 @@ export default function MyLoginPageUI(props : IMyLoginPageUIProps){
 
                 <S.EmailError>{props.mailErr}</S.EmailError>
 
-                <S.NameBox type={"text"} placeholder="이름을 입력해 주세요."
+                {/* <S.NameBox type={"text"} placeholder="이름을 입력해 주세요."
                 onChange={props.onChangeName}/>
 
-                <S.NameError>{props.nameErr}</S.NameError>
+                <S.NameError>{props.nameErr}</S.NameError> */}
 
                 <S.PassWordBox type={"password"} placeholder="비밀번호를 입력해 주세요." onChange={props.onChangePass}/>
 

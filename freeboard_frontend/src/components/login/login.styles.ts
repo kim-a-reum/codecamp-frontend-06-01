@@ -109,7 +109,7 @@ export const NameBox = styled.input`
     margin-top: 20px;
 `
 export const NameError = styled.div`
-    color: red;
+    color: white;
     height: 12px;
     font-size: 11px;
     `
@@ -123,7 +123,7 @@ export const PassWordBox = styled.input`
     margin-top: 20px;
 `
 export const PassWordError = styled.div`
-    color: red;
+    color: white;
     height: 12px;
     font-size: 11px;
 `

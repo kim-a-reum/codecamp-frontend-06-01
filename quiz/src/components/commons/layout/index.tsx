@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 import { useRouter } from "next/router";
 
 const Body = styled.div`
-  height: 500px;
+  height: 750px;
 `;
 
 const BodyWrapper = styled.div`
@@ -31,7 +31,7 @@ export default function Layout(props: ILayoutProps) {
     <>
       {!isHidden && <LayoutHeader />}
       {/* ishidden이 false면 보여주자 !가 있으니까 !   */}
-      <LayoutBanner />
+      {/* <LayoutBanner /> */}
       <LayoutNavigation />
       <BodyWrapper>
         <LayoutSidebar />

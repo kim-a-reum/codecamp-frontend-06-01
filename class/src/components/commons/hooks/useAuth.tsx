@@ -1,11 +1,8 @@
-
-// @ts-ignore
 import { useRouter } from "next/router"
-import { useEffect } from "react"
+import { useEffect} from "react"
 
-
-export const withAuth = (Component) => (props)=> { 
-    
+export function useAuth(){
+    // 안에 use들이 쓰이고 있겠구나~ 해서 use로 이름 붙여조야댐!
     const router = useRouter()
     useEffect(()=>{
         if(!localStorage.getItem("accessToken")){
@@ -15,5 +12,5 @@ export const withAuth = (Component) => (props)=> {
 
     },[])
 
-    return <Component {...props}/>
+
 }

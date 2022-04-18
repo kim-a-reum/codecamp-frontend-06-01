@@ -1,27 +1,25 @@
 import { useMutation } from "@apollo/client";
+import { access } from "fs";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
-import { IMutation, IMutationCreateUserArgs } from "../../commons/types/generated/types";
-import { ModalError } from "../utility";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../commons/store";
+import { ModalError, Modalsuccess } from "../utility";
 import MyLoginPageUI from "./login.presenter";
+import { LOGIN_USER } from "./login.queries";
 
 
 
 export default function MyLoginPage(){
+    const [,setAccessToken] = useRecoilState(accessTokenState)
     const router = useRouter()
+    const [loginUser] = useMutation(LOGIN_USER)
 
     const[mail,setMail]=useState("")
     const[pass,setPass]=useState("")
     const[name,setName]=useState("")
 
-    // const[inputs,setInputs]=useState({
-    //     name:"",
-    //     mail:"",
-    //     pass:"",
-    //     pass2:""
-    // })
 
- 
     const[mailErr,setMailErr]=useState("")
     const[nameErr,setNameErr]=useState("")
     const[passErr,setPassErr]=useState("")
@@ -39,17 +37,31 @@ export default function MyLoginPage(){
         
     }
     
-   
-    
-   
-
     const onClickMain = ()=>{
         router.push('/boards')
     }
-    const onClickLogin = ()=>{
-    if(mail ==="" || name === "" || pass === ""){
+    
+    const onClickLogin = async()=>{
+    if(mail ==="" ||pass === ""){
         ModalError({content:"이메일, 이름, 비밀번호를 모두 입력해주세요 "})
     }
+    if(!mail.includes("@")){
+        setMailErr("이메일 형식이 올바르지 않습니디ㅏ")
+    }
+    const result =  await loginUser({
+        variables:{
+            email: mail,
+            password: pass,
+
+        }
+    })
+    const accessToken = result.data.loginUser.accessToken
+    console.log(accessToken)
+    localStorage.setItem("accessToken",accessToken)
+    setAccessToken(accessToken)
+    Modalsuccess({content: "로그인에 성공했습니다!"})
+    router.push('./boards')
+
 
 
     }
