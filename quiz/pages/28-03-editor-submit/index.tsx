@@ -14,8 +14,6 @@ const CREATE_BOARD = gql`
         }
     }
 `
-
-
 export default function WebEditorPage(){
     const router = useRouter()
     const [createBoard] =useMutation(CREATE_BOARD)
@@ -51,7 +49,6 @@ export default function WebEditorPage(){
             } catch(error){
                 alert("error")
             }
-           
     }
     return (
     <form onSubmit={handleSubmit(onClicksubmit)}>
