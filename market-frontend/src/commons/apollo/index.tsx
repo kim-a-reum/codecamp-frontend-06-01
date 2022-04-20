@@ -17,9 +17,9 @@ export default function ApolloSetting(props : any){
     }
     useEffect(()=>{
       const MyaccessToken = localStorage.getItem("accessToken")
-    //   const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}")
+      const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}")
             setAccessToken(MyaccessToken || "")
-            // setuserInfo(userInfo)
+            setuserInfo(userInfo)
     },[])
     const uploadLink = createUploadLink({
         uri: "http://backend06.codebootcamp.co.kr/graphql",

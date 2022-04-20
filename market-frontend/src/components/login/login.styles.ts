@@ -11,10 +11,7 @@ export const Body = styled.div`
     justify-content: flex-start;
     background-size: cover;
 
-
-
 `
-
 export const TopBox = styled.div`
     display: flex;
     flex-direction: row;
@@ -24,12 +21,13 @@ export const TopBox = styled.div`
 `
 
 export const BottomButton = styled.button`
-background-color: pink;
+background-color: #155d1f;
 border: none;
 width: 300px;
 height: 100px;
 border-radius: 20px;
 cursor: pointer;
+color: white;
 
 `
 export const PhotoBox = styled.div`
@@ -42,31 +40,22 @@ export const PhotoBox = styled.div`
   
 
 `
-export const Photo = styled.div`
-  width: 250px;
-  height: 300px;
-  background-image: url("../../picture/루피드루와.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  border-radius: 30px;
-  padding-bottom: 30px;
-`;
-
 export const PhotoSide = styled.div`
   width: 0;
   height: 0;
-  border-bottom: 10px solid pink;
+  border-bottom: 10px solid #155d1f;
   border-right: 10px solid transparent;
   margin-top: 140px;
 `
 export const PhotoContents = styled.div`
   width: 200px;
   height: 150px;
-  background-color: pink;
+  background-color: #155d1f;
   border-radius: 30px 30px 0px 30px;
   text-align: center;
   padding-top: 50px;
   font-size: 25px;
+  color: white;
   
 `;
 export const Wrapper = styled.div`
@@ -74,15 +63,15 @@ export const Wrapper = styled.div`
     
     width: 540px;
     height: 500px;
-    border: 1px solid indianred;
-    box-shadow: 5px 5px 20px pink;
+    border: 1px solid #155d1f;
+    box-shadow: 5px 5px 20px #155d1f;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 60px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.2);
 
 `
 export const EmailBox = styled.input`

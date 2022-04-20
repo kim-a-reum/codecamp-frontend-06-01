@@ -20,7 +20,10 @@ const SideBody = styled.div`
   flex-direction: row;
   
 `;
-
+const RealBody = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 const HIDDEN_HEADERS = [,"/signup"];
 
 interface ILayoutProps {
@@ -32,17 +35,14 @@ export default function Layout(props: ILayoutProps) {
   return (
     
     <>
-      {!isHiddenHeader && 
-      <div>
-      <LayoutHeader />
-      {/* <LayoutBanner /> */}
-      <LayoutNavigation /> 
-      </div>
-      }
+      
 
       <SideBody>
-      {!isHiddenHeader && <LayoutSidebar></LayoutSidebar>}
+      <LayoutSidebar></LayoutSidebar>
+      <RealBody>
+      {!isHiddenHeader && <LayoutNavigation /> }
       <Body>{props.children}</Body>
+      </RealBody>
       </SideBody>
       </>
      
