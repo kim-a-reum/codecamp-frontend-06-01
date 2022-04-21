@@ -4,7 +4,7 @@ import FetchUsedItemsPage from "../../src/components/Useditem/fetchUsedItems/fet
 
 
 
-export default function Fetchboards(){
+export default function FetchUsedItems(){
     return (
         <div>
             <FetchUsedItemsPage/>

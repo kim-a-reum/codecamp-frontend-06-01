@@ -31,27 +31,27 @@ export default function LoginPage(){
                 variables:{
                     email: data.email,
                     password: data.password
-                  }
-              })
-              const accessToken = result.data.loginUser.accessToken
-              setAccessToken(accessToken)
-              localStorage.setItem("accessToken",accessToken)
+                }
+            })
+            const accessToken = result.data.loginUser.accessToken
+            setAccessToken(accessToken)
+            localStorage.setItem("accessToken",accessToken)
             //   Modalsuccess({content:"로그인성공"})
             alert('로그인성공')
             router.push('./28-04-payment-loading')
-      
-          } catch (error){
-              alert("무언가가 잘못되었다")
-          } 
+
+        } catch (error){
+        alert("무언가가 잘못되었다")
+        } 
     }
 
     return (
-       <form onSubmit={handleSubmit(onClickSubmit)}>
+    <form onSubmit={handleSubmit(onClickSubmit)}>
             아이디 : <input type="text" {...register("email")}/>
             비밀번호 : <input type = "password" {...register("password")}/>
             <button >로그인하기</button>
-       </form>
+    </form>
 
 
-   )
+)
 }

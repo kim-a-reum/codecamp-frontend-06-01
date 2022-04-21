@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_USED_ITEM = gql`
-    createUseditem($createUseditemInput: CreateUseditemInput!){
-        createUseditem(createUseditemInqut:$createUseditemInput){
+    mutation createUseditem($createUseditemInput: CreateUseditemInput!){
+        createUseditem(createUseditemInput:$createUseditemInput){
             _id
             name
             remarks

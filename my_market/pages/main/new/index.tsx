@@ -1,12 +1,13 @@
-import CreateBoardPage from "../../../src/components/boards/CreateBoard/createboard.container";
+import CreateUsedItemPage from "../../../src/components/Useditem/cresteUsedItem/createUsedItem.container";
 
 
-export default function CreateBoard(){
+
+export default function CreateUseditem(){
 
 
     return(
 <div>
-    <CreateBoardPage/>
+    <CreateUsedItemPage/>
 </div>
     )
 
