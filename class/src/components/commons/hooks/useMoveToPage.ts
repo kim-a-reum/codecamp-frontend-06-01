@@ -9,8 +9,9 @@ export function useMoveToPage(){
 
     const onClickMoveToPage =(path)=> () =>{
         setVisitedPage(path)
+        console.log(path)
         // 지금 있는 페이지에다가 path를 저장하고 이동! 
-        router.push(path)
+        // router.push(path)
     };
 
     return {
