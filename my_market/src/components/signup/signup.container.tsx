@@ -68,7 +68,6 @@ export default function MySignUpPage(){
     } 
     if ((mail.includes("@")) !== false && pass !== "" && pass == pass2) {
        try{
-        console.log("여기까진오나?")
         const result = await createUser({
             variables:{
                 createUserInput:{

@@ -1,5 +1,7 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
+import { useRecoilState } from "recoil"
+import { userInfoState } from "../../../commons/store"
 
 const Navigation = styled.div`
 width: 1500px;
@@ -42,16 +44,30 @@ cursor: pointer;
 
 export default function NavigationPage(){
     const router = useRouter()
+    const [userInfo] = useRecoilState(userInfoState)
 
     const onClickLogin = ()=>{
-     router.push('/main/login')
+     router.push('/login')
     }
-
+    const onClickSignUp = ()=>{
+      router.push('/signup')
+    }
+    
     return (
         <div>
         <Navigation>
-        <Login onClick={onClickLogin}>로그인하기</Login>
-        <Signup>회원가입</Signup>
+        
+          { userInfo.name 
+          ? 
+          <div> {userInfo.name}님 환영합니다</div> 
+          :
+          <>
+          <Login onClick={onClickLogin}>로그인하기 </Login> 
+          <Signup onClick={onClickSignUp}>회원가입</Signup>
+          </>
+          }
+    
+        
         </Navigation>
         </div>
 
