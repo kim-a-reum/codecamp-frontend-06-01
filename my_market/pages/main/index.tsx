@@ -1,4 +1,5 @@
-import FetchBoardsPage from "../../src/components/boards/FetchBoards/fetchboards.container";
+
+import FetchUsedItemsPage from "../../src/components/Useditem/fetchUsedItems/fetchUseditems.container";
 
 
 
@@ -6,7 +7,7 @@ import FetchBoardsPage from "../../src/components/boards/FetchBoards/fetchboards
 export default function Fetchboards(){
     return (
         <div>
-            <FetchBoardsPage/>
+            <FetchUsedItemsPage/>
         </div>
     )
 }

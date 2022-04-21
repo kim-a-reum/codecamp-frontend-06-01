@@ -6,7 +6,7 @@ import { accessTokenState, userInfoState } from "../../commons/store";
 import { ModalError, Modalsuccess} from "../utility";
 import MyLoginPageUI from "./login.presenter";
 import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "./login.queries";
-
+import 'antd/dist/antd.css'
 
 
 export default function MyLoginPage(){

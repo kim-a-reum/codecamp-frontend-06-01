@@ -22,7 +22,7 @@ export default function LoginPage(){
     const [,setAccessToken] = useRecoilState(accessTokenState)
     const router = useRouter()
     const [loginUser] = useMutation(LOGIN_USER)
-    const {register, handleSubmit, formState} = useForm({
+    const {register, handleSubmit} = useForm({
         mode:"onChange",
     })
     const onClickSubmit = async(data: IFormValues)=>{
