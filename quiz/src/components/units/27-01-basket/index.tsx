@@ -34,6 +34,7 @@ export default function ProductList(props){
     const data = getDate(new Date)
     
     const[inbasket,setInbasket] = useState(false)
+    
     const onClickBasket = (el : IBoard) => ()=>{
         console.log(el);
 
@@ -46,13 +47,13 @@ export default function ProductList(props){
           setInbasket(false)
           return;
         }
-             // 3. 장바구니에 담기
-            const { __typename, ...newEl } = el;
-            baskets.push(newEl);
+        // 3. 장바구니에 담기
+        const { __typename, ...newEl } = el;
+        baskets.push(newEl);
          
-            localStorage.setItem("baskets", JSON.stringify(baskets));
-            localStorage.setItem("date",data)
-            setInbasket(true)
+        localStorage.setItem("baskets", JSON.stringify(baskets));
+        localStorage.setItem("date",data)
+        setInbasket(true)
              }
         console.log(data)
     return(

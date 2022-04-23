@@ -31,7 +31,13 @@ export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
   
-  return (
+  return (<>
+   {/* <Head> //모든페이지에서 카카오 맵을 다운받으므로 비효율적이다 
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=733d0a29ec73b8803266c00fc97055a5"
+        ></script>
+  </Head> */}
   <RecoilRoot>        
     <ApolloSetting>
     {/* 아폴로설정을 commons 컴포넌트로 빼주고 이 밑에 애들을 children으로 넣음  */}
@@ -42,6 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     </ApolloSetting>
  
   </RecoilRoot>
+  </>
   );
 }
 
