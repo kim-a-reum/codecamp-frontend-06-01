@@ -1,54 +1,90 @@
-import axios from "axios"
+import axios from "axios";
 
-export default function CallbackPromiseAsyncawaitPage(){
-    const onClickCallback = ()=>{
-        const aaa = new XMLHttpRequest()
-        aaa.open("get","http://numbersapi.com/random?min=1&max=200")
-        aaa.send()
-        aaa.addEventListener("load",(res)=>{
-          const num = res.target.response.split(" ")[0] // 랜덤숫자 
+export default function CallbackPromiseAsyncawaitPage() {
+    const onClickCallback = () => {
+        const aaa = new XMLHttpRequest();
+        aaa.open("get", "http://numbersapi.com/random?min=1&max=200");
+        aaa.send();
+        aaa.addEventListener("load", (res) => {
+            const num = res.target.response.split(" ")[0]; // 131 (랜덤숫자)
 
-          const bbb = new XMLHttpRequest();
-          bbb.open("get", `http://koreanjson.com/posts/${num}`)
-          bbb.send()
-          bbb.addEventListener("load",()=>{
-             const userId = res.target.response.UserId
-                // 내가 쓴 모든글 가져오기 
-              const ccc = new XMLHttpRequest()
-              ccc.open("get",`http://koreanjson.com/posts?userId=${userId}`)
-              ccc.send()
-              ccc.addEventListener("load", (res)=>{
-                  console.log(res); // 최종 결과값 
-              })
-            })
-        })
+            const bbb = new XMLHttpRequest();
+            bbb.open("get", `http://koreanjson.com/posts/${num}`);
+            bbb.send();
+            bbb.addEventListener("load", (res) => {
+                const userId = res.target.response.UserId;
 
-    }
-    // 콜백 지옥을 해결하기 위해 프로미스가 나왔다 
-    // async await가 없던 시절에 프로미스로 만들어진게 axios의 리턴 타입으로 promise가 나옴 
-    // 성고해서 받는게 then 실패하면 캐치 프로미스 안에 resolve,reject
-    // 프로미스는 시간이 걸리는 작업할때 에이피아잉 ㅛㅇ청할때 
+                const ccc = new XMLHttpRequest();
+                ccc.open("get", `http://koreanjson.com/posts?userId=${userId}`);
+                ccc.send();
+                ccc.addEventListener("load", (res) => {
+                    console.log(res); // 최종 결과값!!!
+                });
+            });
+        });
+    };
 
-    // new Promise((resolve,reject)=>{
+    // new Promise((resolve, reject) => {
+
     //     // 외부 요청 코드
-    //     // 성공했을때
-    //     resolve("몰리")
-    //     // 실패했을때
-    //     reject("에러")
+    //     const ccc = new XMLHttpRequest();
+    //             ccc.open("get", `http://koreanjson.com/posts?userId=${userId}`);
+    //             ccc.send();
+    //             ccc.addEventListener("load", (res) => {
+    //                 resolve(res); // 최종 결과값!!!
+    //             });
 
-    // }).then((res)=>{}).catch(err=>{})
-    const onClickPromise = ()=>{
-        axios.get("http://numbersapi.com/random?min=1&max=200").then((res)=>console.log(res))
-    }
-    const onClickAsyneawait = ()=>{
+    //     // // 성공
+    //     // resolve("철수")
 
-    }
+    //     // // 실패
+    //     // reject("에러발생!!!")
 
+    // }).then((res) => {}).catch(err => {})
 
-    return(<>
-        <button onClick={onClickCallback}>callback 요청하기 </button>
-        <button onClick = {onClickPromise}> promise요청하기 </button>
-        <button onClick ={onClickAsyneawait}>asyncwait요청하기 </button>
-    </>
-    )
+    const onClickPromise = () => {
+        console.log("여기는 1번 입니다!!!");
+        axios
+            .get("http://numbersapi.com/random?min=1&max=200")
+            .then((res) => {
+                console.log("여기는 2번 입니다!!!");
+                const num = res.data.split(" ")[0]; // 71(랜덤숫자)
+                return axios.get(`http://koreanjson.com/posts/${num}`);
+            })
+            .then((res) => {
+                console.log("여기는 3번 입니다!!!");
+                const userId = res.data.UserId;
+                return axios.get(
+                    `http://koreanjson.com/posts?userId=${userId}`
+                );
+            })
+            .then((res) => {
+                console.log("여기는 4번 입니다!!!");
+                console.log(res);
+            });
+        console.log("여기는 5번 입니다!!!");
+    };
+
+    const onClickAsyncawait = async () => {
+        const aaa = await axios.get(
+            "http://numbersapi.com/random?min=1&max=200"
+        );
+
+        const bbb = await axios.get(
+            `http://koreanjson.com/posts/${aaa}`
+        );
+
+        const ccc = await axios.get(
+            `http://koreanjson.com/posts?userId=${bbb}`
+        );
+        console.log(ccc)
+    };
+
+    return (
+        <div>
+            <button onClick={onClickCallback}>Callback 요청하기!!</button>
+            <button onClick={onClickPromise}>Promise 요청하기!!</button>
+            <button onClick={onClickAsyncawait}>Asyncawait 요청하기!!</button>
+        </div>
+    );
 }

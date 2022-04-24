@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
 
-  width: 300px;
+  width: 500px;
   height: 1200px;
   padding: 20px;
   display: flex;

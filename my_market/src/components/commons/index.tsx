@@ -1,4 +1,4 @@
-import LayoutBanner from "./banner";
+
 import LayoutSidebar from "./sidebar";
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
@@ -6,7 +6,7 @@ import NavigationPage from "./navigation";
 
 
 const Body = styled.div`
-  width: 1300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

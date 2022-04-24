@@ -1,10 +1,10 @@
 import Head from "next/head";
-// import Script from "next/script";
 import { useEffect } from "react";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
+
 export default function KakaoMapPage() {
   useEffect(() => {
     const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
@@ -15,20 +15,17 @@ export default function KakaoMapPage() {
     };
 
     const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-  });
+  }, []);
+
   return (
-    <>
+    <div>
       <Head>
         <script
           type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=733d0a29ec73b8803266c00fc97055a5"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58129ac07f6fdda65814d3d744bfb178"
         ></script>
       </Head>
-      {/* <Script src=""/> */}
-      <div>
-        <div id="map" style={{ width: "500px", height: "400px" }}></div>
-      </div>
-    </>
+      <div id="map" style={{ width: 500, height: 400 }}></div>
+    </div>
   );
 }
-

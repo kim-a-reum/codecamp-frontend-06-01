@@ -2,10 +2,11 @@ import { Tooltip } from 'antd'
 import { getDate } from '../../utility'
 import 'antd/dist/antd.css'
 import * as S from './fetchUseditem.styled'
+import Dompurify from "dompurify"
 
-export default function FetchUsedItemPageUI (props){
+export default function FetchUsedItemPageUI (props : any){
 
-console.log(props.data)
+
 return(
     <>
      <S.Body>
@@ -46,8 +47,20 @@ return(
               <S.MiddleTitle>
                 제목 : {props.data?.fetchUseditem.name}
               </S.MiddleTitle>
+              
               <S.MiddleContents>
-                내용 : {props.data?.fetchUseditem.contents} <br /> 
+                {/* 내용 : {props.data?.fetchUseditem.contents}  */}
+                {process.browser ? (
+                  <div dangerouslySetInnerHTML={{
+                    __html: Dompurify.sanitize(props.data?.fetchUseditem.contents),
+                  }}/>
+                ) : (<div/>)}
+                
+
+                
+
+
+                <br /> 
                 [이미지] <S.ImageWrapper>
                   {props.data?.fetchUseditem.images?.filter((el:string)=>el)
                   // filter해준것은 빈 문자열이 아닌애들만 이미지 보여주라고 한 것 
