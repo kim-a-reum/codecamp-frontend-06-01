@@ -11,13 +11,11 @@ export const Body = styled.div`
 `;
 export const Wrapper = styled.div`
   width: 1200px;
-  height: 1450px;
   border: 1px solid gray;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
-
   border-bottom: 1px solid lightgray;
 `;
 export const Top = styled.div`
@@ -64,20 +62,20 @@ export const LeftName = styled.div`
 `;
 export const RealName = styled.div`
   height: 33px;
-  font-size: 33px;
+  font-size: 25px;
   font-weight: 500;
 `;
 export const RealDate = styled.div`
   height: 25px;
   width: 250px;
-  font-size: 13px;
+  font-size: 20px;
   color: rgba(130, 130, 130, 1);
   display: flex;
   flex-direction: row;
-  margin-top: 5px;
+  
 `;
 export const TopRight = styled.div`
-  width: 80px;
+  width: 300px;
   height: 20px;
   display: flex;
   flex-direction: row;
@@ -91,20 +89,15 @@ export const RightClip = styled.div`
   background-size: 100% auto;
   background-image: url("../../ic_link.png");
 `;
-export const RightLocation = styled.div`
-  width: 35px;
-  height: 25px;
-  font-size: 3px;
-  background-size: 80% auto;
-  background-repeat: no-repeat;
-  background-image: url("../../ic_location.png");
-`;
+
 export const Location = styled.div`
-width: 50px;
-height: 5px;
-font-size: 15px;
+width: 300px;
+
+height: 25px;
+font-size:25px;
 display: flex;
 flex-direction: row;
+padding-bottom: 10px;
  
 `;
 ///이미지랑 게시글제목내용 부분
@@ -226,28 +219,28 @@ export const WrapperFoot = styled.div`
   border: 1px solid gray;
   display: flex;
   flex-direction: row;
-  padding: 80px 400px 0px 400px;
+  padding: 80px 380px 0px 380px;
   justify-content: space-around;
   background-color: white;
   border-top: none;
   border-bottom: none;
 `;
 export const BackButton = styled.button`
-  width: 90px;
+  width: 120px;
   height: 40px;
   border: 0.5px solid gray;
   background-color: white;
   cursor: pointer;
 `;
 export const EditButton = styled.button`
-  width: 90px;
+  width: 120px;
   height: 40px;
   background-color: white;
   border: 0.5px solid gray;
   cursor: pointer;
 `;
-export const DeleteButton = styled.button`
-  width: 90px;
+export const BasketButton = styled.button`
+  width: 150px;
   height: 40px;
   background-color: white;
   border: 0.5px solid gray;

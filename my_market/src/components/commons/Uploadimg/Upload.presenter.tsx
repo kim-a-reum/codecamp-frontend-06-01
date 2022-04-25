@@ -22,10 +22,13 @@ export default function LoadBoxUI(props: IUploads01UIProps) {
         {props.fileUrl ? (
         <UploadImage
             onClick={props.onClickUpload}
-            src={`https://storage.googleapis.com/${props.fileUrl}`}
+            src={`https://storage.googleapis.com/${props.fileUrl}
+            `}
+            
+           
         />
         ) : (
-        <UploadButton onClick={props.onClickUpload}>
+        <UploadButton type="button" onClick={props.onClickUpload}>
             <>+</>
         </UploadButton>
         )}

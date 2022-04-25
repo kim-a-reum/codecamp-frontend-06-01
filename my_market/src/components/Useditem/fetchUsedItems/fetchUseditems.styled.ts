@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-    display: grid ;
-    grid-template-columns:550px 550px;
+    /* display: grid ;
+    grid-template-columns:0px 550px 550px ; */
 `
 export const Box = styled.div`
   width: 500px;

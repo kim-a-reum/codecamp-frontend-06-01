@@ -2,36 +2,53 @@
 
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import CreateBoardPage from "../../../../src/components/boards/CreateBoard/createboard.container";
+import CreateUsedItemPage from "../../../../src/components/Useditem/createUsedItem/createUsedItem.container";
 
-const FETCH_BOARD = gql`
-    query FetchBoard($boardId:ID!){
-        fetchBoard(boardId:$boardId){
+export const FETCH_USED_ITEM = gql`
+    query fetchUseditem($useditemId: ID!){
+        fetchUseditem(useditemId:$useditemId){
             _id
-            writer
-            title
+            name
+            remarks
             contents
-            createdAt
-            youtubeUrl
-            deletedAt
+            price
+            tags
             images
+            pickedCount
+            useditemAddress {
+                    zipcode
+                    address
+                    addressDetail
+                            }
+            buyer {
+                    _id
+                    email
+                    name
+                    picture
+                    }
+            seller {
+                _id
+                email
+                name
+            picture
+                }
+            soldAt
+            createdAt
 
-
-        }   }
-
-
+        }
+    }
 `
 
 export default function BoardsFetchPage(){
     const router = useRouter()
     
-    const { data } = useQuery(FETCH_BOARD,
-        {variables : { boardId:router.query.boardid} });
+    const { data } = useQuery(FETCH_USED_ITEM,
+        {variables : { useditemId:String(router.query.itemid)} });
 
 
-
+console.log(data)
     return(
-<CreateBoardPage isEdit = {true} data={data} />
+<CreateUsedItemPage isEdit={true} data={data}/>
     )
 
 

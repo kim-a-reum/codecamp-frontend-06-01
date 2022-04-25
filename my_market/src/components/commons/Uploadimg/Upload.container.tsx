@@ -54,9 +54,10 @@ export default function LoadBox(props: IUploads01Props) {
 
     try {
       const result = await uploadFile({ variables: { file } });
+      
       props.onChangeFileUrls(result.data.uploadFile.url, props.index);
     } catch (error) {
-     ModalError({ content: "오류가 생겼습니다!" });
+     ModalError({ content: "오류가 !" });
     }
   };
 

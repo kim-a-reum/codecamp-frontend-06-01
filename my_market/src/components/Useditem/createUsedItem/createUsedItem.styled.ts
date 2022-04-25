@@ -61,6 +61,13 @@ export const LocationBox = styled.div`
     flex-direction: row;
 
 `
+export const PicturesLoad = styled.div`
+  width: 300px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 export const LocationLeft = styled.div`
         width: 45%;
         padding: 20px;
@@ -76,6 +83,7 @@ export const LocationRight = styled.div`
 `
 
 export const SubmitButton = styled.button`
+margin-top: 100px;
     width: 300px;
     height: 100px;
     border: none;

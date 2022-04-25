@@ -3,7 +3,7 @@
 import CreateBoardUI from "./CreateBoard.presenter";
 import { CREATE_BOARD} from "./CreteBoard.queries";
 import { UPDATE_BOARD } from "./CreteBoard.queries";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import {
@@ -210,6 +210,11 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
     newFileUrls[index] = fileUrl
     setFileUrls(newFileUrls)
   }
+  useEffect(() => {
+    if (props.data?.fetchUseditem.images?.length) {
+      setFileUrls([...props.data?.fetchUseditem.images]);
+    }
+  }, [props.data]);
 
 
   return (

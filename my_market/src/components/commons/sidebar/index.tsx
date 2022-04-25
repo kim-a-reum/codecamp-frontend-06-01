@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { basketItemsState, todayItemState } from "../../../commons/store";
 
 const Wrapper = styled.div`
 
@@ -18,6 +21,9 @@ const Middle = styled.div`
   background-color: white;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 const Talker = styled.div`
   padding: 70px;
@@ -27,8 +33,8 @@ const Talker = styled.div`
   font-size: 40px;
   display: flex;
   flex-direction: row;
-  
   background-color:white;
+  margin-top: 20px;
 `
 const MyButton = styled.button`
   
@@ -69,9 +75,45 @@ const Icon2 = styled.div`
   background-image: url('../../../새글.png');
   background-repeat: no-repeat;
 `
+const MyBasket = styled.div`
+  width: 200px;
+
+  border: 1px solid gray;
+  background-color: bisque;
+
+`
+
+const MyToday = styled.div`
+  width: 200px;
+  border: 1px solid gray;
+  background-color: bisque;
+  
+`
 export default function LayoutSidebar() {
   const router = useRouter()
+  const [basketItems,setBasketItems] = useRecoilState(basketItemsState)
+  const [todayItems,setTodayItems] = useRecoilState(todayItemState)
+  
+  useEffect(()=>{
+    const baskets = JSON.parse(localStorage.getItem("baskets")|| "[]")
+        setBasketItems(baskets)
+    const todayitems = JSON.parse(localStorage.getItem("todayitems")|| "[]")
+    setTodayItems(todayitems)    
+  },[])
+  const onClickDeletebasket = (el : any)=>{
+    console.log(el)    
+    const newbaskets = basketItems.filter((basketEl) => basketEl._id !== el._id);
+    localStorage.setItem("baskets",JSON.stringify(newbaskets))
+    setBasketItems(newbaskets)
 
+  }
+  const onClickDeleteToday = (el : any)=>{
+    console.log(el)    
+    const newtodays = todayItems.filter((basketEl) => basketEl._id !== el._id);
+    localStorage.setItem("todayitems",JSON.stringify(newtodays))
+    setTodayItems(newtodays)
+
+  }
   const onClickMain = ()=>{
     router.push('/main')
   
@@ -85,26 +127,44 @@ export default function LayoutSidebar() {
   <>
   <Wrapper>
     <Middle>
+      <Talker>
+        <h6>
+        MY-MARKET
+        </h6>     
+      </Talker>
+      <Button1>
+        <Icon1></Icon1>
+        <MyButton onClick={onClickMain}>전체상품 보기</MyButton>
+      </Button1>
+      <Button2>
+        <Icon2></Icon2>
+        <MyButton onClick={onClickCreate}>새 상품 등록</MyButton>
+      </Button2>
     
-    
-    
-    <Talker>
-
-      <h6>
-      MY-MARKET
-      </h6>
-      
-      
-    </Talker>
-    <Button1>
-    <Icon1></Icon1>
-    <MyButton onClick={onClickMain}>전체상품 보기</MyButton>
-    </Button1>
-    <Button2>
-    <Icon2></Icon2>
-    <MyButton onClick={onClickCreate}>새 상품 등록</MyButton>
-    </Button2>
-    
+      <MyBasket>
+          나의 장바구니<br/>
+          {basketItems.map((el)=>(
+            <>
+            <div key={el._id}>
+              {el.name}            
+            </div>
+            <button onClick={()=>onClickDeletebasket(el)}>삭제</button>
+            </>
+          ))}
+          
+      </MyBasket>
+      <MyToday>
+       오늘 본 상품<br/>
+          {todayItems.map((el)=>(
+            <>
+            <div key={el._id}>
+              {el.name}            
+            </div>
+            <button onClick={()=>onClickDeleteToday(el)}>삭제</button>
+            </>
+          ))}
+          
+      </MyToday>
     </Middle> 
   </Wrapper>
   </>

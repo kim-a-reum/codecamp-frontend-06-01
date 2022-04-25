@@ -1,4 +1,4 @@
-import CreateUsedItemPage from "../../../src/components/Useditem/cresteUsedItem/createUsedItem.container";
+import CreateUsedItemPage from "../../../src/components/Useditem/createUsedItem/createUsedItem.container";
 
 
 
@@ -7,7 +7,7 @@ export default function CreateUseditem(){
 
     return(
 <div>
-    <CreateUsedItemPage/>
+    <CreateUsedItemPage isEdit = {false} />
 </div>
     )
 

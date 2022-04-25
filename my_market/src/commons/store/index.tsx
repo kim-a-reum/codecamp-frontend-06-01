@@ -12,3 +12,23 @@ export const userInfoState = atom({
         name:""
     }
 })
+
+export const basketItemsState = atom({
+    key:"basketItemsState",
+    default:[{
+        name: "",
+        contents: "",
+        price: "",
+        
+    }]
+})
+
+export const todayItemState = atom({
+    key:"todayItemsState",
+    default:[{
+        name: "",
+        contents: "",
+        price: "",
+        
+    }]
+})
