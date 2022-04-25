@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 export const FetchComments = styled.div`
   width: 1200px;
   height: 230px;
-  padding-left: 100px;
-  background-color: pink;
+  padding-left: 18px;
   padding-top: 10px;
   border-left: 1px solid black;
   border-top: none;
@@ -26,11 +25,11 @@ export const CommentsBox = styled.div`
 export const CommentsDetail = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   height: 200px;
   justify-content: space-around;
   padding-left: 10px;
-  background-color: skyblue;
+  
 `;
 export const CommentsIcon = styled.div`
   background-image: url("../../Vector (1).png");
@@ -77,7 +76,7 @@ export const CommentsEdit = styled.button`
   height: 22px;
   background-image: url("../../edit.png");
   background-repeat: no-repeat;
-  margin-top: 5px;
+  margin-top: 15px;
   background-size: 100%;
   border: none;
   background-color: white;
@@ -88,7 +87,7 @@ export const CommentsDelete = styled.button`
   height: 18px;
   background-image: url("../../delete.png");
   background-repeat: no-repeat;
-  margin-top: 6px;
+  margin-top: 16px;
   background-size: 100%;
   border: none;
   background-color: white;
