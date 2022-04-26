@@ -1,11 +1,11 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { basketItemsState, todayItemState } from "../../../commons/store";
 import { ModalError, Modalsuccess } from "../../utility";
 import FetchUsedItemPageUI from "./fetchUseditem.presenter";
-import { FETCH_USED_ITEM } from "./fetchUseditem.query";
+import { FETCH_USED_ITEM, TRANSACTION_OF_BUYING } from "./fetchUseditem.query";
 
 export default function FetchUsedItemPage (){
     const router = useRouter()
@@ -13,10 +13,23 @@ export default function FetchUsedItemPage (){
         variables: { useditemId: String(router.query.itemid) },
       });
     const [basketItems,setBasketItems] = useRecoilState(basketItemsState)
+    const [buyItem]=useMutation(TRANSACTION_OF_BUYING)
 
 
     const onClickEdit = () =>{
         router.push(`/main/${router.query.itemid}/edit`)
+    }
+    const onClickBuy = (event: any) =>{
+        try{
+            buyItem({
+                variables:{
+                    useritemId: String(router.query.itemid)
+                }
+            })
+            Modalsuccess({content: "구매완료! 탁월한 선택입니다!"})
+        }catch(error){
+            ModalError({content: "구매에 실패했어요...ㅠㅠ"})
+        }
     }
 
     const onClickBasket = (el : any)=>{
@@ -51,6 +64,7 @@ return(
     data={data}
     onClickEdit={onClickEdit}
     onClickBasket={onClickBasket}
+    onClickBuy={onClickBuy}
     />
 )
 

@@ -219,30 +219,31 @@ export const WrapperFoot = styled.div`
   border: 1px solid gray;
   display: flex;
   flex-direction: row;
-  padding: 80px 380px 0px 380px;
+  padding: 80px 200px 0px 200px;
   justify-content: space-around;
   background-color: white;
   border-top: none;
   border-bottom: none;
 `;
-export const BackButton = styled.button`
-  width: 120px;
+export const Button = styled.button`
+  width: 160px;
   height: 40px;
+  margin-right: 20px;
   border: 0.5px solid gray;
   background-color: white;
   cursor: pointer;
 `;
-export const EditButton = styled.button`
-  width: 120px;
-  height: 40px;
-  background-color: white;
-  border: 0.5px solid gray;
-  cursor: pointer;
-`;
-export const BasketButton = styled.button`
-  width: 150px;
-  height: 40px;
-  background-color: white;
-  border: 0.5px solid gray;
-  cursor: pointer;
-`;
+// export const EditButton = styled.button`
+//   width: 120px;
+//   height: 40px;
+//   background-color: white;
+//   border: 0.5px solid gray;
+//   cursor: pointer;
+// `;
+// export const BasketButton = styled.button`
+//   width: 150px;
+//   height: 40px;
+//   background-color: white;
+//   border: 0.5px solid gray;
+//   cursor: pointer;
+// `;

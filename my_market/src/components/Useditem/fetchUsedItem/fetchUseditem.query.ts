@@ -34,3 +34,13 @@ export const FETCH_USED_ITEM = gql`
         }
     }
 `
+
+export const TRANSACTION_OF_BUYING = gql`
+    mutation createPointTransactionOfBuyingAndSelling($useritemId: ID!){
+        createPointTransactionOfBuyingAndSelling(useritemId:$useritemId){
+            soldAt
+
+        }
+    }
+
+`

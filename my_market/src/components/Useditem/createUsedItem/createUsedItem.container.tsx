@@ -16,6 +16,7 @@ interface IFormValues {
     remarks?: string ,
     tags?: string,
     address?: string,
+    addressdetail? : string
 
 
 
@@ -23,6 +24,9 @@ interface IFormValues {
 
 
 export default function CreateUsedItemPage(props : any){
+    const [isOpen, setIsOpen] = useState(false);
+    const [mapAddress, setMapAddress] = useState("")
+    const [addressData, SetaddressData] = useState({})
     const router = useRouter()
     const [createUsedItem] = useMutation(CREATE_USED_ITEM)
     const [updateUsedItem] = useMutation(UPDATE_USED_ITEM)
@@ -94,7 +98,8 @@ export default function CreateUsedItemPage(props : any){
                             tags: data.tags,
                             images: fileUrls,
                             useditemAddress: {
-                                address: data.address
+                                address: data.address,
+                                addressDetail: data.address.detail
                             }
                         },
                     },
@@ -108,6 +113,14 @@ export default function CreateUsedItemPage(props : any){
             }
         }
     }
+    const onClickopenModal = () => {
+        setIsOpen((prev)=>!prev);
+      };
+    const onCompleteAddressSearch = (data : any) =>{
+        SetaddressData(data)
+        setMapAddress(data.address)
+    }
+    
     return(
         <>
     <CreateUsedItemPageUI
@@ -115,11 +128,17 @@ export default function CreateUsedItemPage(props : any){
         fileRef = {fileRef}
         fileUrls={fileUrls}
         data={props.data}
+        isOpen={isOpen}
+        addressData={addressData}
+        mapAddress={mapAddress}
         onClickSubmit={onClickSubmit}
         register={register}
         handleSubmit={handleSubmit}
         onChangeContents={onChangeContents}
         onChangeFileUrls={onChangeFileUrls}
+        onClickopenModal={onClickopenModal}
+        onCompleteAddressSearch={onCompleteAddressSearch}
+        
 
         
     />

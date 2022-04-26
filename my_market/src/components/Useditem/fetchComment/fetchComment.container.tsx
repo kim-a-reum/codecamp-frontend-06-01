@@ -1,11 +1,12 @@
 import {useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+
 import InfiniteScroll from "react-infinite-scroller";
 import { IQuery, IQueryFetchUseditemQuestionsArgs } from "../../../commons/types/generated/types";
 import { ModalError } from "../../utility";
 import FetchCommentsPageUI from "./fetchComment.presenter";
-import { DELETE_USED_ITEM_QUESTION, FETCH_USED_ITEM_COMMENTS } from "./fetchComment.query";
+import { DELETE_USED_ITEM_QUESTION, FETCH_USED_ITEM_COMMENTS,} from "./fetchComment.query";
 
 const Myscroll = styled.div`
   height:700px;
@@ -20,6 +21,7 @@ export default function FetchCommentsPage(){
         variables:{useditemId: String(router.query.itemid) }
     })
     const [deletecomment] = useMutation(DELETE_USED_ITEM_QUESTION)
+    
     const onLoadMore = () => {
         if(!data) return;
         fetchMore({
@@ -52,7 +54,7 @@ export default function FetchCommentsPage(){
         }
         
       };
-      
+
     return(
         <>
         <Myscroll>
@@ -64,11 +66,10 @@ export default function FetchCommentsPage(){
     useWindow={false}
     >
 
-    {data?.fetchUseditemQuestions.map((el:any, index: Number)=>(
+    {data?.fetchUseditemQuestions.map((el:any)=>(
         <FetchCommentsPageUI
         key ={el._id}
         el={el}
-        index={index}
         data={data}
         onClickDelete={onClickDelete}
         />

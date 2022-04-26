@@ -9,33 +9,27 @@ export const Box = styled.div`
   height: 300px;
   display: flex;
   flex-direction: column;
-  background-color: beige;
- justify-content: center;
- align-items: center;
- border-radius: 20px;
- border: 1px solid black;
+  background-color: lightseagreen;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  :hover{
+    color: red;
+  }
 `;
 
 export const Column = styled.div`
-  width: 300px;
+  width: 400px;
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  overflow: hidden;
+text-overflow: ellipsis;
 
 `;
-// export const ColumnTitle = styled.div`
-//   width: 700px;
-//   height: 50px;
-//   white-space: nowrap;
-//   overflow: hidden; 
-//   text-overflow: ellipsis;
-//   display: flex;
-//   flex-direction: row;
-
-//   align-items: center;
-//   cursor: pointer;
-//   :hover{
-//   font-weight: 900;
-//   color: indianred;
-// }
-// `;

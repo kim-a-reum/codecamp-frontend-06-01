@@ -1,7 +1,7 @@
 import * as S from "./createComment.styled"
 
 export default function CreateCommentPageUI(props :any){
-
+console.log(props.user)
     return (
         <>
          <S.Body>
@@ -15,7 +15,9 @@ export default function CreateCommentPageUI(props :any){
               <S.CommentsTop>
                 <S.CommentsProfile
                   type="text"
-                //  defaultValue={localStorage?.userInfo.name}
+                 defaultValue={props?.user?.name}
+                 disabled
+                 
                 />
               </S.CommentsTop>
               <S.CommentsMiddle>

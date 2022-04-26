@@ -48,7 +48,7 @@ const MyButton = styled.button`
   text-align: start;
 
 `
-const Button1 = styled.div`
+const MenuBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,13 +56,7 @@ const Button1 = styled.div`
   height: 50px;
   justify-content: center;
 `
-const Button2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 50px;
-  justify-content: center;
-`
+
 const Icon1 = styled.div`
   width: 30px;
   height: 30px;
@@ -73,6 +67,12 @@ const Icon2 = styled.div`
   width: 30px;
   height: 30px;
   background-image: url('../../../새글.png');
+  background-repeat: no-repeat;
+`
+const Icon3 = styled.div`
+  width: 30px;
+  height: 30px;
+  background-image: url('../../../아이콘.png');
   background-repeat: no-repeat;
 `
 const MyBasket = styled.div`
@@ -122,6 +122,10 @@ export default function LayoutSidebar() {
     router.push('/main/new')
   
   }
+  const onClickMypage = ()=>{
+    router.push('/main/mypage')
+  
+  }
 
   return (
   <>
@@ -132,14 +136,18 @@ export default function LayoutSidebar() {
         MY-MARKET
         </h6>     
       </Talker>
-      <Button1>
+      <MenuBox>
         <Icon1></Icon1>
         <MyButton onClick={onClickMain}>전체상품 보기</MyButton>
-      </Button1>
-      <Button2>
+      </MenuBox>
+      <MenuBox>
         <Icon2></Icon2>
         <MyButton onClick={onClickCreate}>새 상품 등록</MyButton>
-      </Button2>
+      </MenuBox>
+      <MenuBox>
+        <Icon3></Icon3>
+        <MyButton onClick={onClickMypage}>마이페이지</MyButton>
+      </MenuBox>
     
       <MyBasket>
           나의 장바구니<br/>

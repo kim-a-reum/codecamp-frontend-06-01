@@ -63,9 +63,10 @@ return(
             </S.Middle>
 
             <S.WrapperFoot>
-              <S.BackButton>목록으로</S.BackButton>
-              <S.BasketButton onClick= {()=>props.onClickBasket(props.data?.fetchUseditem)}>장바구니 담기</S.BasketButton>
-              <S.EditButton onClick = {props.onClickEdit}>수정하기</S.EditButton>
+              <S.Button>목록으로</S.Button>
+              <S.Button onClick= {()=>props.onClickBasket(props.data?.fetchUseditem)}>장바구니 담기</S.Button>
+              <S.Button onClick = {props.onClickEdit}>수정하기</S.Button>
+              <S.Button onClick = {props.onClickBuy}>구매하기</S.Button>
             </S.WrapperFoot>
           </S.Wrapper>
         </S.Body>

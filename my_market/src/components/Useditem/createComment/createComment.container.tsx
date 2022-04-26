@@ -1,21 +1,29 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { result } from "lodash";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FETCH_USED_ITEM } from "../../../../pages/main/[itemid]/edit";
 import { ModalError, Modalsuccess } from "../../utility";
 import { FETCH_USED_ITEM_COMMENTS } from "../fetchComment/fetchComment.query";
 import CreateCommentPageUI from "./createComment.presenter";
 import { CREATE_COMMENT } from "./createComment.queries";
 
+
+
 export default function CreateCommentPage(){
+  useEffect(()=>{
+    const users = JSON.parse(localStorage.getItem("userInfo") || "[]");
+    console.log(users)
+    setuser(users)
+
+  },[])
+    const [user,setuser] =useState()
     const router = useRouter()
     const [createComment] = useMutation(CREATE_COMMENT)
     const [contents, setMyContents] = useState("");
-    const { data, refetch } = useQuery(FETCH_USED_ITEM, {
+    const { data} = useQuery(FETCH_USED_ITEM, {
         variables: { useditemId: String(router.query.itemid) },
       });
-
+    
 
     const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
       
@@ -50,6 +58,7 @@ export default function CreateCommentPage(){
         onClickCreate={onClickCreate}
         contents={contents}
         data={data}
+        user={user}
     />
     
     )
