@@ -66,7 +66,6 @@ export default function MyPageUI(props :any){
         }
         });
     }
-    console.log(props.data2)
     return (
     
     <>

@@ -52,6 +52,18 @@ export const Inputbox = styled.input`
     border: 1px solid lightgray;
 
 `
+export const TagBox = styled.div`
+    width: 100%;
+    height: 30px;
+
+`
+export const Addressbox = styled.div`
+    width: 100%;
+    height: 60px;
+    margin-bottom: 50px;
+    border: 1px solid lightgray;
+
+`
 export const LocationBox = styled.div`
     width: 1000px;
     height: 500px;

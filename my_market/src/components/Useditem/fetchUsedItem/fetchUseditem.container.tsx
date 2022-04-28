@@ -1,23 +1,40 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { basketItemsState, todayItemState } from "../../../commons/store";
+import { basketItemsState, MapaddressState} from "../../../commons/store";
 import { ModalError, Modalsuccess } from "../../utility";
 import FetchUsedItemPageUI from "./fetchUseditem.presenter";
-import { FETCH_USED_ITEM, TRANSACTION_OF_BUYING } from "./fetchUseditem.query";
+import { DELETE_USED_ITEM, FETCH_USED_ITEM, TOGGLE_USED_ITEM_PICK, TRANSACTION_OF_BUYING } from "./fetchUseditem.query";
 
 export default function FetchUsedItemPage (){
     const router = useRouter()
-    const { data } = useQuery(FETCH_USED_ITEM, {
+    const { data, refetch } = useQuery(FETCH_USED_ITEM, {
         variables: { useditemId: String(router.query.itemid) },
       });
+    const [mapAddress, setMapAddress] = useRecoilState(MapaddressState)
     const [basketItems,setBasketItems] = useRecoilState(basketItemsState)
     const [buyItem]=useMutation(TRANSACTION_OF_BUYING)
+    const [deleteUseditem]= useMutation(DELETE_USED_ITEM)
+    const [togglePick] = useMutation(TOGGLE_USED_ITEM_PICK)
+    
 
+    setMapAddress(data?.fetchUseditem?.useditemAddress?.address)
 
     const onClickEdit = () =>{
         router.push(`/main/${router.query.itemid}/edit`)
+    }
+    const onClickDelete = (event)=>{
+        try{
+            deleteUseditem({
+                variables:{useditemId: String(router.query.itemid)}
+            })
+            Modalsuccess({content: "상품 삭제 성공! 목록으로 이동합니다 "})
+            router.push('/main')
+        }catch(error){
+            ModalError({content : "본인 상품만 삭제 가능합니다"})
+        }
+
     }
     const onClickBuy = (event: any) =>{
         try{
@@ -58,13 +75,36 @@ export default function FetchUsedItemPage (){
     
         }
         }
+    const onClicktoggle = ()=>{
+        togglePick({
+            variables:{ useditemId: String(router.query.itemid) },
+            // optimisticResponse:{
+            //     togglePick: (data?.useditem.pickedCount)
+            // },
+            update(cache, { data }) {
+              cache.modify({
+                fields: {
+                  fetchUseditem: (prev) => {
+                    return data.aaa
+                  },
+                },
+              });
+            },
+
         
+         } )
+        // refetch({useditemId: String(router.query.itemid)})
+
+    }
+    console.log(data)
 return(
     <FetchUsedItemPageUI
     data={data}
+    onClicktoggle={onClicktoggle}
     onClickEdit={onClickEdit}
     onClickBasket={onClickBasket}
     onClickBuy={onClickBuy}
+    onClickDelete={onClickDelete}
     />
 )
 

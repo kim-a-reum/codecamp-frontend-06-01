@@ -18,6 +18,7 @@ declare const window: typeof globalThis & {
 export default function CreateUsedItemPageUI(props : any){
     const [userInfo] = useRecoilState(userInfoState)
     useEffect(() => {
+        console.log(props.data)
         const script = document.createElement("script"); // <script></script>
         script.src =
           "//dapi.kakao.com/v2/maps/sdk.js?appkey=58129ac07f6fdda65814d3d744bfb178&autoload=false&libraries=services";
@@ -39,6 +40,7 @@ export default function CreateUsedItemPageUI(props : any){
 
             // 주소로 좌표를 검색합니다
              geocoder.addressSearch(props.mapAddress ? props.mapAddress : '서울특별시 성동구 왕십리로 16', function(result : any, status: any) {
+                 console.log(result)
 
                 // 정상적으로 검색이 완료됐으면 
                 if (status === window.kakao.maps.services.Status.OK) {
@@ -64,7 +66,7 @@ export default function CreateUsedItemPageUI(props : any){
           });
         };
       }, [props?.mapAddress]);
-
+console.log(props?.mapAddress)
     return(
         <S.Body>
              {props.isOpen && (
@@ -77,7 +79,8 @@ export default function CreateUsedItemPageUI(props : any){
         <S.Wrapper>
             <S.ProductWrapper>
                 <S.Title> 상품 {props.isEdit ? "수정" : "등록"}하기</S.Title>
-            <S.TitleName>판매자 이름 :  {userInfo.name}</S.TitleName>            
+            <S.TitleName>판매자 이름 :  {userInfo.name}</S.TitleName>  
+          
                 <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
                 <S.ProductDiv>
                 <S.Title >상품명</S.Title>
@@ -88,12 +91,15 @@ export default function CreateUsedItemPageUI(props : any){
                 <ReactQuill
                 onChange={props.onChangeContents}
                 style={{ height: "300px" }}
-                defaultValue={props.data?.fetchUseditem.contents}
+                value = {props.getValues("contents") || ""}
                 />
                 <S.TitlePrice>상품 가격</S.TitlePrice>
                 <S.Inputbox type = "text" {...props.register("price")} placeholder="숫자로만 작성해주세요" defaultValue={props.data?.fetchUseditem.price}/>
-                <S.Title>관련 태그</S.Title>
-                <S.Inputbox type = "text" {...props.register("tags")} placeholder="#태그  #태그  #태그"/>
+                <S.Title>관련 태그</S.Title><br/>
+                {props?.hashArr?.map((el,idx)=>(
+                        <S.TagBox key={idx} onClick={props.deleteTag}>{el}</S.TagBox>
+                        ))}
+                <S.Inputbox onKeyUp={props.onKeyUpHash} onClick={(event)=>{ event.stopPropagation();}}type = "text" {...props.register("tags")} placeholder="#태그  #태그  #태그"/>
                 <S.LocationBox>
                 <S.LocationLeft>
                     <S.Title>거래 위치</S.Title>
@@ -102,7 +108,7 @@ export default function CreateUsedItemPageUI(props : any){
                 </S.LocationLeft>
                 <S.LocationRight>
                     <S.Title> 상세 주소</S.Title>
-                    <S.Inputbox value={props.addressData.address} disabled {...props.register("address")}/>
+                    <S.Addressbox>{props.addressData.address}</S.Addressbox>
                     <S.Inputbox defaultValue={"상세주소를 입력해주세요"} {...props.register("addressdetail")}/>
                 </S.LocationRight>
                 </S.LocationBox>
@@ -119,6 +125,7 @@ export default function CreateUsedItemPageUI(props : any){
                 </S.ProductDiv>
                 <S.SubmitButton type="submit" > {props.isEdit ? "수정" : "등록"}하기</S.SubmitButton>
                 </form>
+          
             </S.ProductWrapper>
         </S.Wrapper>
         </S.Body>

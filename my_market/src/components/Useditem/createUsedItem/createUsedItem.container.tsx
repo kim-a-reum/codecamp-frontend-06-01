@@ -7,6 +7,8 @@ import CreateUsedItemPageUI from "./createUsedItem.presenter"
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
 import { ImyupdateUseditemInput, IMyVariables } from "./createUseditem.types"
+import { useRecoilState, useRecoilStateLoadable } from "recoil"
+import { MapaddressState } from "../../../commons/store"
 
 
 interface IFormValues {
@@ -25,12 +27,14 @@ interface IFormValues {
 
 export default function CreateUsedItemPage(props : any){
     const [isOpen, setIsOpen] = useState(false);
-    const [mapAddress, setMapAddress] = useState("")
+    const [mapAddress, setMapAddress] = useRecoilState(MapaddressState)
     const [addressData, SetaddressData] = useState({})
+    const [hashtag,setHashtag] = useState("")
+    const [hashArr, setHashArr] = useState([])
     const router = useRouter()
     const [createUsedItem] = useMutation(CREATE_USED_ITEM)
     const [updateUsedItem] = useMutation(UPDATE_USED_ITEM)
-    const {register, handleSubmit, trigger,setValue} = useForm({
+    const {register, handleSubmit, trigger,setValue, reset, getValues} = useForm({
         mode:"onChange",
     })  
     const onChangeContents = (value: string) => {
@@ -48,6 +52,8 @@ export default function CreateUsedItemPage(props : any){
     
   }
   useEffect(() => {
+      console.log(props.data)
+    reset({ contents: props.data?.fetchUseditem.contents });
     if (props.data?.fetchUseditem.images?.length) {
       setFileUrls([...props.data?.fetchUseditem.images]);
     }
@@ -59,20 +65,25 @@ export default function CreateUsedItemPage(props : any){
     updateUseditemInput: myupdateUseditemInput,
     useditemId: String(router.query.itemid)
   };
+  const deleteTag = (event)=>{
+    console.log("wlqrk")
+    const newHashArr = [...hashArr]
+    newHashArr.pop()
+    setHashArr(newHashArr)
+    console.log(newHashArr)
+  }
 
     const onClickSubmit = async(data: IFormValues)=>{
-        
+     
         if(props.isEdit){
             console.log(data)
             if (data.name) {myupdateUseditemInput.name =data.name}
             if (data.remarks) {myupdateUseditemInput.remarks = data.remarks}
             if (data.contents) {myupdateUseditemInput.contents = data.contents}
-            if (data.price) {myupdateUseditemInput.price = data.price}
+            if (data.price) {myupdateUseditemInput.price = Number(data.price)}
             // if (data.images.fileUrls) {myupdateUseditemInput.images = data.;}
             
             try{
-
-                
                 const result = await updateUsedItem({
                     variables: myVariables,
                 })
@@ -87,7 +98,7 @@ export default function CreateUsedItemPage(props : any){
             }
         }else{
             try{
-                
+
                 const result = await createUsedItem({
                     variables: {
                         createUseditemInput: {
@@ -95,16 +106,16 @@ export default function CreateUsedItemPage(props : any){
                             remarks: data?.remarks,
                             contents: data?.contents,
                             price: Number(data?.price),
-                            tags: data.tags,
+                            tags: hashArr,
                             images: fileUrls,
                             useditemAddress: {
-                                address: data.address,
-                                addressDetail: data.address.detail
+                                address: mapAddress,
+                                addressDetail: data.addressdetail
                             }
                         },
                     },
                 })
-                console.log(result)
+
                 Modalsuccess({content: "상품등록완료! 상품목록페이지로 이동합니다"})
                 router.push('/main')
                 
@@ -117,10 +128,19 @@ export default function CreateUsedItemPage(props : any){
         setIsOpen((prev)=>!prev);
       };
     const onCompleteAddressSearch = (data : any) =>{
+        console.log()
         SetaddressData(data)
         setMapAddress(data.address)
     }
-    
+    const onKeyUpHash = (event: any)=>{
+
+        if(event.keyCode === 32 && event.target.value !== " "){
+            setHashArr([...hashArr, "#" + event.target.value])
+            event.target.value = "";
+        }
+        
+    }
+
     return(
         <>
     <CreateUsedItemPageUI
@@ -131,6 +151,11 @@ export default function CreateUsedItemPage(props : any){
         isOpen={isOpen}
         addressData={addressData}
         mapAddress={mapAddress}
+        hashArr={hashArr}
+        hashtag={hashtag}
+        getValues={getValues}
+        deleteTag={deleteTag}
+        onKeyUpHash={onKeyUpHash}
         onClickSubmit={onClickSubmit}
         register={register}
         handleSubmit={handleSubmit}

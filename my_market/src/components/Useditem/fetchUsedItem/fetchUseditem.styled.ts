@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 `;
 export const Top = styled.div`
   width: 996px;
-  height: 120px;
+
   display: flex;
   flex-direction: column;
   border-bottom: 1.5px solid rgba(130, 130, 130, 1);
@@ -37,7 +37,7 @@ export const TopAddress = styled.div`
 `;
 export const TopProfile = styled.div`
   width: 996px;
-  height: 50px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -45,7 +45,7 @@ export const TopProfile = styled.div`
 `;
 export const TopLeft = styled.div`
   width: 350px;
-  height: 50px;
+
   display: flex;
   flex-direction: row;
 `;
@@ -83,6 +83,26 @@ export const TopRight = styled.div`
   align-items: flex-start;
   padding-top: 5px;
 `;
+export const TopMiddle = styled.div`
+  width: 150px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: 5px;
+`;
+export const Heart = styled.div`
+  width: 26px;
+  height: 22px;
+  background-size: 100% auto;
+  background-image: url("../../heart.png");
+`
+export const HeartCount = styled.div`
+  width: 200px;
+  height: 22px;
+  
+`
 export const RightClip = styled.div`
   width: 27px;
   height: 20px;
@@ -103,7 +123,6 @@ padding-bottom: 10px;
 ///이미지랑 게시글제목내용 부분
 export const Middle = styled.div`
   width: 996px;
-  height: 850px;
 `;
 export const MiddleTitle = styled.div`
   width: 996px;
@@ -173,11 +192,12 @@ export const MiddleContents = styled.div`
   flex-direction: column;
   padding: 20px;
   font-size: 30px;
+  background-color: aliceblue;
 `;
 //비디오랑 좋아요 부분
 export const Under = styled.div`
   width: 996px;
-  height: 800px;
+
   display: flex;
   flex-direction: column;
   align-items: center;

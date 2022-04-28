@@ -12,7 +12,6 @@ import { CREATE_COMMENT } from "./createComment.queries";
 export default function CreateCommentPage(){
   useEffect(()=>{
     const users = JSON.parse(localStorage.getItem("userInfo") || "[]");
-    console.log(users)
     setuser(users)
 
   },[])

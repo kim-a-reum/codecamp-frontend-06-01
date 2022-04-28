@@ -49,7 +49,7 @@ export default function MyLoginPage(){
             }
         })
         const accessToken = result.data.loginUser.accessToken
-        localStorage.setItem("accessToken",accessToken)
+        // localStorage.setItem("accessToken",accessToken)
         //유저정보 받아오는 부분입니다
         const resultUserInfo = await client.query({
             query: FETCH_USER_LOGGED_IN,

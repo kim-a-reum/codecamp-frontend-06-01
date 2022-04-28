@@ -113,7 +113,7 @@ export const RealRating = styled.div`
 
 
 export const CommentsText = styled.div`
-  width: 200px;
+  width: 1000px;
   height: 70px;
   padding-top: 5px;
 `;

@@ -101,14 +101,14 @@ export default function LayoutSidebar() {
     setTodayItems(todayitems)    
   },[])
   const onClickDeletebasket = (el : any)=>{
-    console.log(el)    
+ 
     const newbaskets = basketItems.filter((basketEl) => basketEl._id !== el._id);
     localStorage.setItem("baskets",JSON.stringify(newbaskets))
     setBasketItems(newbaskets)
 
   }
   const onClickDeleteToday = (el : any)=>{
-    console.log(el)    
+ 
     const newtodays = todayItems.filter((basketEl) => basketEl._id !== el._id);
     localStorage.setItem("todayitems",JSON.stringify(newtodays))
     setTodayItems(newtodays)

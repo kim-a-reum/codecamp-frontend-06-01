@@ -1,7 +1,6 @@
 import * as S from "./createComment.styled"
 
 export default function CreateCommentPageUI(props :any){
-console.log(props.user)
     return (
         <>
          <S.Body>

@@ -15,6 +15,9 @@ export const FETCH_USED_ITEM = gql`
                     zipcode
                     address
                     addressDetail
+                    lat
+                    lng
+
                             }
             buyer {
                     _id
@@ -41,6 +44,18 @@ export const TRANSACTION_OF_BUYING = gql`
             soldAt
 
         }
+    }
+
+`
+
+export const DELETE_USED_ITEM = gql`
+    mutation deleteUseditem($useditemId: ID!){
+        deleteUseditem(useditemId:$useditemId)}
+
+`
+export const TOGGLE_USED_ITEM_PICK = gql`
+    mutation toggleUseditemPick($useditemId: ID!){
+        toggleUseditemPick(useditemId:$useditemId)
     }
 
 `

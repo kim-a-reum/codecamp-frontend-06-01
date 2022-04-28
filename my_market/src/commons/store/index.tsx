@@ -32,3 +32,9 @@ export const todayItemState = atom({
         
     }]
 })
+
+
+export const MapaddressState = atom({
+    key:"mapAddressState",
+    default:""
+})
