@@ -18,7 +18,6 @@ declare const window: typeof globalThis & {
 export default function CreateUsedItemPageUI(props : any){
     const [userInfo] = useRecoilState(userInfoState)
     useEffect(() => {
-        console.log(props.data)
         const script = document.createElement("script"); // <script></script>
         script.src =
           "//dapi.kakao.com/v2/maps/sdk.js?appkey=58129ac07f6fdda65814d3d744bfb178&autoload=false&libraries=services";
@@ -40,7 +39,6 @@ export default function CreateUsedItemPageUI(props : any){
 
             // 주소로 좌표를 검색합니다
              geocoder.addressSearch(props.mapAddress ? props.mapAddress : '서울특별시 성동구 왕십리로 16', function(result : any, status: any) {
-                 console.log(result)
 
                 // 정상적으로 검색이 완료됐으면 
                 if (status === window.kakao.maps.services.Status.OK) {
@@ -66,7 +64,8 @@ export default function CreateUsedItemPageUI(props : any){
           });
         };
       }, [props?.mapAddress]);
-console.log(props?.mapAddress)
+      props.seteditMapAddress(props?.mapAddress)
+      console.log(props.mapAddress)
     return(
         <S.Body>
              {props.isOpen && (
@@ -96,7 +95,8 @@ console.log(props?.mapAddress)
                 <S.TitlePrice>상품 가격</S.TitlePrice>
                 <S.Inputbox type = "text" {...props.register("price")} placeholder="숫자로만 작성해주세요" defaultValue={props.data?.fetchUseditem.price}/>
                 <S.Title>관련 태그</S.Title><br/>
-                {props?.hashArr?.map((el,idx)=>(
+                {/* <div defaultValue = {props.data?.fetchUseditem.tags}> </div> */}
+                { props?.hashArr?.map((el,idx)=>(
                         <S.TagBox key={idx} onClick={props.deleteTag}>{el}</S.TagBox>
                         ))}
                 <S.Inputbox onKeyUp={props.onKeyUpHash} onClick={(event)=>{ event.stopPropagation();}}type = "text" {...props.register("tags")} placeholder="#태그  #태그  #태그"/>

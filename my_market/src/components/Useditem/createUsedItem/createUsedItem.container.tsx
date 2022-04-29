@@ -28,6 +28,7 @@ interface IFormValues {
 export default function CreateUsedItemPage(props : any){
     const [isOpen, setIsOpen] = useState(false);
     const [mapAddress, setMapAddress] = useRecoilState(MapaddressState)
+    const [editMapAddress, seteditMapAddress] = useState()
     const [addressData, SetaddressData] = useState({})
     const [hashtag,setHashtag] = useState("")
     const [hashArr, setHashArr] = useState([])
@@ -57,7 +58,15 @@ export default function CreateUsedItemPage(props : any){
     if (props.data?.fetchUseditem.images?.length) {
       setFileUrls([...props.data?.fetchUseditem.images]);
     }
-  }, [props.data]);
+    
+  }, [props.data,mapAddress]);
+  useEffect(() => {
+    if(props.data?.fetchUseditem?.tags){
+
+        setHashArr(props.data?.fetchUseditem?.tags)
+    }
+  
+}, [props.data?.fetchUseditem?.tags]);
 
   const myupdateUseditemInput : ImyupdateUseditemInput= {};
 
@@ -72,7 +81,8 @@ export default function CreateUsedItemPage(props : any){
     setHashArr(newHashArr)
     console.log(newHashArr)
   }
-
+  console.log(mapAddress)
+  console.log(editMapAddress)
     const onClickSubmit = async(data: IFormValues)=>{
      
         if(props.isEdit){
@@ -81,7 +91,8 @@ export default function CreateUsedItemPage(props : any){
             if (data.remarks) {myupdateUseditemInput.remarks = data.remarks}
             if (data.contents) {myupdateUseditemInput.contents = data.contents}
             if (data.price) {myupdateUseditemInput.price = Number(data.price)}
-            // if (data.images.fileUrls) {myupdateUseditemInput.images = data.;}
+            // if (editMapAddress) {myupdateUseditemInput.useditemAddress.address= mapAddress}
+            
             
             try{
                 const result = await updateUsedItem({
@@ -115,7 +126,7 @@ export default function CreateUsedItemPage(props : any){
                         },
                     },
                 })
-
+                console.log(data.contents)
                 Modalsuccess({content: "상품등록완료! 상품목록페이지로 이동합니다"})
                 router.push('/main')
                 
@@ -128,7 +139,6 @@ export default function CreateUsedItemPage(props : any){
         setIsOpen((prev)=>!prev);
       };
     const onCompleteAddressSearch = (data : any) =>{
-        console.log()
         SetaddressData(data)
         setMapAddress(data.address)
     }
@@ -153,6 +163,7 @@ export default function CreateUsedItemPage(props : any){
         mapAddress={mapAddress}
         hashArr={hashArr}
         hashtag={hashtag}
+        seteditMapAddress={seteditMapAddress}
         getValues={getValues}
         deleteTag={deleteTag}
         onKeyUpHash={onKeyUpHash}

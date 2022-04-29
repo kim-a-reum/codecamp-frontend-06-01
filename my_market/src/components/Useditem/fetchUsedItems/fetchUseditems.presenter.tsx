@@ -5,12 +5,12 @@ import * as S from './fetchUseditems.styled'
 export default function FetchUsedItemsPageUI(props: any){
 
     return(
-        <S.Wrapper>
+        <S.Wrapper onClick={props.onClickDetail}>
 
 
         <S.Box key={props.el._id}>
         <S.Column  >작성자 : {props.el.name}</S.Column>
-        <S.Column id={props.el._id} onClick={props.onClickDetail}>
+        <S.Column id={props.el._id}>
             
             {/* 내용 : {el.contents} */}
 

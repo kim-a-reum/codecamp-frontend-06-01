@@ -33,10 +33,10 @@ export default function FetchUsedItemsPage(){
     const [todayItems,setTodayItems] = useRecoilState(todayItemState)
     const [basketItems,setBasketItems] = useRecoilState(basketItemsState)
     
-    const onClickDetail = (el: any)=>(event : any)=> {
-        if (event.target instanceof Element) {
-          router.push(`main/${event.target.id}`);
-        }
+    const onClickDetail = (el: any)=>()=> {
+        
+          router.push(`main/${el._id}`);
+        
         const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
         const todayitems = JSON.parse(localStorage.getItem("todayitems") || "[]");
         const temp = todayitems.filter((basketEl : any) => basketEl._id === el._id);

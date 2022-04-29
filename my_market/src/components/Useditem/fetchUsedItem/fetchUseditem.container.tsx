@@ -96,7 +96,7 @@ export default function FetchUsedItemPage (){
         // refetch({useditemId: String(router.query.itemid)})
 
     }
-    console.log(data)
+
 return(
     <FetchUsedItemPageUI
     data={data}

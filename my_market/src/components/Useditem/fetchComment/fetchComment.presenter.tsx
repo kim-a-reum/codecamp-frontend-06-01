@@ -90,7 +90,8 @@ export default function FetchCommentsPageUI(props : any){
               <S.CommentsTop>
                 <S.CommentsProfile
                   type="text"
-                  //  defaultValue={localStorage?.userInfo.name}
+                  disabled
+                   defaultValue={props.el.user.name} 
                   />
               </S.CommentsTop>
               <S.CommentsMiddle>
