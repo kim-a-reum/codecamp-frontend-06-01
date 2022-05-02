@@ -11,9 +11,9 @@ export default function ApolloSetting(props : any){
     const [,setuserInfo] = useRecoilState(userInfoState)
 
     useEffect(()=>{
-      getAccessToken().then((newAccessToken)=>{
-        setAccessToken(newAccessToken)
-    })
+    //   getAccessToken().then((newAccessToken)=>{
+    //     setAccessToken(newAccessToken)
+    // })
       // const MyaccessToken = localStorage.getItem("accessToken")
       // setAccessToken(MyaccessToken || "")
       const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}")
