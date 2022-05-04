@@ -4,7 +4,7 @@ import { gql, request } from 'graphql-request'
 
 
 
-export default function BoardsDetailPage(){
+export default function BoardsDetailPage(props){
     const router = useRouter()
 
     return(
@@ -25,7 +25,10 @@ export default function BoardsDetailPage(){
 const FETCH_BOARD = gql`
 query fetchBoard($boardId: ID!){
     fetchBoard(boardId:$boardId){
-
+        _id
+        title
+        contents
+        images
     }
 }
 `
