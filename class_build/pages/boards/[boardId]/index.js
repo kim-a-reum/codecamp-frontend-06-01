@@ -1,7 +1,9 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import { gql, request } from 'graphql-request'
-import { useContext } from 'react'
+
+
+
 export default function BoardsDetailPage(){
     const router = useRouter()
 
@@ -32,8 +34,8 @@ query fetchBoard($boardId: ID!){
 export const getServerSideProps = async (context)=>{
     // 데이터를 요청할 것 ! 
     // const {data} = useQuery(FETCH_BOARD) 이거 안되니까 ! 
-    const result = await request("https://backend06.codebootcamp.co.kr/graphql",FETCH_BOARD,{boardId: useContext.query.boardId})
-    const {data} = useQuery(FETCH_BOARD)
+    const result = await request("https://backend06.codebootcamp.co.kr/graphql",FETCH_BOARD,{boardId: context.query.boardId})
+    // const {data} = useQuery(FETCH_BOARD)
 
     return{
         props: {
