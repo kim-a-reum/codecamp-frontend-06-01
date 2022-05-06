@@ -5,7 +5,7 @@ import { todayItemState } from "../../../commons/store"
 
 const BasketBody = styled.div`
   width: 230px;
-  margin-top: 350px;
+  margin-top: 1000px;
   margin-bottom: 20px;
   border: 1px solid gray;
   display: flex;
@@ -14,30 +14,38 @@ const BasketBody = styled.div`
   background-color: #b98558;
   border: none;
   border-radius: 20px;
+  position: fixed;
+  z-index: 1;
 
 
 `
+const BasketTitle = styled.div`
+  font-size: 30px;
+  margin-top: 10px;
 
+`
 const Box = styled.div`
 cursor: pointer;
   width: 140px;
-  height: 140px;
+  font-size: 20px;
   margin-bottom: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
 
 `
 export const RealImage = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 130px;
+  height:130px;
+  border-radius: 20px;
 
   
 `;
 export const DefaultImage = styled.img`
-  width: 100px;
-  height: 100px;
-  background-image: url('../../빈하트.png') ;
+  width: 130px;
+  height: 130px;
+  background-image: url('../../감쟈.jpeg') ;
   background-size: cover;
+  border-radius: 20px;
 `;
 export default function ZzimBasket(){
 
@@ -65,7 +73,7 @@ export default function ZzimBasket(){
     return (
       <>
       <BasketBody>
-      오늘 본 상품 
+      <BasketTitle>💛오늘 본 상품💛</BasketTitle> 
     {todayItems.map((el : any)=>(
       <>
       <Box onClick={onClickDelete(el)} key = {el._id}>

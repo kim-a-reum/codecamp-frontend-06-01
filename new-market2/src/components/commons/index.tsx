@@ -7,7 +7,6 @@ import NavigationPage from "./navigation";
 
 const Body = styled.div`
 
-  /* background-color: aliceblue; */
   display: flex;
   flex-direction: column;
   align-items: center;

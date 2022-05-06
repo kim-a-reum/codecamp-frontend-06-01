@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client"
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from 'next/head'
-
+import * as S from './mypage.styled'
 declare const window: typeof globalThis & {IMP: any;}
 // 로그인했을시만 성공시켜주는 검증부분
 
@@ -69,10 +69,33 @@ export default function MyPageUI(props :any){
     }
     return (
     
-    <>
-    내 이름 : {props?.data?.fetchUserLoggedIn.name}<br/>
-    내 이메일 : {props?.data?.fetchUserLoggedIn.email}<br/>
-    내 포인트 : {props?.data?.fetchUserLoggedIn.userPoint.amount} P<br/><br/>
+    <S.Wrapper>
+        <S.Top>
+            <S.TopTitleMy>내 프로필</S.TopTitleMy>
+            <S.TopTitle>포인트 충전</S.TopTitle>
+            <S.TopTitle>내가 올린 상품</S.TopTitle>
+        </S.Top>
+        <S.Middle>
+
+            <S.MiddleTitle>
+                <S.Title>이름</S.Title>
+                <S.Contents>
+                    {props?.data?.fetchUserLoggedIn.name}<br/>
+                </S.Contents>
+            </S.MiddleTitle>
+            <S.MiddleTitle>
+                <S.Title>이메일</S.Title>
+                <S.Contents>
+                    {props?.data?.fetchUserLoggedIn.email}<br/>
+                </S.Contents>
+            </S.MiddleTitle>
+            <S.MiddleTitle>
+                <S.Title>포인트</S.Title>
+                <S.Contents>
+                    {props?.data?.fetchUserLoggedIn.userPoint.amount} P<br/><br/>
+                </S.Contents>
+            </S.MiddleTitle>
+        </S.Middle>
     상품을 선택하고, 금액을 충전하시면 됩니다 ! <br/><br/>
         <select onChange={onChangeMenu}>
             <option disabled = {true} selected = {true} > 상품을 선택해주세요!</option>
@@ -99,7 +122,7 @@ export default function MyPageUI(props :any){
 
 
 
-    </>
+    </S.Wrapper>
     
     
     )
