@@ -35,7 +35,7 @@ export default function Layout(props: ILayoutProps) {
       {!isHiddenHeader && 
       <div>
       <LayoutHeader />
-      {/* <LayoutBanner /> */}
+      <LayoutBanner />
       <LayoutNavigation /> 
       </div>
       }

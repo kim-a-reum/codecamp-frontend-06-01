@@ -10,7 +10,11 @@ interface IFormValues {
 }
 
 export default function ReactHookFormPage(){
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit, formState} = useForm()
+
+    // formState.isSubmitting
+    // 마구마구 눌렀을때 한번누르면 못누르게 막아주자
+
     const onClidkSubmit = (data: IFormValues)=>{
         console.log(data)
 
@@ -23,7 +27,7 @@ export default function ReactHookFormPage(){
             제목 : <input type="text"{...register("Title")}/>
             내용 : <input type="text"{...register("Contents")}/>
             주소 : <input type="text"{...register("boardAddress.addressDetail")}/>
-            <button>등록하기</button>
+            <button disabled={formState.isSubmitting}>등록하기</button>
         </form>
     )
 }

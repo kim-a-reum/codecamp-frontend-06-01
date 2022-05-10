@@ -88,6 +88,7 @@ export default function BoardCommentPage(props :any){
     deleteBoardComment({
       variables: {
         boardCommentId: deleteId,
+        
         password: deletePassword,
       },
       refetchQueries: [
