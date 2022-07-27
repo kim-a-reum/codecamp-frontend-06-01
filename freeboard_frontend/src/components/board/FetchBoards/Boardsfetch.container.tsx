@@ -34,7 +34,7 @@ export default function Boardsfetch() {
     }   
   }
 
-  //페이지네이션부분입니당
+  //부분입니당
 
   const { data: dataBoardsCount } = useQuery(FETCH_BOARDS_COUNT);
   const [startPage, setStartPage] = useState(1);

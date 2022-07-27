@@ -35,7 +35,7 @@ export default function ImageUploadPreviewPage(){
     const fileReader = new FileReader()
     fileReader.readAsDataURL(file)
     fileReader.onload = (data)=>{
-        // 차입이 스트링일때만 실행시켜줘! 
+        // 타입이 스트링일때만 실행시켜줘! 
         if(typeof data.target?.result === "string"){
             console.log(data.target?.result)
             setImgUrl(data.target?.result)

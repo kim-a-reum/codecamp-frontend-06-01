@@ -1,142 +1,48 @@
-import React from 'react';
+import LazyLoad from "react-lazyload";
+import { useEffect, useRef, useState } from "react";
 
-import LazyLoad from 'react-lazyload';
+export default function LazyloadPreloadPage() {
+  const images = [
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+    "../../picture/루피공항도둑.png",
+  ];
+  const [imgTag, setImgTag] = useState<HTMLImageElement>();
+  const divRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const img = new Image();
+    img.src =
+      "https://upload.wikimedia.org/wikipedia/commons/9/96/%22Den_kjekke_gutt%22_-_6._Internasjonale_Akademiske_Vinterleker_%281939%29_%2840200856483%29.jpg";
+    img.onload = () => {
+      setImgTag(img);
+    };
+  }, []);
 
-export default function Lazypage() {
+  const onClickPreload = () => {
+    if (imgTag) divRef.current?.appendChild(imgTag);
+  };
   return (
-    <div className="list">
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-      <LazyLoad height={200}>
-        <img src="http://ww3.sinaimg.cn/mw690/62aad664jw1f2nxvya0u2j20u01hc16p.jpg" /> 
-      </LazyLoad>
-      <LazyLoad height={200} once >
-
-
-      </LazyLoad>
-      <LazyLoad height={200} offset={100}>
-
-      </LazyLoad>
-      <LazyLoad>
-
-      </LazyLoad>
-    </div>
+    <>
+      <div>
+        {images.map((el, idx) => (
+          <LazyLoad key={idx} height={500}>
+            <img src={el} />
+          </LazyLoad>
+        ))}
+      </div>
+      <div>
+        <button onClick={onClickPreload}>이미지 프리로드</button>
+        <div ref={divRef}></div>
+      </div>
+    </>
   );
-};
-
+}
