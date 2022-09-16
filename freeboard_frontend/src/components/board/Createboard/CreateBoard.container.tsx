@@ -1,7 +1,7 @@
 //게시글 작성, 수정 컨테이너
 
 import CreateBoardUI from "./CreateBoard.presenter";
-import { CREATE_BOARD} from "./CreteBoard.queries";
+import { CREATE_BOARD } from "./CreteBoard.queries";
 import { UPDATE_BOARD } from "./CreteBoard.queries";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -11,7 +11,7 @@ import {
   IMyVariables,
   ImyupdateBoardInput,
 } from "./CreateBoard.types";
-import { ModalError,Modalsuccess} from "../../utility";
+import { ModalError, Modalsuccess } from "../../utility";
 
 export default function CreateBoardPage(props: ICreateBoardProps) {
   const [isActive, setIsActive] = useState(false);
@@ -31,7 +31,6 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
- 
 
   function onChangeName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
@@ -50,10 +49,10 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
     }
   }
   function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
-    if(props.isEdit === true){
-      setIsActive(true)
+    if (props.isEdit === true) {
+      setIsActive(true);
     }
-    
+
     setPassword(event.target.value);
     if (event.target.value !== "") {
       setPasswordError("");
@@ -68,8 +67,6 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
     } else {
       setIsActive(false);
     }
-
-    
   }
   function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
@@ -122,7 +119,6 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       setContentsError("내용을 입력해주세요.");
     }
     if (name !== "" && password !== "" && title !== "" && contents !== "") {
-      
       try {
         const result = await createBoard({
           variables: {
@@ -132,19 +128,20 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
               title,
               contents,
               youtubeUrl: String(youtubeUrl),
-              images : fileUrls,
+              images: fileUrls,
               boardAddress: {
                 zipcode,
                 address,
                 addressDetail,
               },
             },
-          }
+          },
         });
-        
-        
-        Modalsuccess({content :"게시물 등록에 성공했습니다! 상세페이지로 이동합니다! "});
-        
+
+        Modalsuccess({
+          content: "게시물 등록에 성공했습니다! 상세페이지로 이동합니다! ",
+        });
+
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
         if (error instanceof Error) alert(error.message);
@@ -169,6 +166,7 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       myupdateBoardInput.contents = contents;
     }
     if (youtubeUrl) myupdateBoardInput.youtubeUrl = youtubeUrl;
+
     if (zipcode || address || addressDetail) {
       myupdateBoardInput.boardAddress = {};
       if (zipcode) myupdateBoardInput.boardAddress.zipcode = zipcode;
@@ -181,14 +179,15 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
       await updateBoard({
         variables: myVariables,
       });
-      Modalsuccess({content :"게시물 수정에 성공했습니다!"});
+      Modalsuccess({ content: "게시물 수정에 성공했습니다!" });
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      if (error instanceof Error) ModalError({content : "내용을 확인해주세요"});
+      if (error instanceof Error)
+        ModalError({ content: "내용을 확인해주세요" });
     }
   };
   const onClickAddressSearch = () => {
-    setIsOpen((prev)=>!prev);
+    setIsOpen((prev) => !prev);
   };
   const onCompleteAddressSearch = (data: any) => {
     setAddress(data.address);
@@ -201,25 +200,24 @@ export default function CreateBoardPage(props: ICreateBoardProps) {
 
   //파일 업로드 부분입니다
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
-  const fileRef = useRef<HTMLInputElement>(null)
-  
-  const onChangeFileUrls = (fileUrl:string, index: number) =>{
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
     // fileUrls[index] = fileUrl
     // setFileUrls(fileUrls) 얕은복사 안되는 이유 정확히 이해하자
-    const newFileUrls = [...fileUrls]
-    newFileUrls[index] = fileUrl
-    setFileUrls(newFileUrls)
-  }
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
   useEffect(() => {
     if (props.data?.fetchUseditem.images?.length) {
       setFileUrls([...props.data?.fetchUseditem.images]);
     }
   }, [props.data]);
 
-
   return (
     <CreateBoardUI
-      fileRef = {fileRef}
+      fileRef={fileRef}
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}
       onChangeName={onChangeName}

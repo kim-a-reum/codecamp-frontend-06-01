@@ -32,7 +32,7 @@ export default function CallbackPromiseAsyncawaitPage() {
       .then((res: any) => {
         const userId = res.data.UserId;
         console.log(userId); // 여기까지 잘 뜬다!!!
-        axios.get(`http://koreanjson.com/posts?userId=${userId}`); // 주소도 들어가진다..
+        return axios.get(`http://koreanjson.com/posts?userId=${userId}`); // 주소도 들어가진다..
       })
       .then((res: any) => {
         console.log(res); // 왜 undefined가 뜨지 ㅠㅠ ㅠㅠ

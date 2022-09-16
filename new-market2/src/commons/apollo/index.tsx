@@ -12,6 +12,9 @@ import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { accessTokenState, restoreAccessTokenLoadable } from "../store";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../../components/commons/libraries/getAccessToken";
+
+const APOLLO_CACHE = new InMemoryCache();
+
 export default function ApolloSetting(props: any) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable);
@@ -49,13 +52,14 @@ export default function ApolloSetting(props: any) {
   });
 
   const uploadLink = createUploadLink({
-    uri: "https://backend06.codebootcamp.co.kr/graphql",
+    uri: "https://backend08.codebootcamp.co.kr/graphql",
     headers: { authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, uploadLink]),
-    cache: new InMemoryCache(),
+    cache: APOLLO_CACHE,
+    connectToDevTools: true,
   });
 
   if (typeof window !== "undefined") {
